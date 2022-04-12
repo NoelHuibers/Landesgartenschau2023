@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test/pages/home/widgets/RoundContainer.dart';
 import 'login.dart';
 import 'settings.dart';
 import '/config/palette.dart';
@@ -42,16 +43,10 @@ class Home extends StatelessWidget {
                     flex: 1,
                     child: Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(24),
                             color: Colors.blue),
-                        margin: const EdgeInsets.all(20.0))),
-                Flexible(
-                    flex: 1,
-                    child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.cyan),
-                        margin: const EdgeInsets.all(20.0)))
+                        margin: const EdgeInsets.all(16.0))),
+                const RoundContainer(color: Palette.secondary)
               ])),
           Flexible(
               flex: 3,
@@ -59,7 +54,7 @@ class Home extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Insets.m),
                       color: Palette.primary),
-                  margin: const EdgeInsets.all(Insets.m)))
+                  margin: const EdgeInsets.all(Insets.s)))
         ]));
   }
 }
