@@ -38,15 +38,9 @@ class Home extends StatelessWidget {
         body: Column(children: [
           Flexible(
               flex: 2,
-              child: Row(children: [
-                Flexible(
-                    flex: 1,
-                    child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(24),
-                            color: Colors.blue),
-                        margin: const EdgeInsets.all(16.0))),
-                const RoundContainer(color: Palette.secondary)
+              child: Row(children: const [
+                RoundContainer(color: Palette.secondaryDark),
+                RoundContainer(color: Palette.secondary)
               ])),
           Flexible(
               flex: 3,
