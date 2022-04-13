@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import '/repository/data.dart';
+import '/models/data.dart';
 
 Future<Data> fetchData() async {
   final response = await http.get(Uri.parse('https://IP:port/api/data'));
