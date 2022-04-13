@@ -3,7 +3,6 @@ import 'package:test/pages/home/widgets/RoundContainer.dart';
 import 'login.dart';
 import 'settings.dart';
 import '/config/palette.dart';
-import '/config/insets.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -39,16 +38,10 @@ class Home extends StatelessWidget {
           Flexible(
               flex: 2,
               child: Row(children: const [
-                RoundContainer(color: Palette.secondaryDark),
-                RoundContainer(color: Palette.secondary)
+                RoundContainer(color: Palette.secondaryDark, flex: 2),
+                RoundContainer(color: Palette.secondary, flex: 2)
               ])),
-          Flexible(
-              flex: 3,
-              child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Insets.m),
-                      color: Palette.primary),
-                  margin: const EdgeInsets.all(Insets.s)))
+          const RoundContainer(color: Palette.primary, flex: 3)
         ]));
   }
 }
