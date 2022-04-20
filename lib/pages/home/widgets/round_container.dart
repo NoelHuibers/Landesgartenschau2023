@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test/config/insets.dart';
+import '/config/insets.dart';
 
 class RoundContainer extends StatelessWidget {
   const RoundContainer({Key? key, required this.color, required this.flex})

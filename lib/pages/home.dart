@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:test/pages/home/widgets/RoundContainer.dart';
+import 'home/widgets/round_container.dart';
 import 'login.dart';
 import 'settings.dart';
 import '/config/palette.dart';
-import 'package:test/pages/events.dart';
+import '/pages/events.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
               );
             },
           ),
-          title: const Center(child: Text("Landesgartenschau 2022")),
+          title: const Center(child: Text("Landesgartenschau 2023")),
           actions: [
             IconButton(
               icon: const Icon(Icons.settings),
@@ -41,18 +41,22 @@ class Home extends StatelessWidget {
               child: Row(children: [
                 Flexible(
                     flex: 1,
-                    child: InkWell(child: Container(
+                    child: InkWell(
+                      child: Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Palette.secondaryDark,
+                          borderRadius: BorderRadius.circular(20),
+                          color: Palette.secondaryDark,
                         ),
                         margin: const EdgeInsets.all(20.0),
-                        ),onTap:() { 
-                          Navigator.push(
+                      ),
+                      onTap: () {
+                        Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const Veranstaltungen()),
-                         );
-                        },)),
+                          MaterialPageRoute(
+                              builder: (context) => const Veranstaltungen()),
+                        );
+                      },
+                    )),
                 Flexible(
                     flex: 1,
                     child: Container(
@@ -60,7 +64,6 @@ class Home extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20),
                             color: Palette.secondary),
                         margin: const EdgeInsets.all(20.0)))
-                        
               ])),
           const RoundContainer(color: Palette.primary, flex: 3),
         ]));
