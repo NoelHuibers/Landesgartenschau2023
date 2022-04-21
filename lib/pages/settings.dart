@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'settings/widgets/darkmode.dart';
+import 'settings/widgets/impressum.dart';
+import 'settings/widgets/language.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
@@ -9,8 +12,12 @@ class Settings extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Settings Page'),
       ),
-      body: const Center(
-        child: Text('Settings Page'),
+      body: Column(
+        children: const <Widget>[
+          Language(),
+          Expanded(child: Darkmode()),
+          Align(alignment: Alignment.bottomCenter, child: Impressum()),
+        ],
       ),
     );
   }
