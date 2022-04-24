@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:landesgartenschau2023/config/mapMarker.dart';
+import '/config/map_marker.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
@@ -187,7 +187,7 @@ class addUserLocation extends StatelessWidget {
   LatLng currentCenter = LatLng(51.773797392536636, 9.381120459653904);
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         width: 45.0,
         height: 45.0,
         child: IconButton(
