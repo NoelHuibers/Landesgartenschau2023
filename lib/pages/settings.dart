@@ -15,7 +15,8 @@ class Settings extends StatelessWidget {
       body: Column(
         children: const <Widget>[
           Language(),
-          Expanded(child: Darkmode()),
+          Darkmode(),
+          Expanded(child: ListTile(title: Text(''))),
           Align(alignment: Alignment.bottomCenter, child: Impressum()),
         ],
       ),
