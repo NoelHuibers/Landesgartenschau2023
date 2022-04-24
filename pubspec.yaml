@@ -16,6 +16,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
+  latlng: any
+  flutter_map: ^0.14.0
 
 dev_dependencies:
   flutter_test:
