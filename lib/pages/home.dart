@@ -5,6 +5,7 @@ import 'settings.dart';
 import '/config/palette.dart';
 import '/pages/events.dart';
 import 'map.dart';
+import 'package:landesgartenschau2023/config/insets.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -38,36 +39,41 @@ class Home extends StatelessWidget {
         ),
         body: Column(children: [
           Flexible(
-              flex: 2,
               child: Row(children: [
-                Flexible(
-                    flex: 1,
-                    child: InkWell(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Palette.secondaryDark,
-                        ),
-                        margin: const EdgeInsets.all(20.0),
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Veranstaltungen()),
-                        );
-                      },
-                    )),
-                Flexible(
-                    flex: 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Palette.primary),
-                      child: smallMap(),
-                    ))
-              ])),
-          const RoundContainer(color: Palette.primary, flex: 3),
+            Flexible(
+                child: InkWell(
+              child:
+                  const RoundContainer(color: Palette.secondaryDark, flex: 1),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const Veranstaltungen()),
+                );
+              },
+            )),
+            Flexible(
+                child: InkWell(
+              child: const RoundContainer(color: Palette.primary, flex: 1),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const Veranstaltungen()), //Veranstalltung Doppelt!!! mit zukünftige Page erstezen
+                );
+              },
+            )),
+          ])),
+          Flexible(
+              flex: 2,
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Insets.m),
+                    color: Palette.primary),
+                margin: const EdgeInsets.all(Insets.m),
+                child: smallMap(),
+              )),
         ]));
   }
 }
