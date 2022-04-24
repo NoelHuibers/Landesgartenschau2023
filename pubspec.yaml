@@ -17,6 +17,8 @@ dependencies:
     sdk: flutter
   intl: ^0.17.0
   provider: ^6.0.2
+  latlng: ^0.1.0
+  flutter_map: ^0.14.0
 
 dev_dependencies:
   flutter_test:

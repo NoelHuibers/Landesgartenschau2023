@@ -4,6 +4,7 @@ import 'login.dart';
 import 'settings.dart';
 import '/config/palette.dart';
 import '/pages/events.dart';
+import 'map.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -60,10 +61,11 @@ class Home extends StatelessWidget {
                 Flexible(
                     flex: 1,
                     child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Palette.secondary),
-                        margin: const EdgeInsets.all(20.0)))
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Palette.primary),
+                      child: smallMap(),
+                    ))
               ])),
           const RoundContainer(color: Palette.primary, flex: 3),
         ]));
