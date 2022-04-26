@@ -8,23 +8,35 @@ class smallMap extends StatefulWidget {
   smallMapState createState() => smallMapState();
 }
 
+// ignore: camel_case_types
 class smallMapState extends State<smallMap> {
   LatLng currentCenter = LatLng(51.773797392536636, 9.381120459653904);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FlutterMap(
-        options: MapOptions(
-          minZoom: 10.0,
-          center: currentCenter = LatLng(51.773797392536636, 9.381120459653904),
-        ),
-        layers: [
-          TileLayerOptions(
-            urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-            subdomains: ['a', 'b', 'c'],
+      body: ClipRRect(
+          //ClipRRect wird verwendet, um Widgets auf benutzerdefinierte Weise zu schneiden
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+            bottomRight: Radius.circular(30),
+            bottomLeft: Radius.circular(30),
           ),
-        ],
-      ),
+          child: Align(
+            child: FlutterMap(
+              options: MapOptions(
+                minZoom: 3.0,
+                center: currentCenter,
+              ),
+              layers: [
+                TileLayerOptions(
+                  urlTemplate:
+                      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                  subdomains: ['a', 'b', 'c'],
+                ),
+              ],
+            ),
+          )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
