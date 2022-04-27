@@ -30,6 +30,8 @@ class smallMapState extends State<smallMap> {
               ),
               layers: [
                 TileLayerOptions(
+                  maxNativeZoom: 18,
+                  maxZoom: 22,
                   urlTemplate:
                       "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                   subdomains: ['a', 'b', 'c'],
@@ -152,6 +154,8 @@ class bigMap extends StatelessWidget {
           ),
           layers: [
             TileLayerOptions(
+              maxNativeZoom: 18,
+              maxZoom: 22,
               urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
               subdomains: ['a', 'b', 'c'],
             ),
