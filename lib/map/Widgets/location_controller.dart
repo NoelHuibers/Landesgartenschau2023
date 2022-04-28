@@ -26,6 +26,12 @@ class animationMarkerState extends State<animationMarker>
   }
 
   @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return locationMarker(animationController);
   }
