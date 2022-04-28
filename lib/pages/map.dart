@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import '../models/map_marker.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:landesgartenschau2023/map/Widgets/location_controller.dart';
+
+//Die genauere Position wird aus der Location datei geholt
+LatLng genauePosition = LatLng(51.76685404294687, 9.370506747991776);
 
 class smallMap extends StatefulWidget {
   @override
@@ -36,6 +40,17 @@ class smallMapState extends State<smallMap> {
                       "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                   subdomains: ['a', 'b', 'c'],
                 ),
+                MarkerLayerOptions(markers: [
+                  Marker(
+                      height: 60,
+                      width: 60,
+                      point: genauePosition,
+                      builder: (_) {
+                        return const animationMarker();
+                      }),
+                ]
+                    // markers: markerBild(),
+                    ),
               ],
             ),
           )),
@@ -82,9 +97,6 @@ class bigMap extends StatelessWidget {
   MapController mapController = MapController();
   LatLng currentCenter = LatLng(51.773797392536636, 9.381120459653904);
 
-  //Die genauere Position wird aus der Location datei geholt
-  LatLng genauePosition = LatLng(51.76685404294687, 9.370506747991776);
-
   //Methode zum Zoom Out
   void _zoomOut() {
     currentZoom = currentZoom - 1;
@@ -101,7 +113,6 @@ class bigMap extends StatelessWidget {
   void cuncretPosition() {
     currentZoom = currentZoom + 3;
     mapController.move(genauePosition, currentZoom);
-    addUserLocation();
   }
 
   //Die Methode ist für das Adden die Marker auf der Karte
@@ -161,10 +172,12 @@ class bigMap extends StatelessWidget {
             ),
             MarkerLayerOptions(markers: [
               Marker(
+                  height: 60,
+                  width: 60,
                   point: genauePosition,
                   builder: (_) {
-                    return addUserLocation();
-                  })
+                    return const animationMarker();
+                  }),
             ]
                 // markers: markerBild(),
                 ),
@@ -196,23 +209,5 @@ class bigMap extends StatelessWidget {
             child: const Icon(Icons.my_location_rounded),
           )
         ]));
-  }
-}
-
-class addUserLocation extends StatelessWidget {
-  LatLng currentCenter = LatLng(51.773797392536636, 9.381120459653904);
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-        width: 45.0,
-        height: 45.0,
-        child: IconButton(
-          icon: const Icon(Icons.location_on),
-          color: Colors.blue,
-          iconSize: 45.0,
-          onPressed: () {
-            print("Hier ist die Aktuelle Position");
-          },
-        ));
   }
 }
