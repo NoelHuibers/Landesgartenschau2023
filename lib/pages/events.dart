@@ -5,7 +5,7 @@ import '/config/palette.dart';
 List<Wiget> aus Containern erstellen, somit kann jeder Container 
 ihre eigene eigenschaften gegeben werden */
 
-List<String> staendeListe = [
+List<String> eventList = [
   "Horizontbank",
   "Weserstufen",
   "Galeriegärten",
@@ -40,14 +40,14 @@ List<String> staendeListe = [
   "Geophytenwiese"
 ];
 
-class Veranstaltungen extends StatelessWidget {
-  const Veranstaltungen({Key? key}) : super(key: key);
+class Events extends StatelessWidget {
+  const Events({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Stände/Veranstalltungen"),
+        title: const Text("Events"),
       ),
 
       /* Es wurde GridView.builder verwednet */
@@ -63,7 +63,7 @@ class Veranstaltungen extends StatelessWidget {
               child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "$index ${staendeListe[index]}",
+                    "$index ${eventList[index]}",
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   )),
               height: 30,
@@ -73,7 +73,7 @@ class Veranstaltungen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ));
         },
-        itemCount: staendeListe.length,
+        itemCount: eventList.length,
       ),
     );
   }

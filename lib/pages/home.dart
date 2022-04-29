@@ -4,6 +4,7 @@ import 'login.dart';
 import 'settings.dart';
 import '/config/palette.dart';
 import '/pages/events.dart';
+import '/pages/stands.dart';
 import 'map.dart';
 import 'package:landesgartenschau2023/config/insets.dart';
 
@@ -47,8 +48,7 @@ class Home extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const Veranstaltungen()),
+                  MaterialPageRoute(builder: (context) => const Stands()),
                 );
               },
             )),
@@ -60,7 +60,7 @@ class Home extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          const Veranstaltungen()), //Veranstalltung Doppelt!!! mit zukünftige Page erstezen
+                          const Events()), //Veranstalltung Doppelt!!! mit zukünftige Page erstezen
                 );
               },
             )),
