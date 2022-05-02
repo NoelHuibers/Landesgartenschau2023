@@ -10,7 +10,7 @@ class Stands extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Stands'),
       ),
-      body: Standslist(),
+      body: const Standslist(),
     );
   }
 }

@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
+import '/services/provider/darkmode_provider.dart';
+import 'package:provider/provider.dart';
 
-class Darkmode extends StatefulWidget {
+class Darkmode extends StatelessWidget {
   const Darkmode({Key? key}) : super(key: key);
 
   @override
-  State<Darkmode> createState() => _Darkmode();
-}
-
-class _Darkmode extends State<Darkmode> {
-  bool _lights = false;
-
-  @override
   Widget build(BuildContext context) {
+    final themeprovider = Provider.of<ColorProvider>(context);
     return SwitchListTile(
       title: const Text('Darkmode'),
-      value: _lights,
+      value: themeprovider.isDarkMode,
       onChanged: (bool value) {
-        setState(() {
-          _lights = value;
-        });
+        final provider = Provider.of<ColorProvider>(context, listen: false);
+        provider.toggleTheme(value);
       },
       secondary: const Icon(Icons.lightbulb_outline),
     );
