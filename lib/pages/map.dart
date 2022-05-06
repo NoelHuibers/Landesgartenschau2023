@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/map_marker.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:landesgartenschau2023/map/Widgets/location_controller.dart';
+import 'map/widgets/location_controller.dart';
 
 //Die genauere Position wird aus der Location datei geholt
 LatLng genauePosition = LatLng(51.76685404294687, 9.370506747991776);

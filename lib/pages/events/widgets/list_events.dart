@@ -6,13 +6,13 @@ List eventsList = [
     "subtitle": "It's newyear! Time to wish Noel and team-mates!",
   },
   {
-    "title": "Weserstufen",
-    "subtitle": "Info of Weserstufen",
+    "title": "Cool Event",
+    "subtitle": "Short Text",
   },
   {
-    "title": "Galeriegärten",
+    "title": "Long Text",
     "subtitle":
-        "Info of Galeriegärten  nnbvcxjkvgjkxbhxjkhvxjk jhkdgrirzgöld fjdioghoöjhdiozue odhjöflmjnölkcnklnd diohguihj huezruizthwioezupw0ßu uotrzueüht8zjäo tjiozheprojpodfjioghdkhn jidohljmnklgdfmnjkvb n hvbxjklbncvjlkxvbxjkvbjbnkcx.bgfjh",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   },
 ];
 
@@ -29,7 +29,7 @@ class Eventslist extends StatelessWidget {
           return ListTile(
             title: Text(eventsList[index]['title']),
             subtitle: Text(eventsList[index]['subtitle'],
-                maxLines: lines ? 2 : 10, overflow: TextOverflow.ellipsis),
+                maxLines: lines ? 10 : 2, overflow: TextOverflow.ellipsis),
             onTap: () {
               lines = !lines;
             },
