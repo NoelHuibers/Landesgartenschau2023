@@ -96,23 +96,28 @@ class bigMap extends StatelessWidget {
   double currentZoom = 13.0;
   MapController mapController = MapController();
   LatLng currentCenter = LatLng(51.773797392536636, 9.381120459653904);
+  var mapPosition;
 
   //Methode zum Zoom Out
   void _zoomOut() {
     currentZoom = currentZoom - 1;
-    mapController.move(currentCenter, currentZoom);
+    mapController.move(mapPosition, currentZoom);
   }
 
   //Methode zum Zoom In
   void _zoomIn() {
     currentZoom = currentZoom + 1;
-    mapController.move(currentCenter, currentZoom);
+    mapController.move(mapPosition, currentZoom);
   }
 
   //Methode an die Aktuelle Position zu führen
   void cuncretPosition() {
     currentZoom = currentZoom + 3;
     mapController.move(genauePosition, currentZoom);
+  }
+
+  void setPosition(LatLng center) {
+    mapPosition = center;
   }
 
   //Die Methode ist für das Adden die Marker auf der Karte
@@ -160,6 +165,9 @@ class bigMap extends StatelessWidget {
         body: FlutterMap(
           mapController: mapController,
           options: MapOptions(
+            onPositionChanged: (position, e) {
+              setPosition(mapController.center);
+            },
             minZoom: 10.0,
             center: currentCenter,
           ),
