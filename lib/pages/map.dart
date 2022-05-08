@@ -160,7 +160,10 @@ class bigMap extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Map'),
+          title: Text(
+            'Map',
+            style: Theme.of(context).textTheme.headline5,
+          ),
         ),
         body: FlutterMap(
           mapController: mapController,

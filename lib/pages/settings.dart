@@ -10,7 +10,10 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings Page'),
+        title: Text(
+          'Settings Page',
+          style: Theme.of(context).textTheme.headline5,
+        ),
       ),
       body: Column(
         children: const <Widget>[

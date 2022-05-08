@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '/config/palette.dart';
 
 /* Auf List<String> wurde ich später verzichten und 
 List<Wiget> aus Containern erstellen, somit kann jeder Container 
@@ -47,7 +46,10 @@ class Events extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Events"),
+        title: Text(
+          "Events",
+          style: Theme.of(context).textTheme.headline5,
+        ),
       ),
 
       /* Es wurde GridView.builder verwednet */
@@ -69,7 +71,7 @@ class Events extends StatelessWidget {
               height: 30,
               width: 25,
               decoration: BoxDecoration(
-                color: Palette.primary,
+                color: Theme.of(context).colorScheme.primary,
                 borderRadius: BorderRadius.circular(20),
               ));
         },

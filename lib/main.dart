@@ -28,7 +28,8 @@ class MyApp extends StatelessWidget {
           final provider2 = Provider.of<ColorProvider>(context);
           return MaterialApp(
             title: 'LGS2023',
-            themeMode: ColorProvider.themeMode,
+            themeMode:
+                ColorProvider.isDarkMode ? ThemeMode.light : ThemeMode.dark,
             theme: MyThemes.lightTheme,
             darkTheme: MyThemes.darkTheme,
             locale: provider.locale,

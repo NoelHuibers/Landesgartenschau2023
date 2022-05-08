@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'home/widgets/round_container.dart';
 import 'login.dart';
 import 'settings.dart';
-import '/config/palette.dart';
 import '/pages/events.dart';
 import '/pages/stands.dart';
 import 'map.dart';
@@ -17,6 +16,7 @@ class Home extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.account_circle_sharp),
+            color: Theme.of(context).iconTheme.color,
             onPressed: () {
               Navigator.push(
                 context,
@@ -24,10 +24,15 @@ class Home extends StatelessWidget {
               );
             },
           ),
-          title: const Center(child: Text("Landesgartenschau 2023")),
+          title: Center(
+              child: Text(
+            "Landesgartenschau 2023",
+            style: Theme.of(context).textTheme.headline5,
+          )),
           actions: [
             IconButton(
               icon: const Icon(Icons.settings),
+              color: Theme.of(context).iconTheme.color,
               onPressed: () {
                 Navigator.push(
                   context,
@@ -43,8 +48,7 @@ class Home extends StatelessWidget {
               child: Row(children: [
             Flexible(
                 child: InkWell(
-              child:
-                  const RoundContainer(color: Palette.secondaryDark, flex: 1),
+              child: const RoundContainer(flex: 1),
               onTap: () {
                 Navigator.push(
                   context,
@@ -54,7 +58,7 @@ class Home extends StatelessWidget {
             )),
             Flexible(
                 child: InkWell(
-              child: const RoundContainer(color: Palette.primary, flex: 1),
+              child: const RoundContainer(flex: 1),
               onTap: () {
                 Navigator.push(
                   context,
@@ -70,7 +74,7 @@ class Home extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Insets.m),
-                    color: Palette.primary),
+                    color: Theme.of(context).primaryColor),
                 margin: const EdgeInsets.all(Insets.m),
                 child: smallMap(),
               )),

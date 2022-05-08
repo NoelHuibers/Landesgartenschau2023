@@ -8,7 +8,10 @@ class Stands extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Stands'),
+        title: Text(
+          'Stands',
+          style: Theme.of(context).textTheme.headline5,
+        ),
       ),
       body: const Standslist(),
     );
