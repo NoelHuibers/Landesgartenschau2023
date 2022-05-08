@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import '../models/map_marker.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:landesgartenschau2023/map/Widgets/location_controller.dart';
+import 'map/widgets/flip_window.dart';
+import 'map/widgets/location_controller.dart';
 
 //Die genauere Position wird aus der Location datei geholt
 LatLng genauePosition = LatLng(51.76685404294687, 9.370506747991776);
@@ -143,6 +144,7 @@ class bigMap extends StatelessWidget {
   }
 
   //Beispiel Koordinaten zum testen
+  //diese positionsdaten kommen aus backend
   var position = <LatLng>[
     LatLng(51.76641692390064, 9.371780740209607),
     LatLng(51.76971011625946, 9.372660504708008),
@@ -155,16 +157,30 @@ class bigMap extends StatelessWidget {
     LatLng(51.77256490714099, 9.38137231900925),
     LatLng(51.772830459903666, 9.382037506800726),
   ];
+  var polylines = <LatLng>[
+    LatLng(51.76751715356895, 9.369571555462182),
+    LatLng(51.766531165008566, 9.368729341887493),
+    LatLng(51.765999983793876, 9.37112187216973),
+    LatLng(51.76707561926692, 9.371454466065467),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Map',
-            style: Theme.of(context).textTheme.headline5,
-          ),
-        ),
+            title: Text(
+              'Map',
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.maps_home_work_outlined),
+                tooltip: 'Navigationsbereich',
+                onPressed: () {
+                  flipFenster(context);
+                },
+              ),
+            ]),
         body: FlutterMap(
           mapController: mapController,
           options: MapOptions(
@@ -194,6 +210,9 @@ class bigMap extends StatelessWidget {
                 ),
             PolylineLayerOptions(polylines: [
               Polyline(points: position, strokeWidth: 5.0, color: Colors.blue)
+            ]),
+            PolygonLayerOptions(polygons: [
+              Polygon(points: polylines, color: Colors.red.withOpacity(0.3))
             ]),
           ],
         ),
