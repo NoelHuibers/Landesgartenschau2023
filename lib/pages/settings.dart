@@ -16,11 +16,24 @@ class Settings extends StatelessWidget {
         ),
       ),
       body: Column(
-        children: const <Widget>[
-          Language(),
-          Darkmode(),
-          Expanded(child: ListTile(title: Text(''))),
-          Align(alignment: Alignment.bottomCenter, child: Impressum()),
+        children: <Widget>[
+          const Language(),
+          const Darkmode(),
+          const Expanded(child: ListTile(title: Text(''))),
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Impressum()),
+                  );
+                },
+                child: Text(
+                  "Impressum",
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+              )),
         ],
       ),
     );

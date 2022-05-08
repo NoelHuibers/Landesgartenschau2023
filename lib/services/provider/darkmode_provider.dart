@@ -31,12 +31,16 @@ class MyThemes {
         color: Colors.white,
         //fontSize: 16.0,
       ), // ?
+      bodyText1: TextStyle(
+        color: Colors.white,
+        //fontSize: 14.0,
+      ), // Haupttext2
       bodyText2: TextStyle(
         color: Colors.white,
         //fontSize: 14.0,
-      ), // Haupttext
+      ), // Haupttext1
     ),
-    primaryColor: Colors.grey, // unbenutzt
+    primaryColor: Colors.black, // unbenutzt
   );
 
   static final ThemeData lightTheme = ThemeData(
@@ -71,9 +75,13 @@ class MyThemes {
       bodyText1: TextStyle(
         color: Colors.black,
         //fontSize: 14.0,
+      ), // Haupttext2
+      bodyText2: TextStyle(
+        color: Colors.black,
+        //fontSize: 14.0,
       ), // Haupttext
     ),
-    primaryColor: Colors.yellow.shade800, // unbenutzt
+    primaryColor: Colors.white, // unbenutzt
   );
 }
 
