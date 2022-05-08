@@ -19,7 +19,10 @@ class _Language extends State<Language> {
     final flag = L10n.getFlag(locale.languageCode);
 
     return ListTile(
-        leading: const Icon(Icons.language),
+        leading: Icon(
+          Icons.language,
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
         title: Text(AppLocalizations.of(context)!.language),
         trailing: Container(
             margin: const EdgeInsets.only(right: 6.0),

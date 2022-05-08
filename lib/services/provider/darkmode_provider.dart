@@ -12,7 +12,7 @@ class MyThemes {
     ),
     colorScheme: ColorScheme.dark(
       primary: Colors.grey.shade500, // round container
-      onPrimary: Colors.blue, // unbenutzt
+      onPrimary: Colors.white, // Icon
       secondary: Colors.black54, // Buttons
     ),
     iconTheme: const IconThemeData(
@@ -41,16 +41,16 @@ class MyThemes {
 
   static final ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
-    appBarTheme: const AppBarTheme(
-      color: Colors.green,
-      iconTheme: IconThemeData(
+    appBarTheme: AppBarTheme(
+      color: Colors.green.shade700,
+      iconTheme: const IconThemeData(
         color: Colors.white,
       ),
     ),
     colorScheme: ColorScheme.light(
       primary: Colors.yellow.shade800, // round container
-      onPrimary: Colors.white, // unbenutzt
-      secondary: Colors.green, // Buttons
+      onPrimary: Colors.black, // Icon
+      secondary: Colors.green.shade700, // Buttons
     ),
     iconTheme: const IconThemeData(
       color: Colors.white,

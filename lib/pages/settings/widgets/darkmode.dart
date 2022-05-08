@@ -15,7 +15,10 @@ class Darkmode extends StatelessWidget {
         final provider = Provider.of<ColorProvider>(context, listen: false);
         provider.toggleTheme(value);
       },
-      secondary: const Icon(Icons.lightbulb_outline),
+      secondary: Icon(
+        Icons.lightbulb_outline,
+        color: Theme.of(context).colorScheme.onPrimary,
+      ),
     );
   }
 }
