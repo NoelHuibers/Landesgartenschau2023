@@ -22,7 +22,12 @@ void flipFenster(context) {
             childAspectRatio: 1.09,
             children: <Widget>[
               InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    eingabe_text(context).then((onValue) {
+                      print(onValue);
+                      //Hier kann man die adresse an Backend senden
+                    });
+                  },
                   child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
@@ -99,6 +104,33 @@ void flipFenster(context) {
                           ]))),
             ],
           )),
+        );
+      });
+}
+
+Future<String?> eingabe_text(BuildContext context) {
+  TextEditingController controller = TextEditingController();
+
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Startadresse"),
+          content: TextField(
+            decoration:
+                const InputDecoration(hintText: "Startadresse eingeben"),
+            autofocus: true,
+            controller: controller,
+          ),
+          actions: [
+            MaterialButton(
+              elevation: 5.0,
+              child: Text("eigeben"),
+              onPressed: () {
+                Navigator.of(context).pop(controller.text.toString());
+              },
+            )
+          ],
         );
       });
 }
