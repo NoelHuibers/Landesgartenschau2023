@@ -35,7 +35,7 @@ List inhalt = [
   },
   {
     "Zeile":
-        "Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz: DE 125 650 309, Finanzamt Lemgo",
+        "Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz: DE XXX XXX XXX, Finanzamt Lemgo",
   },
   {
     "Zeile": "Zuständige Aufsichtsbehörde",
@@ -94,7 +94,10 @@ class Impressum extends StatelessWidget {
         itemCount: inhalt.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(inhalt[index]['Zeile']),
+            title: Text(
+              inhalt[index]['Zeile'],
+              style: Theme.of(context).textTheme.bodyText2,
+            ),
           );
         },
       ),

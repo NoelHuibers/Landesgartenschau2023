@@ -10,14 +10,17 @@ class MyThemes {
         color: Colors.white,
       ),
     ),
+
     colorScheme: ColorScheme.dark(
       primary: Colors.grey.shade500, // round container
-      onPrimary: Colors.white, // Icon
+      onPrimary: Colors.white, // Icons
       secondary: Colors.black54, // Buttons
     ),
+
     iconTheme: const IconThemeData(
       color: Colors.white,
     ),
+
     textTheme: const TextTheme(
       headline5: TextStyle(
         color: Colors.white,
@@ -30,7 +33,7 @@ class MyThemes {
       labelMedium: TextStyle(
         color: Colors.white,
         //fontSize: 16.0,
-      ), // ?
+      ), // unbenutzt
       bodyText1: TextStyle(
         color: Colors.white,
         //fontSize: 14.0,
@@ -51,14 +54,17 @@ class MyThemes {
         color: Colors.white,
       ),
     ),
+
     colorScheme: ColorScheme.light(
       primary: Colors.yellow.shade800, // round container
-      onPrimary: Colors.black, // Icon
+      onPrimary: Colors.black, // Icons
       secondary: Colors.green.shade700, // Buttons
     ),
+
     iconTheme: const IconThemeData(
       color: Colors.white,
     ),
+
     textTheme: const TextTheme(
       headline5: TextStyle(
         color: Colors.white,
@@ -71,7 +77,7 @@ class MyThemes {
       labelMedium: TextStyle(
         color: Colors.black,
         //fontSize: 16.0,
-      ), // ?
+      ), // unbenutzt
       bodyText1: TextStyle(
         color: Colors.black,
         //fontSize: 14.0,

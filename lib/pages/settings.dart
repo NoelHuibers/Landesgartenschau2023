@@ -31,7 +31,7 @@ class Settings extends StatelessWidget {
                 },
                 child: Text(
                   "Impressum",
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
               )),
         ],
