@@ -3,23 +3,24 @@ import 'package:flutter/scheduler.dart';
 
 class MyThemes {
   static final ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.grey.shade900,
+    scaffoldBackgroundColor: const Color.fromRGBO(20, 20, 20, 1),
     appBarTheme: const AppBarTheme(
-      color: Colors.black,
+      color: Color.fromRGBO(47, 47, 47, 1),
       iconTheme: IconThemeData(
         color: Colors.white,
       ),
     ),
 
-    colorScheme: ColorScheme.dark(
-      primary: Colors.grey.shade500, // round container
+    colorScheme: const ColorScheme.dark(
+      primary: Color.fromRGBO(44, 44, 44, 1), // round container
       onPrimary: Colors.white, // Icons
-      secondary: Colors.black54, // Buttons
+      secondary: Color.fromRGBO(34, 201, 92, 1), // Buttons
     ),
 
     iconTheme: const IconThemeData(
       color: Colors.white,
     ),
+    // Link Text Color: 1E77B7
 
     textTheme: const TextTheme(
       headline5: TextStyle(
