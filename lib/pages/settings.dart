@@ -16,13 +16,9 @@ class Settings extends StatelessWidget {
         ),
       ),
       body: Column(
-        children: const <Widget>[
-          Language(),
-          Darkmode(),
-          Expanded(child: ListTile(title: Text(''))),
-          Align(alignment: Alignment.bottomCenter, child: Impressumbutton()),
-        ],
+        children: const <Widget>[Language(), Darkmode()],
       ),
+      bottomNavigationBar: const Impressumbutton(),
     );
   }
 }
