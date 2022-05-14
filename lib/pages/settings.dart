@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'settings/widgets/darkmode.dart';
-import 'settings/widgets/impressum.dart';
+import 'settings/widgets/impressum_button.dart';
 import 'settings/widgets/language.dart';
 
 class Settings extends StatelessWidget {
@@ -16,24 +16,11 @@ class Settings extends StatelessWidget {
         ),
       ),
       body: Column(
-        children: <Widget>[
-          const Language(),
-          const Darkmode(),
-          const Expanded(child: ListTile(title: Text(''))),
-          Align(
-              alignment: Alignment.bottomCenter,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Impressum()),
-                  );
-                },
-                child: Text(
-                  "Impressum",
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-              )),
+        children: const <Widget>[
+          Language(),
+          Darkmode(),
+          Expanded(child: ListTile(title: Text(''))),
+          Align(alignment: Alignment.bottomCenter, child: Impressumbutton()),
         ],
       ),
     );

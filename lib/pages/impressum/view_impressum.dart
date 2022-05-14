@@ -78,29 +78,21 @@ List inhalt = [
   },
 ];
 
-class Impressum extends StatelessWidget {
-  const Impressum({Key? key}) : super(key: key);
+class Impressumview extends StatelessWidget {
+  const Impressumview({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Impressum',
-          style: Theme.of(context).textTheme.headline5,
-        ),
-      ),
-      body: ListView.builder(
-        itemCount: inhalt.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(
-              inhalt[index]['Zeile'],
-              style: Theme.of(context).textTheme.bodyText2,
-            ),
-          );
-        },
-      ),
+    return ListView.builder(
+      itemCount: inhalt.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(
+            inhalt[index]['Zeile'],
+            style: Theme.of(context).textTheme.bodyText2,
+          ),
+        );
+      },
     );
   }
 }
