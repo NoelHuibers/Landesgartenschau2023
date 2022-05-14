@@ -1,4 +1,5 @@
 class Insets {
+  static const double xxs = 4.0;
   static const double xs = 8.0;
   static const double s = 16.0;
   static const double m = 24.0;

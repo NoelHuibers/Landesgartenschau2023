@@ -7,7 +7,6 @@ class Darkmode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeprovider = Provider.of<ColorProvider>(context);
     return SwitchListTile(
       title: const Text('Darkmode'),
       value: ColorProvider.isDarkMode,
