@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:landesgartenschau2023/models/events_model.dart';
+import '/models/events_model.dart';
 
 class Eventslist extends StatelessWidget {
   const Eventslist({Key? key}) : super(key: key);

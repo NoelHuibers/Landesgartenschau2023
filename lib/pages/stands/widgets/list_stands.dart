@@ -1,19 +1,6 @@
 import 'package:flutter/material.dart';
+import '/models/stands_model.dart';
 import 'star.dart';
-
-List standsList = [
-  {
-    "title": "Horizontbank",
-    "subtitle": "Info of Horizontbank",
-    "starred": true
-  },
-  {"title": "Weserstufen", "subtitle": "Info of Weserstufen", "starred": false},
-  {
-    "title": "Galeriegärten",
-    "subtitle": "Info of Galeriegärten",
-    "starred": false
-  }
-];
 
 class Standslist extends StatelessWidget {
   const Standslist({Key? key}) : super(key: key);
@@ -22,14 +9,15 @@ class Standslist extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: ListView.builder(
-        itemCount: standsList.length,
+        itemCount: StandsModel.standsList.length,
         itemBuilder: (context, index) {
           return ListTile(
-            leading: Star(starred: standsList[index]["starred"]),
-            title: Text(standsList[index]['title']),
-            subtitle: Text(standsList[index]['subtitle']),
+            leading: Star(starred: StandsModel.standsList[index]["starred"]),
+            title: Text(StandsModel.standsList[index]['title']),
+            subtitle: Text(StandsModel.standsList[index]['subtitle']),
             onTap: () {
-              standsList[index]['starred'] = !standsList[index]['starred'];
+              StandsModel.standsList[index]['starred'] =
+                  !StandsModel.standsList[index]['starred'];
             },
           );
         },
