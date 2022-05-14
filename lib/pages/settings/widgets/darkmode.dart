@@ -9,7 +9,7 @@ class Darkmode extends StatelessWidget {
   Widget build(BuildContext context) {
     return SwitchListTile(
       title: const Text('Darkmode'),
-      value: ColorProvider.isDarkMode,
+      value: Provider.of<ColorProvider>(context).isDarkMode,
       onChanged: (bool value) {
         final provider = Provider.of<ColorProvider>(context, listen: false);
         provider.toggleTheme(value);

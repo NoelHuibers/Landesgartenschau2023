@@ -8,6 +8,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'services/provider/locale_provider.dart';
 import 'services/provider/darkmode_provider.dart';
 import 'package:provider/provider.dart';
+import 'config/palette.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,15 +25,15 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<ColorProvider>(create: (_) => ColorProvider()),
         ],
         builder: (context, child) {
-          final provider = Provider.of<LocaleProvider>(context);
-          final provider2 = Provider.of<ColorProvider>(context);
+          final languageProvider = Provider.of<LocaleProvider>(context);
+          final colorProvider = Provider.of<ColorProvider>(context);
           return MaterialApp(
             title: 'LGS2023',
             themeMode:
-                ColorProvider.isDarkMode ? ThemeMode.light : ThemeMode.dark,
+                colorProvider.isDarkMode ? ThemeMode.light : ThemeMode.dark,
             theme: MyThemes.lightTheme,
             darkTheme: MyThemes.darkTheme,
-            locale: provider.locale,
+            locale: languageProvider.locale,
             supportedLocales: L10n.all,
             localizationsDelegates: const [
               AppLocalizations.delegate,
