@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:landesgartenschau2023/models/events_model.dart';
 
-class Eventslist extends StatelessWidget {
-  const Eventslist({Key? key}) : super(key: key);
+class StarredView extends StatelessWidget {
+  const StarredView({
+    Key? key,
+    required this.model,
+  }) : super(key: key);
+  final List model;
 
   @override
   Widget build(BuildContext context) {
     bool lines = false;
     return SafeArea(
       child: ListView.builder(
-        itemCount: EventsModel.eventsList.length,
+        itemCount: model.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(EventsModel.eventsList[index]['title']),
-            subtitle: Text(EventsModel.eventsList[index]['subtitle'],
+            title: Text(model[index]['title']),
+            subtitle: Text(model[index]['subtitle'],
                 maxLines: lines ? 10 : 2, overflow: TextOverflow.ellipsis),
             onTap: () {
               lines = !lines;
