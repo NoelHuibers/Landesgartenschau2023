@@ -20,7 +20,7 @@ class Home extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) =>  Login()),
+                MaterialPageRoute(builder: (context) => const Login()),
               );
             },
           ),
@@ -76,7 +76,7 @@ class Home extends StatelessWidget {
                     borderRadius: BorderRadius.circular(Insets.m),
                     color: Theme.of(context).primaryColor),
                 margin: const EdgeInsets.all(Insets.m),
-                child: smallMap(),
+                child: const smallMap(),
               )),
         ]));
   }

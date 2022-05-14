@@ -9,6 +9,8 @@ import 'map/widgets/location_controller.dart';
 LatLng genauePosition = LatLng(51.76685404294687, 9.370506747991776);
 
 class smallMap extends StatefulWidget {
+  const smallMap({Key? key}) : super(key: key);
+
   @override
   smallMapState createState() => smallMapState();
 }
