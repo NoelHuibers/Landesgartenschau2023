@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../config/palette.dart';
+
+import '/config/palette.dart';
 
 void flipFenster(context) {
   showModalBottomSheet(

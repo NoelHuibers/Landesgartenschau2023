@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '/services/provider/darkmode_provider.dart';
 import 'package:provider/provider.dart';
+
+import '/services/provider/darkmode_provider.dart';
 
 class Darkmode extends StatelessWidget {
   const Darkmode({Key? key}) : super(key: key);

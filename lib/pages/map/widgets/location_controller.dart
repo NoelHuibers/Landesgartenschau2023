@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:landesgartenschau2023/config/palette.dart';
+
+import '/config/palette.dart';
 
 class animationMarker extends StatefulWidget {
   const animationMarker({Key? key}) : super(key: key);

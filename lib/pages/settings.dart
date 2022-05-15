@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:landesgartenschau2023/config/insets.dart';
-import 'package:landesgartenschau2023/pages/home/widgets/default_card.dart';
+
+import '/config/insets.dart';
+import '/pages/home/widgets/default_card.dart';
 import 'settings/widgets/darkmode.dart';
 import 'settings/widgets/impressum_button.dart';
 import 'settings/widgets/language.dart';

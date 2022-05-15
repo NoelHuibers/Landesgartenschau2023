@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'default_card.dart';
 
 class Searchbar extends StatelessWidget {

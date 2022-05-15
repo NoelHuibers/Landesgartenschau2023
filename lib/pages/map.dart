@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../models/map_marker.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+
+import '/models/map_marker.dart';
 import 'map/widgets/flip_window.dart';
 import 'map/widgets/location_controller.dart';
 
