@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.account_circle_sharp),
-            color: Theme.of(context).iconTheme.color,
+            color: Theme.of(context).colorScheme.primary,
             onPressed: () {
               Navigator.push(
                 context,
@@ -33,7 +33,7 @@ class Home extends StatelessWidget {
           actions: [
             IconButton(
               icon: const Icon(Icons.settings),
-              color: Theme.of(context).iconTheme.color,
+              color: Theme.of(context).colorScheme.primary,
               onPressed: () {
                 Navigator.push(
                   context,

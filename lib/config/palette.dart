@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Palette {
-  static const Color primary = Color(0xFF00C569);
-  static const Color primaryDark = Color(0xFF00B058);
-  static const Color secondary = Color(0xFFFFC107);
-  static const Color secondaryDark = Color(0xFFFFB300);
-  static const Color locationMarker = Color.fromARGB(255, 25, 105, 243);
-}
-
-class MyThemes {
+mixin Palette {
   static final ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: const Color.fromRGBO(20, 20, 20, 1),
     appBarTheme: const AppBarTheme(
@@ -22,6 +14,7 @@ class MyThemes {
       primary: Color.fromRGBO(44, 44, 44, 1), // round container
       onPrimary: Colors.white, // Icons
       secondary: Color.fromRGBO(34, 201, 92, 1), // Buttons
+      tertiary: Color.fromARGB(255, 25, 105, 243), // locationmarker
     ),
 
     iconTheme: const IconThemeData(
@@ -55,18 +48,19 @@ class MyThemes {
   );
 
   static final ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.white,
-    appBarTheme: AppBarTheme(
-      color: Colors.green.shade700,
-      iconTheme: const IconThemeData(
-        color: Colors.white,
+    scaffoldBackgroundColor: const Color(0xFFF6FDFF),
+    appBarTheme: const AppBarTheme(
+      color: Color(0xFFF6FDFF),
+      iconTheme: IconThemeData(
+        color: Color.fromRGBO(246, 253, 255, 1),
       ),
     ),
 
     colorScheme: ColorScheme.light(
-      primary: Colors.yellow.shade800, // round container
+      primary: const Color(0xE6333333), // round container & default card
       onPrimary: Colors.black, // Icons
       secondary: Colors.green.shade700, // Buttons
+      tertiary: const Color.fromARGB(255, 25, 105, 243), // locationmarker
     ),
 
     iconTheme: const IconThemeData(
@@ -75,7 +69,7 @@ class MyThemes {
 
     textTheme: const TextTheme(
       headline5: TextStyle(
-        color: Colors.white,
+        color: Color.fromRGBO(18, 19, 19, 1),
         //fontSize: 20.0,
       ), // Überschrift (appbar)
       subtitle1: TextStyle(
@@ -83,11 +77,11 @@ class MyThemes {
         //fontSize: 18.0,
       ), // Switch Labeltext
       labelMedium: TextStyle(
-        color: Colors.black,
+        color: Colors.white,
         //fontSize: 16.0,
       ), // unbenutzt
       bodyText1: TextStyle(
-        color: Colors.black,
+        color: Colors.white,
         //fontSize: 14.0,
       ), // Haupttext2
       bodyText2: TextStyle(

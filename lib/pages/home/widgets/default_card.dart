@@ -13,6 +13,7 @@ class DefaultCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: Insets.s),
-        child: Card(color: Colors.grey.shade600, child: child));
+        child:
+            Card(color: Theme.of(context).colorScheme.primary, child: child));
   }
 }

@@ -21,12 +21,16 @@ class _Language extends State<Language> {
     return ListTile(
         leading: Icon(
           Icons.language,
-          color: Theme.of(context).colorScheme.onPrimary,
+          color: Theme.of(context).appBarTheme.backgroundColor,
         ),
-        title: Text(AppLocalizations.of(context)!.language),
+        title: Text(
+          AppLocalizations.of(context)!.language,
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
         trailing: Container(
             margin: const EdgeInsets.only(right: 6.0),
             child: IconButton(
+                color: Theme.of(context).appBarTheme.backgroundColor,
                 icon: flag,
                 onPressed: () {
                   if (locale == const Locale('en')) {

@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
             title: 'LGS2023',
             themeMode:
                 colorProvider.isDarkMode ? ThemeMode.light : ThemeMode.dark,
-            theme: MyThemes.lightTheme,
-            darkTheme: MyThemes.darkTheme,
+            theme: Palette.lightTheme,
+            darkTheme: Palette.darkTheme,
             locale: languageProvider.locale,
             supportedLocales: L10n.all,
             localizationsDelegates: const [

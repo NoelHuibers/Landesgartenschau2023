@@ -58,7 +58,7 @@ class locationMarker extends AnimatedWidget {
             width: size * newValue,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Palette.locationMarker.withOpacity(0.3),
+              color: Theme.of(context).colorScheme.tertiary.withOpacity(0.3),
             ),
           ),
         ),
@@ -66,8 +66,8 @@ class locationMarker extends AnimatedWidget {
           child: Container(
             height: 20,
             width: 20,
-            decoration: const BoxDecoration(
-              color: Palette.locationMarker,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.tertiary,
               shape: BoxShape.circle,
             ),
           ),
