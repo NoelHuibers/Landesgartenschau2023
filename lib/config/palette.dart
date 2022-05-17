@@ -56,11 +56,11 @@ mixin Palette {
       ),
     ),
 
-    colorScheme: ColorScheme.light(
-      primary: const Color(0xE6333333), // round container & default card
-      onPrimary: Colors.black, // Icons
-      secondary: Colors.green.shade700, // Buttons
-      tertiary: const Color.fromARGB(255, 25, 105, 243), // locationmarker
+    colorScheme: const ColorScheme.light(
+      primary: Color(0xE6333333), // round container & default card & Icons
+      onPrimary: Colors.black, // Icons (alt)
+      secondary: Color(0xFFF6FDFF), // Buttons
+      tertiary: Color.fromARGB(255, 25, 105, 243), // locationmarker
     ),
 
     iconTheme: const IconThemeData(

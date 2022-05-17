@@ -66,7 +66,10 @@ class smallMapState extends State<smallMap> {
           );
         },
         tooltip: 'Vergrößern',
-        child: const Icon(Icons.fit_screen_outlined),
+        child: Icon(
+          Icons.fit_screen_outlined,
+          color: Theme.of(context).colorScheme.primary,
+        ),
       ),
     );
   }
@@ -226,21 +229,30 @@ class bigMap extends StatelessWidget {
             heroTag: "btn1", // Exception Vermeiden
             onPressed: _zoomIn,
             tooltip: 'Zoom IN',
-            child: const Icon(Icons.zoom_in_sharp),
+            child: Icon(
+              Icons.zoom_in_sharp,
+              color: Theme.of(context).colorScheme.primary,
+            ),
           ),
           const SizedBox(height: 10),
           FloatingActionButton(
             heroTag: "btn2",
             onPressed: _zoomOut,
             tooltip: 'Zoom OUT',
-            child: const Icon(Icons.zoom_out_outlined),
+            child: Icon(
+              Icons.zoom_out_outlined,
+              color: Theme.of(context).colorScheme.primary,
+            ),
           ),
           const SizedBox(height: 10),
           FloatingActionButton(
             heroTag: "btn3",
             onPressed: cuncretPosition,
             tooltip: 'Position',
-            child: const Icon(Icons.my_location_rounded),
+            child: Icon(
+              Icons.my_location_rounded,
+              color: Theme.of(context).colorScheme.primary,
+            ),
           )
         ]));
   }
