@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:landesgartenschau2023/pages/settings.dart';
+import 'package:landesgartenschau2023/pages/user/login_page.dart';
 import '../models/map_marker.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'map/widgets/flip_window.dart';
 import 'map/widgets/location_controller.dart';
 
 //Die genauere Position wird aus der Location datei geholt
@@ -167,20 +168,40 @@ class bigMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: Text(
-              'Map',
-              style: Theme.of(context).textTheme.headline5,
-            ),
-            actions: <Widget>[
-              IconButton(
-                icon: const Icon(Icons.maps_home_work_outlined),
-                tooltip: 'Navigationsbereich',
-                onPressed: () {
-                  flipFenster(context);
-                },
-              ),
-            ]),
+        appBar:
+            // AppBar(title: const Text('Map'), actions: <Widget>[
+            //   IconButton(
+            //     icon: const Icon(Icons.maps_home_work_outlined),
+            //     tooltip: 'Navigationsbereich',
+            //     onPressed: () {
+            //       flipFenster(context);
+            //     },
+            //   ),
+            // ]),
+            AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.account_circle_sharp),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Login()),
+              );
+            },
+          ),
+          title: const Center(child: Text("Landesgartenschau 2022")),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.more_vert_rounded),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Settings()),
+                );
+              },
+            )
+          ],
+          actionsIconTheme: const IconThemeData(size: 32),
+        ),
         body: FlutterMap(
           mapController: mapController,
           options: MapOptions(
@@ -201,13 +222,12 @@ class bigMap extends StatelessWidget {
               Marker(
                   height: 60,
                   width: 60,
-                  point: genauePosition,
+                  //ExampleAppState.userPosition,nn
                   builder: (_) {
                     return const animationMarker();
-                  }),
-            ]
-                // markers: markerBild(),
-                ),
+                  },
+                  point: currentCenter),
+            ]),
             PolylineLayerOptions(polylines: [
               Polyline(points: position, strokeWidth: 5.0, color: Colors.blue)
             ]),
@@ -219,7 +239,7 @@ class bigMap extends StatelessWidget {
         floatingActionButton:
             Column(mainAxisAlignment: MainAxisAlignment.end, children: [
           FloatingActionButton(
-            heroTag: "btn1", // Exception Vermeiden
+            heroTag: "btn1", //Exception Vermeiden
             onPressed: _zoomIn,
             tooltip: 'Zoom IN',
             child: const Icon(Icons.zoom_in_sharp),
@@ -237,7 +257,8 @@ class bigMap extends StatelessWidget {
             onPressed: cuncretPosition,
             tooltip: 'Position',
             child: const Icon(Icons.my_location_rounded),
-          )
+          ),
+          const SizedBox(height: 30),
         ]));
   }
 }
