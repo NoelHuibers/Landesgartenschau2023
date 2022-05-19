@@ -21,28 +21,6 @@ class buildListState extends State<buildList> {
     events = allevents;
   }
 
-  // @override
-  // Widget build(BuildContext context) => Scaffold(
-  //       appBar: AppBar(
-  //         title: Text("LandesGarten 2023"),
-  //         centerTitle: true,
-  //       ),
-  //       body: Column(
-  //         children: <Widget>[
-  //           buildSearch(),
-  //           Expanded(
-  //             child: ListView.builder(
-  //               itemCount: events.length,
-  //               itemBuilder: (context, index) {
-  //                 final event = events[index];
-  //                 return buildEvents(event);
-  //               },
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     );
-
   @override
   Widget build(BuildContext context) {
     return ListView(
