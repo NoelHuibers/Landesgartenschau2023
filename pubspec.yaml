@@ -20,6 +20,7 @@ dependencies:
   latlng: ^0.1.0
   flutter_map: ^0.14.0
   sliding_up_panel: ^2.0.0+1
+  dio: ^4.0.6
 
 dev_dependencies:
   flutter_test:
