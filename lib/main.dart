@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:provider/provider.dart';
-
-import 'pages/home.dart';
+import 'package:landesgartenschau2023/pages/home/view/home_page.dart';
+import 'package:flutter/material.dart';
 import 'models/l10n/l10n.dart';
 import 'services/provider/locale_provider.dart';
 import 'services/provider/darkmode_provider.dart';
@@ -40,7 +38,7 @@ class MyApp extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate
             ],
-            home: const Home(),
+            home: Home_page(),
           );
         },
       );
