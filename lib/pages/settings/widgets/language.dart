@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/l10n/l10n.dart';
-import '../../../services/provider/locale_provider.dart';
+import '/models/l10n/l10n.dart';
+import '/services/provider/locale_provider.dart';
 
 class Language extends StatefulWidget {
   const Language({Key? key}) : super(key: key);
@@ -21,12 +21,16 @@ class _Language extends State<Language> {
     return ListTile(
         leading: Icon(
           Icons.language,
-          color: Theme.of(context).colorScheme.onPrimary,
+          color: Theme.of(context).appBarTheme.backgroundColor,
         ),
-        title: Text(AppLocalizations.of(context)!.language),
+        title: Text(
+          AppLocalizations.of(context)!.language,
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
         trailing: Container(
             margin: const EdgeInsets.only(right: 6.0),
             child: IconButton(
+                color: Theme.of(context).appBarTheme.backgroundColor,
                 icon: flag,
                 onPressed: () {
                   if (locale == const Locale('en')) {

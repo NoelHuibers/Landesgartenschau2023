@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'impressum/view_impressum.dart';
 
 class Impressum extends StatelessWidget {
@@ -8,6 +9,7 @@ class Impressum extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: BackButton(color: Theme.of(context).colorScheme.primary),
           title: Text(
             'Impressum',
             style: Theme.of(context).textTheme.headline5,

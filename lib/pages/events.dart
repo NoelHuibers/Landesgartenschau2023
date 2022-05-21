@@ -6,26 +6,20 @@
 // import 'package:landesgartenschau2023/models/events_model.dart';
 
 
-
-//Dies kann aus der build_list aufgerufen werden!!!
-
-
-// class Events extends StatelessWidget {
-//   const Events({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         appBar: AppBar(
-//           title: Text(
-//             'Events',
-//             style: Theme.of(context).textTheme.headline5,
-//           ),
-//         ),
-//         body: Column(children: const [
-//           DefaultCard(child: Searchbar()),
-//           DefaultCard(child: StarredView(model: EventsModel.eventsList)),
-//           DefaultCard(child: Eventslist()),
-//         ]));
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          leading: BackButton(color: Theme.of(context).colorScheme.primary),
+          title: Text(
+            'Events',
+            style: Theme.of(context).textTheme.headline5,
+          ),
+        ),
+        body: Column(children: const [
+          DefaultCard(child: Searchbar()),
+          DefaultCard(child: StarredView(model: EventsModel.eventsList)),
+          DefaultCard(child: Eventslist()),
+        ]));
+  }
+}

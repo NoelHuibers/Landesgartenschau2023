@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'stands/widgets/list_stands.dart';
 
 class Stands extends StatelessWidget {
@@ -8,6 +9,7 @@ class Stands extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(color: Theme.of(context).colorScheme.primary),
         title: Text(
           'Stands',
           style: Theme.of(context).textTheme.headline5,

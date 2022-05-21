@@ -10,6 +10,8 @@ import 'map/widgets/location_controller.dart';
 LatLng genauePosition = LatLng(51.76685404294687, 9.370506747991776);
 
 class smallMap extends StatefulWidget {
+  const smallMap({Key? key}) : super(key: key);
+
   @override
   smallMapState createState() => smallMapState();
 }
@@ -64,7 +66,10 @@ class smallMapState extends State<smallMap> {
           );
         },
         tooltip: 'Vergrößern',
-        child: const Icon(Icons.fit_screen_outlined),
+        child: Icon(
+          Icons.fit_screen_outlined,
+          color: Theme.of(context).colorScheme.primary,
+        ),
       ),
     );
   }
@@ -242,14 +247,20 @@ class bigMap extends StatelessWidget {
             heroTag: "btn1", //Exception Vermeiden
             onPressed: _zoomIn,
             tooltip: 'Zoom IN',
-            child: const Icon(Icons.zoom_in_sharp),
+            child: Icon(
+              Icons.zoom_in_sharp,
+              color: Theme.of(context).colorScheme.primary,
+            ),
           ),
           const SizedBox(height: 10),
           FloatingActionButton(
             heroTag: "btn2",
             onPressed: _zoomOut,
             tooltip: 'Zoom OUT',
-            child: const Icon(Icons.zoom_out_outlined),
+            child: Icon(
+              Icons.zoom_out_outlined,
+              color: Theme.of(context).colorScheme.primary,
+            ),
           ),
           const SizedBox(height: 10),
           FloatingActionButton(
