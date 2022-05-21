@@ -33,7 +33,7 @@ void flipFenster(context) {
                 child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Palette.primary),
+                        color: Theme.of(context).colorScheme.primary),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
@@ -52,7 +52,7 @@ void flipFenster(context) {
                 child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Palette.primary),
+                        color: Theme.of(context).colorScheme.primary),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
@@ -71,7 +71,7 @@ void flipFenster(context) {
                 child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Palette.primary),
+                        color: Theme.of(context).colorScheme.primary),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
@@ -90,7 +90,7 @@ void flipFenster(context) {
                 child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Palette.primary),
+                        color: Theme.of(context).colorScheme.primary),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
