@@ -9,71 +9,6 @@ import 'map/widgets/location_controller.dart';
 //Die genauere Position wird aus der Location datei geholt
 LatLng genauePosition = LatLng(51.76685404294687, 9.370506747991776);
 
-class smallMap extends StatefulWidget {
-  const smallMap({Key? key}) : super(key: key);
-
-  @override
-  smallMapState createState() => smallMapState();
-}
-
-// ignore: camel_case_types
-class smallMapState extends State<smallMap> {
-  LatLng currentCenter = LatLng(51.773797392536636, 9.381120459653904);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: ClipRRect(
-          //ClipRRect wird verwendet, um Widgets auf benutzerdefinierte Weise zu schneiden
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-            bottomRight: Radius.circular(30),
-            bottomLeft: Radius.circular(30),
-          ),
-          child: Align(
-            child: FlutterMap(
-              options: MapOptions(
-                minZoom: 3.0,
-                center: currentCenter,
-              ),
-              layers: [
-                TileLayerOptions(
-                  maxNativeZoom: 18,
-                  maxZoom: 22,
-                  urlTemplate:
-                      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                  subdomains: ['a', 'b', 'c'],
-                ),
-                MarkerLayerOptions(markers: [
-                  Marker(
-                      height: 60,
-                      width: 60,
-                      point: genauePosition,
-                      builder: (_) {
-                        return const animationMarker();
-                      }),
-                ]
-                    // markers: markerBild(),
-                    ),
-              ],
-            ),
-          )),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => bigMap()),
-          );
-        },
-        tooltip: 'Vergrößern',
-        child: Icon(
-          Icons.fit_screen_outlined,
-          color: Theme.of(context).colorScheme.primary,
-        ),
-      ),
-    );
-  }
-}
 //Dies dient dazu die StändeKoordinaten in die große Map einzufügen
 // diese Wird zunächst kommentiert bis wir die Daten haben
 // List<Marker> markerBilder(){
@@ -173,40 +108,6 @@ class bigMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:
-            // AppBar(title: const Text('Map'), actions: <Widget>[
-            //   IconButton(
-            //     icon: const Icon(Icons.maps_home_work_outlined),
-            //     tooltip: 'Navigationsbereich',
-            //     onPressed: () {
-            //       flipFenster(context);
-            //     },
-            //   ),
-            // ]),
-            AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.account_circle_sharp),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginScreen()),
-              );
-            },
-          ),
-          title: const Center(child: Text("Landesgartenschau 2022")),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.more_vert_rounded),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Settings()),
-                );
-              },
-            )
-          ],
-          actionsIconTheme: const IconThemeData(size: 32),
-        ),
         body: FlutterMap(
           mapController: mapController,
           options: MapOptions(
@@ -243,33 +144,23 @@ class bigMap extends StatelessWidget {
         ),
         floatingActionButton:
             Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-          FloatingActionButton(
-            heroTag: "btn1", //Exception Vermeiden
-            onPressed: _zoomIn,
-            tooltip: 'Zoom IN',
-            child: Icon(
-              Icons.zoom_in_sharp,
-              color: Theme.of(context).colorScheme.primary,
-            ),
-          ),
+          build_button("btn1", _zoomIn, 'Zoom IN', Icons.zoom_in_sharp),
           const SizedBox(height: 10),
-          FloatingActionButton(
-            heroTag: "btn2",
-            onPressed: _zoomOut,
-            tooltip: 'Zoom OUT',
-            child: Icon(
-              Icons.zoom_out_outlined,
-              color: Theme.of(context).colorScheme.primary,
-            ),
-          ),
+          build_button("btn2", _zoomOut, 'Zoom OUT', Icons.zoom_out_outlined),
           const SizedBox(height: 10),
-          FloatingActionButton(
-            heroTag: "btn3",
-            onPressed: cuncretPosition,
-            tooltip: 'Position',
-            child: const Icon(Icons.my_location_rounded),
-          ),
+          build_button(
+              "btn3", cuncretPosition, 'Position', Icons.my_location_rounded),
           const SizedBox(height: 30),
         ]));
+  }
+
+  Widget build_button(
+      String tag, Function() function, String tip, IconData iconData) {
+    return FloatingActionButton(
+      heroTag: tag, //Exception Vermeiden
+      onPressed: function,
+      tooltip: tip,
+      child: Icon(iconData),
+    );
   }
 }
