@@ -136,11 +136,11 @@ Future<String?> eingabe_text(BuildContext context) {
       });
 }
 
-class slide_page2 extends StatelessWidget {
+class slide_page extends StatelessWidget {
   final ScrollController controller;
   final PanelController panelController;
 
-  const slide_page2({
+  const slide_page({
     Key? key,
     required this.controller,
     required this.panelController,
