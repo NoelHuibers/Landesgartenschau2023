@@ -31,7 +31,9 @@ flutter:
   generate: true
   uses-material-design: true
   assets:
-    - assets/images/
+  
+    - assets/images/konto.png
+    - assets/images/lgs.png
     - assets/fonts/
 
   # To add custom fonts to your application, add a fonts section here,

@@ -77,23 +77,25 @@ class _LoginScreenState extends State<LoginScreen> {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                          Color(0xfff0f0f0),
-                          Color(0xfff0f0f0),
-                          Color(0xfff0f0f0),
-                          Color(0xfff0f0f0)
+                          Color(0xff202020),
+                          Color(0xff202020),
+                          Color(0xff202020),
+                          Color(0xff202020)
                         ])),
                     child: SingleChildScrollView(
                       // physics: AlwaysScrollableScrollPhysics(), //buna bakalim bir kaydirmak icin
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 25, vertical: 120),
+                          horizontal: 0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
+                          Image.asset("assets/images/lgs.png", width:double.infinity,height:100,),
+                          Image.asset("assets/images/konto.png", width: 90,height: 90,),
                           const Text(
-                            'LGS 2022',
+                            'Wilkommen zurück!',
                             style: TextStyle(
-                                color: Colors.black38,
-                                fontSize: 40,
+                                color: Color(0xffFFFFFF),
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 20),
@@ -114,21 +116,21 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget buildLoginButton() {
     return Container(
-        padding: const EdgeInsets.symmetric(vertical: 25),
+        padding: const EdgeInsets.symmetric(vertical: 100),
         width: double.infinity,
         child: RaisedButton(
           elevation: 5,
           onPressed: () {
             login();
           },
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(20),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          color: Colors.white,
+          color: Color(0xff22C95C),
           child: const Text(
-            'LOGIN',
+            'Anmelden',
             style: TextStyle(
-                color: Color(0xff5ac18e),
+                color: Color(0xff202020),
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
@@ -139,20 +141,15 @@ class _LoginScreenState extends State<LoginScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const Text(
-          'Email',
-          style: TextStyle(
-              color: Colors.black38, fontSize: 16, fontWeight: FontWeight.bold),
-        ),
         const SizedBox(height: 10),
         Container(
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: Color(0xff202020),
               borderRadius: BorderRadius.circular(10),
               boxShadow: const [
                 BoxShadow(
-                    color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
+                    color: Color(0xff202020), blurRadius: 6, offset: Offset(0, 2))
               ]),
           height: 60,
           child: TextFormField(
@@ -161,13 +158,13 @@ class _LoginScreenState extends State<LoginScreen> {
               return Validator.validateEmail(value ?? "");
             },
             //keyboardType: TextInputType.emailAddress,
-            style: const TextStyle(color: Colors.black87),
+            style: const TextStyle(color: Color(0xff202020)),
             decoration: const InputDecoration(
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.only(top: 14),
-                prefixIcon: Icon(Icons.email, color: Color(0xff5ac18e)),
-                hintText: 'Email',
-                hintStyle: TextStyle(color: Colors.black38)),
+                prefixIcon: Icon(Icons.account_box_outlined, color: Color(0xffFFFFFF)),
+                hintText: 'Benutzername',
+                hintStyle: TextStyle(color: Color(0xffFFFFFF))),
           ),
         )
       ],
@@ -178,20 +175,15 @@ class _LoginScreenState extends State<LoginScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const Text(
-          'Password',
-          style: TextStyle(
-              color: Colors.black38, fontSize: 16, fontWeight: FontWeight.bold),
-        ),
         const SizedBox(height: 10),
         Container(
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: Color(0xff202020),
               borderRadius: BorderRadius.circular(10),
               boxShadow: const [
                 BoxShadow(
-                    color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
+                    color: Color(0xff202020), blurRadius: 6, offset: Offset(0, 2))
               ]),
           height: 60,
           child: TextField(
@@ -204,18 +196,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 child: Icon(
                   _showPassword ? Icons.visibility : Icons.visibility_off,
-                  color: Colors.grey,
+                  color: Color(0xffFFFFFF),
                 ),
               ),
               border: InputBorder.none,
               contentPadding: const EdgeInsets.only(top: 14),
-              prefixIcon: const Icon(Icons.lock, color: Color(0xff5ac18e)),
-              hintText: "Password",
-              hintStyle: const TextStyle(color: Colors.black38),
+              prefixIcon: const Icon(Icons.lock_open_outlined, size: 23, color: Color(0xffFFFFFF)),
+              hintText: "Passwort",
+              hintStyle: const TextStyle(color: Color(0xffFFFFFF),
             ),
           ),
         )
-      ],
+        )],
     );
   }
 }
