@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:landesgartenschau2023/pages/home/view/home_page.dart';
+import 'package:landesgartenschau2023/pages/home.dart';
 
 class user_setting extends StatefulWidget {
   const user_setting({Key? key}) : super(key: key);
