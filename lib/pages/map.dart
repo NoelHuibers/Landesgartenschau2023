@@ -150,7 +150,7 @@ class bigMap extends StatelessWidget {
           const SizedBox(height: 10),
           build_button(
               "btn3", cuncretPosition, 'Position', Icons.my_location_rounded),
-          const SizedBox(height: 30),
+          const SizedBox(height: 100),
         ]));
   }
 
