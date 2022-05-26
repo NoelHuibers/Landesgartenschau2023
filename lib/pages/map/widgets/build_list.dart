@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:landesgartenschau2023/models/events_Stand_model.dart';
 import 'package:landesgartenschau2023/models/events_Stand_Data.dart';
-
 import '../../home/widgets/searchbar.dart';
 
 class buildList extends StatefulWidget {
@@ -31,18 +30,8 @@ class buildListState extends State<buildList> {
           child: buildSearch(),
         ),
         SizedBox(
-          child: Container(
-            height: 30,
-            alignment: Alignment(-0.89, 0),
-            child: const Text(
-              "Stands",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.black),
+            //child: build_text_button("Stands", //Hier kommt die KLasse die abgerufen werden soll beim klicken ),
             ),
-          ),
-        ),
         SizedBox(
             height: 200,
             child: Card(
@@ -57,18 +46,8 @@ class buildListState extends State<buildList> {
               ),
             )),
         SizedBox(
-          child: Container(
-            height: 40,
-            alignment: const Alignment(-0.89, 0),
-            child: const Text(
-              "Events",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.black),
+            //child: build_text_button("Events", //Hier kommt die KLasse die abgerufen werden soll beim klicken  ),
             ),
-          ),
-        ),
         SizedBox(
             height: 200,
             child: Card(
@@ -86,6 +65,36 @@ class buildListState extends State<buildList> {
     );
   }
 
+  Widget build_text_button(String text, classe) {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            height: 30,
+            alignment: const Alignment(-0.89, 0),
+            child: Text(
+              text,
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.black),
+            ),
+          ),
+        ),
+        MaterialButton(
+            color: Colors.black38,
+            shape: const CircleBorder(),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => classe),
+              );
+            },
+            child: const Icon(Icons.view_list_rounded, color: Colors.white)),
+      ],
+    );
+  }
+
   Widget buildStand(StandsList stand) => ListTile(
         title: Text(stand.title),
         subtitle: Text(stand.subtitle),
@@ -95,10 +104,6 @@ class buildListState extends State<buildList> {
         title: Text(event.titel),
         subtitle: Text(event.subtitle),
       );
-
-  // Widget buildList() => FilterStand();
-
-  // Widget buildEvent() => FilterEvent();
 
   Widget buildSearch() => SearchWidget(
         text: query,
