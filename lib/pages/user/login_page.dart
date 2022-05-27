@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:landesgartenschau2023/pages/user/api_client.dart';
 import 'package:landesgartenschau2023/pages/user/user_setting.dart';
 import 'package:landesgartenschau2023/pages/user/validator.dart';
+import 'package:flutter/gestures.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -90,7 +92,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Image.asset("assets/images/lgs.png", width:double.infinity,height:100,),
-                          Image.asset("assets/images/konto.png", width: 90,height: 90,),
+                          const SizedBox(height: 10),
+                          Image.asset("assets/images/konto.png", width: 100,height: 100,),
+                          const SizedBox(height: 10),
                           const Text(
                             'Wilkommen zurück!',
                             style: TextStyle(
@@ -98,11 +102,32 @@ class _LoginScreenState extends State<LoginScreen> {
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
-                          const SizedBox(height: 20),
+                          const SizedBox(height: 15),
                           buildEmail(),
-                          const SizedBox(height: 20),
+                          const SizedBox(height: 10),
                           buildPassword(),
+                          const SizedBox(height: 20),
                           buildLoginButton(),
+                          const SizedBox(height: 20),
+                          const Text(
+                            'Du hast noch kein Konto?',
+                            style: TextStyle(
+                                color: Color(0xffFFFFFF),
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          //const TextSpan(
+                          //  text: 'asdaf',
+                          //  style: TextStyle(color: Colors.black),
+                          //),
+                          const SizedBox(height: 10),
+                          const Text(
+                            '© Landesgartenschau Höxter 2023 gGmbH \n                   Alle Rechte vorbehalten.',
+                            style: TextStyle(
+                                color: Color(0xffFFFFFF),
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ],
                       ),
                     ),
@@ -116,8 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget buildLoginButton() {
     return Container(
-        padding: const EdgeInsets.symmetric(vertical: 100),
-        width: double.infinity,
+        width: 250,
         child: RaisedButton(
           elevation: 5,
           onPressed: () {
@@ -158,7 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
               return Validator.validateEmail(value ?? "");
             },
             //keyboardType: TextInputType.emailAddress,
-            style: const TextStyle(color: Color(0xff202020)),
+            style: const TextStyle(color: Color(0xffFFFFFF)),
             decoration: const InputDecoration(
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.only(top: 14),
