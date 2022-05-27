@@ -26,4 +26,19 @@ class API_call {
       return e.response!.data;
     }
   }
+
+  Future<dynamic> register(String email, String password) async {
+    try {
+      Response response = await _dio.post(
+        'https://reqres.in/api/register',
+        data: {
+          'email': email,
+          'password': password,
+        },
+      );
+      return response.data;
+    } on DioError catch (e) {
+      return e.response!.data;
+    }
+  }
 }
