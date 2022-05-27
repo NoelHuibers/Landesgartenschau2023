@@ -21,6 +21,7 @@ dependencies:
   flutter_map: ^0.14.0
   sliding_up_panel: ^2.0.0+1
   dio: ^4.0.6
+  url_launcher: ^6.1.2
 
 dev_dependencies:
   flutter_test:
@@ -32,8 +33,7 @@ flutter:
   uses-material-design: true
   assets:
   
-    - assets/images/konto.png
-    - assets/images/lgs.png
+    - assets/images/
     - assets/fonts/
 
   # To add custom fonts to your application, add a fonts section here,

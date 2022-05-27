@@ -59,10 +59,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Login Page',
-            style: Theme.of(context).textTheme.headline5,
-          ),
+          actions: <Widget>[
+            Image.asset("assets/images/logo6.png", width:110,height:40)
+          ],
         ),
         body: Form(
           key: _formKey,
@@ -108,18 +107,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           buildPassword(),
                           const SizedBox(height: 20),
                           buildLoginButton(),
-                          const SizedBox(height: 20),
-                          const Text(
-                            'Du hast noch kein Konto?',
-                            style: TextStyle(
-                                color: Color(0xffFFFFFF),
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          //const TextSpan(
-                          //  text: 'asdaf',
-                          //  style: TextStyle(color: Colors.black),
-                          //),
+                          const SizedBox(height: 10),
+                          buildKeinKontoButton(),
                           const SizedBox(height: 10),
                           const Text(
                             '© Landesgartenschau Höxter 2023 gGmbH \n                   Alle Rechte vorbehalten.',
@@ -156,6 +145,28 @@ class _LoginScreenState extends State<LoginScreen> {
             style: TextStyle(
                 color: Color(0xff202020),
                 fontSize: 18,
+                fontWeight: FontWeight.bold),
+          ),
+        ));
+  }
+
+  Widget buildKeinKontoButton() {
+    return Container(
+        width: 150,
+        child: RaisedButton(
+          elevation: 5,
+          onPressed: () {
+            user_setting();
+          },
+          padding: const EdgeInsets.all(10),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          color: Color(0xff22C95C),
+          child: const Text(
+            'Du hast noch kein Konto',
+            style: TextStyle(
+                color: Color(0xff202020),
+                fontSize: 8,
                 fontWeight: FontWeight.bold),
           ),
         ));
