@@ -154,7 +154,7 @@ class registerScreenState extends State<registerScreen> {
               obscureText: _showPassword,
               controller: passController,
               validator: (value) {
-                return Validator.validatePassword(value ?? "");
+                return Validator.validatePassword(value!, return_password);
               },
               onChanged: (value) => password = value,
               decoration: InputDecoration(
@@ -202,7 +202,7 @@ class registerScreenState extends State<registerScreen> {
               obscureText: _showPassword,
               controller: return_passController,
               validator: (value) {
-                return Validator.validatePass(value!, password);
+                return Validator.validatePassword(value!, password);
               },
               onChanged: (value) => return_password = value,
               decoration: InputDecoration(
