@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:landesgartenschau2023/pages/user/api_client.dart';
+import 'package:landesgartenschau2023/pages/user/register_page.dart';
 import 'package:landesgartenschau2023/pages/user/user_setting.dart';
 import 'package:landesgartenschau2023/pages/user/validator.dart';
 
@@ -161,7 +162,10 @@ class _LoginScreenState extends State<LoginScreen> {
         child: RaisedButton(
           elevation: 5,
           onPressed: () {
-            user_setting();
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const registerScreen()));
           },
           padding: const EdgeInsets.all(10),
           shape:
