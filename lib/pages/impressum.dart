@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'impressum/view_impressum.dart';
 
 class Impressum extends StatelessWidget {

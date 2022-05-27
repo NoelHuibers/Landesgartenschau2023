@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'events/widgets/list_events.dart';
 import 'home/widgets/default_card.dart';
-import 'home/widgets/searchbar.dart';
 import 'home/widgets/starred_view.dart';
 import 'package:landesgartenschau2023/models/events_model.dart';
 

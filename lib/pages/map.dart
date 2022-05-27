@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:landesgartenschau2023/pages/settings.dart';
-import 'package:landesgartenschau2023/pages/user/login_page.dart';
 import '../models/map_marker.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';

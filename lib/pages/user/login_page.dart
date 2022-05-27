@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:landesgartenschau2023/pages/user/api_client.dart';
 import 'package:landesgartenschau2023/pages/user/user_setting.dart';
 import 'package:landesgartenschau2023/pages/user/validator.dart';
-import 'package:flutter/gestures.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -60,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
         appBar: AppBar(
           actions: <Widget>[
-            Image.asset("assets/images/logo6.png", width:110,height:40)
+            Image.asset("assets/images/logo6.png", width: 110, height: 40)
           ],
         ),
         body: Form(
@@ -85,14 +83,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         ])),
                     child: SingleChildScrollView(
                       // physics: AlwaysScrollableScrollPhysics(), //buna bakalim bir kaydirmak icin
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 0),
+                      padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Image.asset("assets/images/lgs.png", width:double.infinity,height:100,),
+                          Image.asset(
+                            "assets/images/lgs.png",
+                            width: double.infinity,
+                            height: 100,
+                          ),
                           const SizedBox(height: 10),
-                          Image.asset("assets/images/konto.png", width: 100,height: 100,),
+                          Image.asset(
+                            "assets/images/konto.png",
+                            width: 100,
+                            height: 100,
+                          ),
                           const SizedBox(height: 10),
                           const Text(
                             'Wilkommen zurück!',
@@ -184,7 +189,9 @@ class _LoginScreenState extends State<LoginScreen> {
               borderRadius: BorderRadius.circular(10),
               boxShadow: const [
                 BoxShadow(
-                    color: Color(0xff202020), blurRadius: 6, offset: Offset(0, 2))
+                    color: Color(0xff202020),
+                    blurRadius: 6,
+                    offset: Offset(0, 2))
               ]),
           height: 60,
           child: TextFormField(
@@ -197,7 +204,8 @@ class _LoginScreenState extends State<LoginScreen> {
             decoration: const InputDecoration(
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.only(top: 14),
-                prefixIcon: Icon(Icons.account_box_outlined, color: Color(0xffFFFFFF)),
+                prefixIcon:
+                    Icon(Icons.account_box_outlined, color: Color(0xffFFFFFF)),
                 hintText: 'Benutzername',
                 hintStyle: TextStyle(color: Color(0xffFFFFFF))),
           ),
@@ -212,37 +220,41 @@ class _LoginScreenState extends State<LoginScreen> {
       children: <Widget>[
         const SizedBox(height: 10),
         Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-              color: Color(0xff202020),
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: const [
-                BoxShadow(
-                    color: Color(0xff202020), blurRadius: 6, offset: Offset(0, 2))
-              ]),
-          height: 60,
-          child: TextField(
-            obscureText: _showPassword,
-            controller: passController,
-            decoration: InputDecoration(
-              suffixIcon: GestureDetector(
-                onTap: () {
-                  setState(() => _showPassword = !_showPassword);
-                },
-                child: Icon(
-                  _showPassword ? Icons.visibility : Icons.visibility_off,
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
+                color: Color(0xff202020),
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: const [
+                  BoxShadow(
+                      color: Color(0xff202020),
+                      blurRadius: 6,
+                      offset: Offset(0, 2))
+                ]),
+            height: 60,
+            child: TextField(
+              obscureText: _showPassword,
+              controller: passController,
+              decoration: InputDecoration(
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() => _showPassword = !_showPassword);
+                  },
+                  child: Icon(
+                    _showPassword ? Icons.visibility : Icons.visibility_off,
+                    color: Color(0xffFFFFFF),
+                  ),
+                ),
+                border: InputBorder.none,
+                contentPadding: const EdgeInsets.only(top: 14),
+                prefixIcon: const Icon(Icons.lock_open_outlined,
+                    size: 23, color: Color(0xffFFFFFF)),
+                hintText: "Passwort",
+                hintStyle: const TextStyle(
                   color: Color(0xffFFFFFF),
                 ),
               ),
-              border: InputBorder.none,
-              contentPadding: const EdgeInsets.only(top: 14),
-              prefixIcon: const Icon(Icons.lock_open_outlined, size: 23, color: Color(0xffFFFFFF)),
-              hintText: "Passwort",
-              hintStyle: const TextStyle(color: Color(0xffFFFFFF),
-            ),
-          ),
-        )
-        )],
+            ))
+      ],
     );
   }
 }

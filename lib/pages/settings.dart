@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '/config/insets.dart';
 import '/pages/home/widgets/default_card.dart';
 import 'settings/widgets/darkmode.dart';

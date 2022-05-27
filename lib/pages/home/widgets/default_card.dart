@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '/config/insets.dart';
 
 class DefaultCard extends StatelessWidget {
