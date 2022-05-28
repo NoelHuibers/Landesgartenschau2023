@@ -22,13 +22,11 @@ class Validator {
         r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{6,}$';
     RegExp regex = RegExp(pattern as String);
 
-    if (pass.isEmpty || retrun_pass.isEmpty) {
-      return 'Bitte passwort in beiden feldern eigeben ';
-    }
     if (pass != retrun_pass) {
       return 'Die Passwörter Stimmen nicht überein';
-    }
-    if (!regex.hasMatch(pass) && !regex.hasMatch(retrun_pass)) {
+    } else if (pass.isEmpty || retrun_pass.isEmpty) {
+      return 'Bitte passwort in beiden feldern eigeben ';
+    } else if (!regex.hasMatch(pass) && !regex.hasMatch(retrun_pass)) {
       return 'Bitte geben sie ein Gültiges Pass ein';
     } else {
       return null;
