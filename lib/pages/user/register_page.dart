@@ -104,9 +104,10 @@ class registerScreenState extends State<registerScreen> {
                           const SizedBox(height: 15),
                           buildEmail(mailController),
                           const SizedBox(height: 10),
-                          buildPassword(),
+                          buildPassword("passwort", password, passController),
                           const SizedBox(height: 10),
-                          buildReturnPass(),
+                          buildPassword("Passwort wiederholen", return_password,
+                              return_passController),
                           const SizedBox(height: 10),
                           buildButton("Regestrieren", register),
                           const SizedBox(height: 10),
@@ -133,55 +134,9 @@ class registerScreenState extends State<registerScreen> {
     und in der User_tools verschieben, ich wusste es nicht wie man das macht wegen 
     setState()
     */
-  Widget buildPassword() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const SizedBox(height: 10),
-        Container(
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-                color: Color(0xff202020),
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Color(0xff202020),
-                      blurRadius: 6,
-                      offset: Offset(0, 2))
-                ]),
-            height: 60,
-            child: TextFormField(
-              obscureText: _showPassword,
-              controller: passController,
-              validator: (value) {
-                return Validator.validatePassword(value!, return_password);
-              },
-              onChanged: (value) => password = value,
-              decoration: InputDecoration(
-                suffixIcon: GestureDetector(
-                  onTap: () {
-                    setState(() => _showPassword = !_showPassword);
-                  },
-                  child: Icon(
-                    _showPassword ? Icons.visibility : Icons.visibility_off,
-                    color: Color(0xffFFFFFF),
-                  ),
-                ),
-                border: InputBorder.none,
-                contentPadding: const EdgeInsets.only(top: 14),
-                prefixIcon: const Icon(Icons.lock_open_outlined,
-                    size: 23, color: Color(0xffFFFFFF)),
-                hintText: "Passwort",
-                hintStyle: const TextStyle(
-                  color: Color(0xffFFFFFF),
-                ),
-              ),
-            ))
-      ],
-    );
-  }
 
-  Widget buildReturnPass() {
+  Widget buildPassword(
+      String text, String pass, TextEditingController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -200,11 +155,11 @@ class registerScreenState extends State<registerScreen> {
             height: 60,
             child: TextFormField(
               obscureText: _showPassword,
-              controller: return_passController,
+              controller: controller,
               validator: (value) {
-                return Validator.validatePassword(value!, password);
+                return Validator.validatePassword(value!, pass);
               },
-              onChanged: (value) => return_password = value,
+              onChanged: (value) => pass = value,
               decoration: InputDecoration(
                 suffixIcon: GestureDetector(
                   onTap: () {
@@ -219,7 +174,7 @@ class registerScreenState extends State<registerScreen> {
                 contentPadding: const EdgeInsets.only(top: 14),
                 prefixIcon: const Icon(Icons.lock_open_outlined,
                     size: 23, color: Color(0xffFFFFFF)),
-                hintText: "Passwort Wiederholen",
+                hintText: text,
                 hintStyle: const TextStyle(
                   color: Color(0xffFFFFFF),
                 ),
