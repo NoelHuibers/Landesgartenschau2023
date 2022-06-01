@@ -19,7 +19,7 @@ Widget buildButton(String text, Function funktion) {
         },
         padding: const EdgeInsets.all(20),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        color: Color(0xff22C95C),
+        color: const Color(0xff22C95C),
         child: Text(
           text,
           style: const TextStyle(
@@ -38,7 +38,7 @@ Widget buildEmail(TextEditingController eMail_controller) {
       Container(
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
-            color: Color(0xff202020),
+            color: const Color(0xff202020),
             borderRadius: BorderRadius.circular(10),
             boxShadow: const [
               BoxShadow(
