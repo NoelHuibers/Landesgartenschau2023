@@ -1,5 +1,9 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
-import 'package:landesgartenschau2023/pages/home.dart';
+import 'package:flutter/services.dart';
+import 'package:landesgartenschau2023/pages/user/user_tools.dart';
+import 'package:landesgartenschau2023/pages/user/validator.dart';
 
 class user_setting extends StatefulWidget {
   const user_setting({Key? key}) : super(key: key);
@@ -10,86 +14,114 @@ class user_setting extends StatefulWidget {
 
 class user_settingState extends State<user_setting> {
   bool _showPassword = true;
+  String old_password = '';
+  String new_password = '';
+  String return_password = '';
   final TextEditingController oldPassController = TextEditingController();
-  final TextEditingController newPassController = TextEditingController();
-  final TextEditingController newPassController1 = TextEditingController();
+  final TextEditingController mailController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
+  final TextEditingController return_passController = TextEditingController();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: ListView(
-          physics: const NeverScrollableScrollPhysics(),
-          children: <Widget>[
-            profil_build(),
-            const SizedBox(
-              height: 10,
-            ),
-            mailtext_build(),
-            const SizedBox(
-              height: 10,
-            ),
-            buildOldPass(),
-            const SizedBox(
-              height: 10,
-            ),
-            buildPassword(),
-            const SizedBox(
-              height: 10,
-            ),
-            retrunPassword(),
-            const SizedBox(
-              height: 5,
-            ),
-            PassButton(),
-            const SizedBox(
-              height: 1,
-            ),
-            buildLogoutButton()
+        appBar: AppBar(
+          actions: <Widget>[
+            Image.asset("assets/images/logo6.png", width: 110, height: 40)
           ],
         ),
-      ),
-    );
+        body: Form(
+          key: _formKey,
+          child: AnnotatedRegion<SystemUiOverlayStyle>(
+            value: SystemUiOverlayStyle.light,
+            child: GestureDetector(
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                          Color(0xff202020),
+                          Color(0xff202020),
+                          Color(0xff202020),
+                          Color(0xff202020)
+                        ])),
+                    child: SingleChildScrollView(
+                      // physics: AlwaysScrollableScrollPhysics(), //buna bakalim bir kaydirmak icin
+                      padding: const EdgeInsets.symmetric(horizontal: 0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image.asset(
+                            "assets/images/lgs.png",
+                            width: double.infinity,
+                            height: 100,
+                          ),
+                          const SizedBox(height: 10),
+                          const Text(
+                            'Persönliche Daten!',
+                            style: TextStyle(
+                                color: Color(0xffFFFFFF),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 5),
+                          usertext_build(),
+                          const SizedBox(height: 5),
+                          buildPassword("altes Passwort", old_password,
+                              oldPassController),
+                          const SizedBox(height: 5),
+                          buildPassword(
+                              "neues Passwort", new_password, passController),
+                          const SizedBox(height: 5),
+                          buildPassword("neues Passwort wiederholen",
+                              return_password, return_passController),
+                          const SizedBox(height: 5),
+                          buildButton("Passwort ändern", test),
+                          const SizedBox(height: 5),
+                          buildButton("Abmelden", test),
+                          const SizedBox(height: 5),
+                          const Text(
+                            '© Landesgartenschau Höxter 2023 gGmbH \n                   Alle Rechte vorbehalten.',
+                            style: TextStyle(
+                                color: Color(0xffFFFFFF),
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 
-  Widget profil_build() {
-    return Center(
-        child: Stack(
-      children: const <Widget>[
-        CircleAvatar(
-          radius: 80,
-          backgroundColor: Color(0xff5ac18e),
-          //backgroundImage: ,
-        )
-      ],
-    ));
-  }
-
-  Widget mailtext_build() {
+  Widget usertext_build() {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          const Text(
-            'Email-Adresse',
-            style: TextStyle(
-                color: Colors.black38,
-                fontSize: 14,
-                fontWeight: FontWeight.bold),
-          ),
           const SizedBox(height: 10),
           Container(
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
-                color: Colors.white,
+                color: const Color(0xff202020),
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   BoxShadow(
-                      color: Colors.black26,
+                      color: Color(0xff202020),
                       blurRadius: 6,
                       offset: Offset(0, 2))
                 ]),
-            height: 40,
+            height: 60,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: const <Widget>[
@@ -101,7 +133,7 @@ class user_settingState extends State<user_setting> {
                     child: Icon(
                       Icons.email,
                       size: 25.0,
-                      color: Color(0xff5ac18e),
+                      color: Color(0xffFFFFFF),
                     ),
                   ),
                 ),
@@ -109,8 +141,8 @@ class user_settingState extends State<user_setting> {
                 SizedBox(
                   height: 20.0,
                   child: Text(
-                    "E-Mail: ",
-                    style: TextStyle(fontSize: 18.0, color: Colors.black38),
+                    "username: ",
+                    style: TextStyle(fontSize: 18.0, color: Color(0xffFFFFFF)),
                   ),
                 ),
               ],
@@ -119,127 +151,54 @@ class user_settingState extends State<user_setting> {
         ]);
   }
 
-  Widget area(String text, controller) {
-    return Container(
-      alignment: Alignment.centerLeft,
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: const [
-            BoxShadow(
-                color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
-          ]),
-      height: 40,
-      child: TextField(
-        obscureText: _showPassword,
-        controller: controller,
-        decoration: InputDecoration(
-          suffixIcon: GestureDetector(
-            onTap: () {
-              setState(() => _showPassword = !_showPassword);
-            },
-            child: Icon(
-              _showPassword ? Icons.visibility : Icons.visibility_off,
-              color: Colors.grey,
-            ),
-          ),
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.only(top: 7),
-          prefixIcon: const Icon(Icons.lock, color: Color(0xff5ac18e)),
-          hintText: text,
-          hintStyle: const TextStyle(color: Colors.black38),
-        ),
-      ),
-    );
-  }
-
-  Widget buildOldPass() {
+  Widget buildPassword(
+      String text, String pass, TextEditingController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const Text(
-          'Old Password',
-          style: TextStyle(
-              color: Colors.black38, fontSize: 14, fontWeight: FontWeight.bold),
-        ),
         const SizedBox(height: 10),
-        area("gib altes Passwort", oldPassController),
+        Container(
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
+                color: const Color(0xff202020),
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: const [
+                  BoxShadow(
+                      color: Color(0xff202020),
+                      blurRadius: 6,
+                      offset: Offset(0, 2))
+                ]),
+            height: 60,
+            child: TextFormField(
+              obscureText: _showPassword,
+              controller: controller,
+              validator: (value) {
+                return Validator.validatePassword(value!, pass);
+              },
+              onChanged: (value) => pass = value,
+              decoration: InputDecoration(
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() => _showPassword = !_showPassword);
+                  },
+                  child: Icon(
+                    _showPassword ? Icons.visibility : Icons.visibility_off,
+                    color: const Color(0xffFFFFFF),
+                  ),
+                ),
+                border: InputBorder.none,
+                contentPadding: const EdgeInsets.only(top: 14),
+                prefixIcon: const Icon(Icons.lock_open_outlined,
+                    size: 23, color: Color(0xffFFFFFF)),
+                hintText: text,
+                hintStyle: const TextStyle(
+                  color: Color(0xffFFFFFF),
+                ),
+              ),
+            ))
       ],
     );
   }
 
-  Widget buildPassword() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const Text(
-          'New Password',
-          style: TextStyle(
-              color: Colors.black38, fontSize: 14, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 10),
-        area("gib neues Passwort", newPassController),
-      ],
-    );
-  }
-
-  Widget retrunPassword() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const Text(
-          'Return Password',
-          style: TextStyle(
-              color: Colors.black38, fontSize: 14, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 10),
-        area("wiederhol neues Passwort", newPassController1),
-      ],
-    );
-  }
-
-  Widget PassButton() {
-    return Container(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        width: double.infinity,
-        child: RaisedButton(
-          elevation: 5,
-          onPressed: () {},
-          padding: const EdgeInsets.all(10),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          color: Colors.white,
-          child: const Text(
-            'Passwort ändern',
-            style: TextStyle(
-                color: Color(0xff5ac18e),
-                fontSize: 15,
-                fontWeight: FontWeight.bold),
-          ),
-        ));
-  }
-
-  Widget buildLogoutButton() {
-    return Container(
-        padding: const EdgeInsets.symmetric(vertical: 1),
-        width: double.infinity,
-        child: RaisedButton(
-          elevation: 5,
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Home_page()));
-          },
-          padding: const EdgeInsets.all(10),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          color: Colors.white,
-          child: const Text(
-            'Abmelden',
-            style: TextStyle(
-                color: Color(0xff5ac18e),
-                fontSize: 15,
-                fontWeight: FontWeight.bold),
-          ),
-        ));
-  }
+  void test() {}
 }
