@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../home/widgets/default_card.dart';
 import 'package:landesgartenschau2023/models/events_Stand_model.dart';
 import 'package:landesgartenschau2023/models/events_Stand_Data.dart';
 import '../../home/widgets/searchbar.dart';
@@ -35,9 +36,7 @@ class buildListState extends State<buildList> {
             ),
         SizedBox(
             height: 200,
-            child: Card(
-              margin: const EdgeInsets.symmetric(horizontal: 20.0),
-              color: Colors.red,
+            child: DefaultCard(
               child: ListView.builder(
                 itemCount: stands.length,
                 itemBuilder: (context, index) {
@@ -52,9 +51,7 @@ class buildListState extends State<buildList> {
         ),
         SizedBox(
             height: 200,
-            child: Card(
-              margin: const EdgeInsets.symmetric(horizontal: 20.0),
-              color: Colors.blue,
+            child: DefaultCard(
               child: ListView.builder(
                 itemCount: events.length,
                 itemBuilder: (context, index) {
