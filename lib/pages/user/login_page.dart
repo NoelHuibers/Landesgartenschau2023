@@ -58,6 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: BackButton(color: Theme.of(context).colorScheme.primary),
           actions: <Widget>[
             Image.asset("assets/images/logo6.png", width: 110, height: 40)
           ],

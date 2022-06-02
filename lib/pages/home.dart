@@ -19,6 +19,7 @@ class Home_pageState extends State<Home_page> {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.account_circle_sharp),
+            color: Theme.of(context).colorScheme.primary,
             onPressed: () {
               Navigator.push(
                 context,
@@ -30,6 +31,7 @@ class Home_pageState extends State<Home_page> {
           actions: [
             IconButton(
               icon: const Icon(Icons.more_vert_rounded),
+              color: Theme.of(context).colorScheme.primary,
               onPressed: () {
                 Navigator.push(
                   context,
