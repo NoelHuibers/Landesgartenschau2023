@@ -21,7 +21,7 @@ class _Language extends State<Language> {
     return ListTile(
         leading: Icon(
           Icons.language,
-          color: Theme.of(context).appBarTheme.backgroundColor,
+          color: Theme.of(context).colorScheme.onSecondary,
         ),
         title: Text(
           AppLocalizations.of(context)!.language,

@@ -20,7 +20,7 @@ class Darkmode extends StatelessWidget {
       },
       secondary: Icon(
         Icons.lightbulb_outline,
-        color: Theme.of(context).appBarTheme.backgroundColor,
+        color: Theme.of(context).colorScheme.onSecondary,
       ),
     );
   }
