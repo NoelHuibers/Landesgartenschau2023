@@ -11,9 +11,10 @@ mixin Palette {
     ),
 
     colorScheme: const ColorScheme.dark(
-      primary: Color.fromRGBO(44, 44, 44, 1), // round container
-      onPrimary: Colors.white, // Icons
-      secondary: Color.fromRGBO(34, 201, 92, 1), // Buttons
+      primary: Color(0xE6333333), // dark=grau - light=grau
+      onPrimary: Color(0xFFF6FDFF), // dark=weiß - light=grau
+      secondary: Color(0xE6333333), // dark=grau - light=weiß
+      onSecondary: Color(0xFFF6FDFF), // dark=weiß - light=weiß
       tertiary: Color.fromARGB(255, 25, 105, 243), // locationmarker
     ),
 
@@ -58,8 +59,9 @@ mixin Palette {
 
     colorScheme: const ColorScheme.light(
       primary: Color(0xE6333333), // round container & default card & Icons
-      onPrimary: Colors.black, // Icons (alt)
+      onPrimary: Color(0xE6333333), //
       secondary: Color(0xFFF6FDFF), // Buttons
+      onSecondary: Color(0xFFF6FDFF), //
       tertiary: Color.fromARGB(255, 25, 105, 243), // locationmarker
     ),
 

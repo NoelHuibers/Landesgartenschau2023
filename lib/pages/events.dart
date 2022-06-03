@@ -8,7 +8,7 @@ import 'package:landesgartenschau2023/models/events_model.dart';
 Widget build(BuildContext context) {
   return Scaffold(
       appBar: AppBar(
-        leading: BackButton(color: Theme.of(context).colorScheme.primary),
+        leading: BackButton(color: Theme.of(context).colorScheme.onPrimary),
         title: Text(
           'Events',
           style: Theme.of(context).textTheme.headline5,

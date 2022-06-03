@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: BackButton(color: Theme.of(context).colorScheme.primary),
+          leading: BackButton(color: Theme.of(context).colorScheme.onPrimary),
           actions: <Widget>[
             Image.asset("assets/images/logo6.png", width: 110, height: 40)
           ],
@@ -146,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.all(20),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          color: Color(0xff22C95C),
+          color: const Color(0xff22C95C),
           child: const Text(
             'Anmelden',
             style: TextStyle(
@@ -171,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.all(10),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          color: Color(0xff22C95C),
+          color: const Color(0xff22C95C),
           child: const Text(
             'Du hast noch kein Konto',
             style: TextStyle(
@@ -190,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Container(
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
-              color: Color(0xff202020),
+              color: const Color(0xff202020),
               borderRadius: BorderRadius.circular(10),
               boxShadow: const [
                 BoxShadow(
@@ -227,7 +227,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Container(
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
-                color: Color(0xff202020),
+                color: const Color(0xff202020),
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   BoxShadow(
@@ -246,7 +246,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   child: Icon(
                     _showPassword ? Icons.visibility : Icons.visibility_off,
-                    color: Color(0xffFFFFFF),
+                    color: const Color(0xffFFFFFF),
                   ),
                 ),
                 border: InputBorder.none,

@@ -12,7 +12,7 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: BackButton(color: Theme.of(context).colorScheme.primary),
+          leading: BackButton(color: Theme.of(context).colorScheme.onPrimary),
           title: Text(
             'Settings Page',
             style: Theme.of(context).textTheme.headline5,
