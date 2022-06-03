@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import '../models/map_marker.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'map/widgets/location_controller.dart';
-
-//Die genauere Position wird aus der Location datei geholt
-LatLng genauePosition = LatLng(51.76685404294687, 9.370506747991776);
+import 'package:location/location.dart';
 
 //Dies dient dazu die StändeKoordinaten in die große Map einzufügen
 // diese Wird zunächst kommentiert bis wir die Daten haben
@@ -35,17 +32,22 @@ class bigMap extends StatelessWidget {
   bigMap({Key? key}) : super(key: key);
   double currentZoom = 13.0;
   MapController mapController = MapController();
-  LatLng currentCenter = LatLng(51.773797392536636, 9.381120459653904);
+  late LatLng currentCenter;
+  late bool _isServiceEnabled;
+  late PermissionStatus _permissionGranted;
+  LocationData? _userLocation;
+  bool isGetLocation = false;
+  Location location = Location();
   var mapPosition;
 
   //Methode zum Zoom Out
-  void _zoomOut() {
+  _zoomOut() {
     currentZoom = currentZoom - 1;
     mapController.move(mapPosition, currentZoom);
   }
 
   //Methode zum Zoom In
-  void _zoomIn() {
+  _zoomIn() {
     currentZoom = currentZoom + 1;
     mapController.move(mapPosition, currentZoom);
   }
@@ -53,37 +55,14 @@ class bigMap extends StatelessWidget {
   //Methode an die Aktuelle Position zu führen
   void cuncretPosition() {
     currentZoom = currentZoom + 3;
-    mapController.move(genauePosition, currentZoom);
+    mapController.move(currentCenter, currentZoom);
   }
 
   void setPosition(LatLng center) {
     mapPosition = center;
   }
 
-  //Die Methode ist für das Adden die Marker auf der Karte
-  List<Marker> markerBild() {
-    final markerListe = <Marker>[];
-    for (int i = 0; i < mapMarkers.length; i++) {
-      final mapItem = mapMarkers[i];
-      markerListe.add(Marker(
-          height: 45.0,
-          width: 45.0,
-          point: mapItem.koordinaten,
-          builder: (_) {
-            return GestureDetector(
-              onTap: () {
-                print('Ausgewählt:  ${mapItem.title}');
-              },
-              child:
-                  Image.asset("hier Kann die Makierungslogo eingefügt werden "),
-            );
-          }));
-    }
-    return markerListe;
-  }
-
   //Beispiel Koordinaten zum testen
-  //diese positionsdaten kommen aus backend
   var position = <LatLng>[
     LatLng(51.76641692390064, 9.371780740209607),
     LatLng(51.76971011625946, 9.372660504708008),
@@ -105,6 +84,22 @@ class bigMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    getRealPosition;
+    return StreamBuilder(
+      stream: location.onLocationChanged,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.waiting) {
+          var data = snapshot.data as LocationData;
+          LatLng posit = LatLng(data.latitude!, data.longitude!);
+          currentCenter = posit;
+          return map_build();
+        }
+        return map_build();
+      },
+    );
+  }
+
+  Widget map_build() {
     return Scaffold(
         body: FlutterMap(
           mapController: mapController,
@@ -126,7 +121,6 @@ class bigMap extends StatelessWidget {
               Marker(
                   height: 60,
                   width: 60,
-                  //ExampleAppState.userPosition,nn
                   builder: (_) {
                     return const animationMarker();
                   },
@@ -160,5 +154,19 @@ class bigMap extends StatelessWidget {
       tooltip: tip,
       child: Icon(iconData),
     );
+  }
+
+  getRealPosition() async {
+    _isServiceEnabled = await location.serviceEnabled();
+    if (!_isServiceEnabled) {
+      _isServiceEnabled = await location.requestService();
+      if (_isServiceEnabled) return;
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) return;
+    }
   }
 }
