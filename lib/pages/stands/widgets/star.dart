@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Star extends StatefulWidget {
-  const Star({Key? key, required this.starred}) : super(key: key);
-  final bool starred;
+  const Star({Key? key, required starred}) : super(key: key);
 
   @override
   State<Star> createState() => _Star();
@@ -11,6 +10,14 @@ class Star extends StatefulWidget {
 class _Star extends State<Star> {
   @override
   Widget build(BuildContext context) {
-    return Icon(widget.starred == true ? Icons.star : Icons.star_border);
+    bool starred = false; // NEEDS FIX
+    return IconButton(
+        icon: Icon(starred == true ? Icons.star : Icons.star_border),
+        onPressed: () {
+          // standsList[index]['starred'] = !standsList[index]['starred']; NEEDS FIX
+          setState(() {
+            //starred = (standsList[index]['starred']); // NEEDS FIX
+          });
+        });
   }
 }

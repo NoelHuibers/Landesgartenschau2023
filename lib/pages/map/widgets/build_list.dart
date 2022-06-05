@@ -3,6 +3,8 @@ import '../../home/widgets/default_card.dart';
 import 'package:landesgartenschau2023/models/events_Stand_model.dart';
 import 'package:landesgartenschau2023/models/events_Stand_Data.dart';
 import '../../home/widgets/searchbar.dart';
+import '../../events.dart';
+import '../../stands.dart';
 
 class buildList extends StatefulWidget {
   @override
@@ -31,8 +33,11 @@ class buildListState extends State<buildList> {
           child: buildSearch(),
         ),
         SizedBox(
-            child: build_text_button(
-                "Stands") //Hier kommt die KLasse die abgerufen werden soll beim klicken ),
+            child: buildTextButton(
+                "Stands",
+                MaterialPageRoute(
+                    builder: (context) =>
+                        const Stands())) //Hier kommt die KLasse die abgerufen werden soll beim klicken ),
             ),
         SizedBox(
             height: 200,
@@ -46,8 +51,11 @@ class buildListState extends State<buildList> {
               ),
             )),
         SizedBox(
-          child: build_text_button(
-              "Events"), //Hier kommt die KLasse die abgerufen werden soll beim klicken  ),
+          child: buildTextButton(
+              "Events",
+              MaterialPageRoute(
+                  builder: (context) =>
+                      const Events())), //Hier kommt die KLasse die abgerufen werden soll beim klicken  ),
         ),
         SizedBox(
             height: 200,
@@ -64,7 +72,7 @@ class buildListState extends State<buildList> {
     );
   }
 
-  Widget build_text_button(String text) {
+  Widget buildTextButton(String text, MaterialPageRoute routing) {
     return Row(
       children: [
         Expanded(
@@ -84,10 +92,10 @@ class buildListState extends State<buildList> {
             color: Colors.black38,
             shape: const CircleBorder(),
             onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => classe),
-              // );
+              Navigator.push(
+                context,
+                routing,
+              );
             },
             child: const Icon(Icons.view_list_rounded, color: Colors.white)),
       ],
