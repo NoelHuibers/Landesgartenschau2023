@@ -11,17 +11,21 @@ class Standslist extends StatelessWidget {
       child: ListView.builder(
         itemCount: StandsModel.standsList.length,
         itemBuilder: (context, index) {
-          Widget _star = Star(starred: standsList[index]["starred"]);
+          Icon star = Icon(standsList[index]["starred"] == true
+              ? Icons.star
+              : Icons.star_border);
           return ListTile(
-            leading: _star,
+            leading: IconButton(
+                icon: star,
+                onPressed: () {
+                  standsList[index]['starred'] = !standsList[index]['starred'];
+                  // setState(() {
+                  //   star = (standsList[index]['starred']);
+                  // });
+                }),
             title: Text(standsList[index]['title']),
             subtitle: Text(standsList[index]['subtitle']),
-            onTap: () {
-              standsList[index]['starred'] = !standsList[index]['starred'];
-              setState() {
-                _star = Star(starred: standsList[index]["starred"]);
-              }
-            },
+            onTap: () {},
           );
         },
       ),
