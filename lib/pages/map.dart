@@ -33,6 +33,7 @@ class bigMap extends StatelessWidget {
   double currentZoom = 13.0;
   MapController mapController = MapController();
   late LatLng currentCenter;
+  LatLng currentCenterHX = LatLng(51.773797392536636, 9.381120459653904);
   late bool _isServiceEnabled;
   late PermissionStatus _permissionGranted;
   LocationData? _userLocation;
@@ -84,22 +85,24 @@ class bigMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getRealPosition;
+    getRealPosition();
     return StreamBuilder(
       stream: location.onLocationChanged,
       builder: (context, snapshot) {
-        if (snapshot.connectionState != ConnectionState.waiting) {
+        if (snapshot.data != null &&
+            snapshot.connectionState != ConnectionState.waiting) {
           var data = snapshot.data as LocationData;
           LatLng posit = LatLng(data.latitude!, data.longitude!);
           currentCenter = posit;
-          return map_build();
+          return map_build(currentCenter);
+        } else {
+          return map_build(currentCenterHX);
         }
-        return map_build();
       },
     );
   }
 
-  Widget map_build() {
+  Widget map_build(LatLng Centerposition) {
     return Scaffold(
         body: FlutterMap(
           mapController: mapController,
@@ -108,7 +111,7 @@ class bigMap extends StatelessWidget {
               setPosition(mapController.center);
             },
             minZoom: 10.0,
-            center: currentCenter,
+            center: Centerposition,
           ),
           layers: [
             TileLayerOptions(
@@ -124,7 +127,7 @@ class bigMap extends StatelessWidget {
                   builder: (_) {
                     return const animationMarker();
                   },
-                  point: currentCenter),
+                  point: Centerposition),
             ]),
             PolylineLayerOptions(polylines: [
               Polyline(points: position, strokeWidth: 5.0, color: Colors.blue)
