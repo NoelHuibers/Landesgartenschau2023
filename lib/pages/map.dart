@@ -125,7 +125,11 @@ class bigMap extends StatelessWidget {
                   height: 60,
                   width: 60,
                   builder: (_) {
-                    return const animationMarker();
+                    if (Centerposition == currentCenterHX) {
+                      return with_out_Marker();
+                    } else {
+                      return const animationMarker();
+                    }
                   },
                   point: Centerposition),
             ]),

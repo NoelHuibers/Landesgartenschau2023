@@ -74,3 +74,7 @@ class locationMarker extends AnimatedWidget {
     ));
   }
 }
+
+Widget with_out_Marker() {
+  return const Center();
+}
