@@ -19,7 +19,7 @@ class Validator {
     Pattern pattern = r'^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$';
     RegExp regex = RegExp(pattern as String);
 
-    if (pass != retrun_pass || retrun_pass != pass) {
+    if (pass != retrun_pass && retrun_pass != pass) {
       return 'Die Passwörter Stimmen nicht überein';
     } else if (pass.isEmpty || retrun_pass.isEmpty) {
       return 'Bitte passwort in beiden feldern eigeben ';
