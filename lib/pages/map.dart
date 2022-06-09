@@ -27,9 +27,14 @@ import 'package:location/location.dart';
 //     )
 //   }
 // }
+class bigMap extends StatefulWidget {
+  const bigMap({Key? key}) : super(key: key);
 
-class bigMap extends StatelessWidget {
-  bigMap({Key? key}) : super(key: key);
+  @override
+  State<bigMap> createState() => bigMapState();
+}
+
+class bigMapState extends State<bigMap> {
   double currentZoom = 13.0;
   MapController mapController = MapController();
   late LatLng currentCenter;
