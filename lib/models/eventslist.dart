@@ -1,13 +1,10 @@
 class Happenings {
-  final String name;
-  final String description;
+  final int version;
+  final List happening;
 
-  const Happenings({required this.name, required this.description});
+  const Happenings({required this.version, required this.happening});
 
   factory Happenings.fromJson(Map<String, dynamic> json) {
-    return Happenings(
-      name: json['name'],
-      description: json['description'],
-    );
+    return Happenings(version: json['version'], happening: json['happening']);
   }
 }
