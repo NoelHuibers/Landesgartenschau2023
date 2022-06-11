@@ -5,22 +5,22 @@ import 'package:landesgartenschau2023/pages/user/user_setting.dart';
 import 'package:landesgartenschau2023/pages/user/user_tools.dart';
 import 'package:landesgartenschau2023/pages/user/validator.dart';
 
-class registerScreen extends StatefulWidget {
-  const registerScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  State<registerScreen> createState() => registerScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class registerScreenState extends State<registerScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController mailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
-  final TextEditingController return_passController = TextEditingController();
+  final TextEditingController returnPassController = TextEditingController();
   final API_call _API_call = API_call();
   bool _showPassword = true;
   String password = '';
-  String return_password = '';
+  String returnPassword = '';
 
   Future<void> register() async {
     if (_formKey.currentState!.validate()) {
@@ -34,7 +34,7 @@ class registerScreenState extends State<registerScreen> {
       if (res['id'] != null && res['token'] != null) {
         // ignore: use_build_context_synchronously
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const user_setting()));
+            MaterialPageRoute(builder: (context) => const UserSetting()));
       }
 
       if (res['token'] == null || res['id'] == null) {
@@ -56,7 +56,7 @@ class registerScreenState extends State<registerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: build_appBar(),
+        appBar: buildAppBar(),
         body: Form(
           key: _formKey,
           child: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -106,8 +106,8 @@ class registerScreenState extends State<registerScreen> {
                           const SizedBox(height: 10),
                           buildPassword("passwort", password, passController),
                           const SizedBox(height: 10),
-                          buildPassword("Passwort wiederholen", return_password,
-                              return_passController),
+                          buildPassword("Passwort wiederholen", returnPassword,
+                              returnPassController),
                           const SizedBox(height: 10),
                           buildButton("Regestrieren", register),
                           const SizedBox(height: 10),
@@ -144,7 +144,7 @@ class registerScreenState extends State<registerScreen> {
         Container(
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
-                color: Color(0xff202020),
+                color: const Color(0xff202020),
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   BoxShadow(
@@ -167,7 +167,7 @@ class registerScreenState extends State<registerScreen> {
                   },
                   child: Icon(
                     _showPassword ? Icons.visibility : Icons.visibility_off,
-                    color: Color(0xffFFFFFF),
+                    color: const Color(0xffFFFFFF),
                   ),
                 ),
                 border: InputBorder.none,

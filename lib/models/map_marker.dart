@@ -1,7 +1,7 @@
 import 'package:latlng/latlng.dart';
 
-class mapMarker {
-  const mapMarker({
+class MapMarker {
+  const MapMarker({
     required this.image, //Logo für die Markierung gemeint!!!
     required this.titel,
     required this.koordinaten,
@@ -13,7 +13,7 @@ class mapMarker {
 }
 
 //Hier kommen die Koordianten die einzelnen Stände
-final Koordinaten = [
+final koordinaten = [
 // LatLng(latitude, longitude),
 // LatLng(latitude, longitude),
 // LatLng(latitude, longitude),

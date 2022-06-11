@@ -5,14 +5,14 @@ import 'package:flutter/services.dart';
 import 'package:landesgartenschau2023/pages/user/user_tools.dart';
 import 'package:landesgartenschau2023/pages/user/validator.dart';
 
-class user_setting extends StatefulWidget {
-  const user_setting({Key? key}) : super(key: key);
+class UserSetting extends StatefulWidget {
+  const UserSetting({Key? key}) : super(key: key);
 
   @override
-  user_settingState createState() => user_settingState();
+  State<UserSetting> createState() => _UserSettingState();
 }
 
-class user_settingState extends State<user_setting> {
+class _UserSettingState extends State<UserSetting> {
   bool _showPassword = true;
   String old_password = '';
   String new_password = '';

@@ -29,17 +29,23 @@ class _Language extends State<Language> {
         ),
         trailing: Container(
             margin: const EdgeInsets.only(right: 6.0),
-            child: IconButton(
-                color: Theme.of(context).appBarTheme.backgroundColor,
+            child: DropdownButton(
                 icon: flag,
-                onPressed: () {
-                  if (locale == const Locale('en')) {
-                    Provider.of<LocaleProvider>(context, listen: false)
-                        .setLocale(const Locale('de'));
-                  } else {
-                    Provider.of<LocaleProvider>(context, listen: false)
-                        .setLocale(const Locale('en'));
-                  }
-                })));
+                items: L10n.all.map(
+                  (locale) {
+                    final displayflag = L10n.getFlag(locale.languageCode);
+
+                    return DropdownMenuItem(
+                      child: displayflag,
+                      value: locale,
+                      onTap: () {
+                        final provider =
+                            Provider.of<LocaleProvider>(context, listen: false);
+                        provider.setLocale(locale);
+                      },
+                    );
+                  },
+                ).toList(),
+                onChanged: (_) {})));
   }
 }

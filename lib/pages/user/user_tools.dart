@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:landesgartenschau2023/pages/user/validator.dart';
 
-PreferredSizeWidget build_appBar() {
+PreferredSizeWidget buildAppBar() {
   return AppBar(
     actions: <Widget>[
       Image.asset("assets/images/logo6.png", width: 110, height: 40)
@@ -30,7 +30,7 @@ Widget buildButton(String text, Function funktion) {
       ));
 }
 
-Widget buildEmail(TextEditingController eMail_controller) {
+Widget buildEmail(TextEditingController eMailController) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -46,7 +46,7 @@ Widget buildEmail(TextEditingController eMail_controller) {
             ]),
         height: 60,
         child: TextFormField(
-          controller: eMail_controller,
+          controller: eMailController,
           validator: (value) {
             return Validator.validateEmail(value ?? "");
           },

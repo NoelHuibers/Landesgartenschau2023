@@ -27,14 +27,14 @@ import 'package:location/location.dart';
 //     )
 //   }
 // }
-class bigMap extends StatefulWidget {
-  const bigMap({Key? key}) : super(key: key);
+class BigMap extends StatefulWidget {
+  const BigMap({Key? key}) : super(key: key);
 
   @override
-  State<bigMap> createState() => bigMapState();
+  State<BigMap> createState() => _BigMapState();
 }
 
-class bigMapState extends State<bigMap> {
+class _BigMapState extends State<BigMap> {
   double currentZoom = 13.0;
   MapController mapController = MapController();
   late LatLng currentCenter;
@@ -59,7 +59,7 @@ class bigMapState extends State<bigMap> {
   }
 
   //Methode an die Aktuelle Position zu führen
-  void cuncretPosition() {
+  void concurrentPosition() {
     currentZoom = currentZoom + 3;
     mapController.move(currentCenter, currentZoom);
   }
@@ -99,15 +99,15 @@ class bigMapState extends State<bigMap> {
           var data = snapshot.data as LocationData;
           LatLng posit = LatLng(data.latitude!, data.longitude!);
           currentCenter = posit;
-          return map_build(currentCenter);
+          return mapBuild(currentCenter);
         } else {
-          return map_build(currentCenterHX);
+          return mapBuild(currentCenterHX);
         }
       },
     );
   }
 
-  Widget map_build(LatLng Centerposition) {
+  Widget mapBuild(LatLng centerposition) {
     return Scaffold(
         body: FlutterMap(
           mapController: mapController,
@@ -116,7 +116,7 @@ class bigMapState extends State<bigMap> {
               setPosition(mapController.center);
             },
             minZoom: 10.0,
-            center: Centerposition,
+            center: centerposition,
           ),
           layers: [
             TileLayerOptions(
@@ -130,13 +130,13 @@ class bigMapState extends State<bigMap> {
                   height: 60,
                   width: 60,
                   builder: (_) {
-                    if (Centerposition == currentCenterHX) {
-                      return with_out_Marker();
+                    if (centerposition == currentCenterHX) {
+                      return withoutMarker();
                     } else {
-                      return const animationMarker();
+                      return const AnimationMarker();
                     }
                   },
-                  point: Centerposition),
+                  point: centerposition),
             ]),
             PolylineLayerOptions(polylines: [
               Polyline(points: position, strokeWidth: 5.0, color: Colors.blue)
@@ -148,17 +148,17 @@ class bigMapState extends State<bigMap> {
         ),
         floatingActionButton:
             Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-          build_button("btn1", _zoomIn, 'Zoom IN', Icons.zoom_in_sharp),
+          buildButton("btn1", _zoomIn, 'Zoom IN', Icons.zoom_in_sharp),
           const SizedBox(height: 10),
-          build_button("btn2", _zoomOut, 'Zoom OUT', Icons.zoom_out_outlined),
+          buildButton("btn2", _zoomOut, 'Zoom OUT', Icons.zoom_out_outlined),
           const SizedBox(height: 10),
-          build_button(
-              "btn3", cuncretPosition, 'Position', Icons.my_location_rounded),
+          buildButton("btn3", concurrentPosition, 'Position',
+              Icons.my_location_rounded),
           const SizedBox(height: 100),
         ]));
   }
 
-  Widget build_button(
+  Widget buildButton(
       String tag, Function() function, String tip, IconData iconData) {
     return FloatingActionButton(
       heroTag: tag, //Exception Vermeiden

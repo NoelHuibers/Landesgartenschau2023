@@ -3,20 +3,20 @@ import 'package:landesgartenschau2023/pages/map/widgets/build_list.dart';
 import '../../home/button_bar.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-class slide_page extends StatefulWidget {
+class SlidePage extends StatefulWidget {
   final ScrollController controller;
   final PanelController panelController;
 
-  const slide_page({
+  const SlidePage({
     Key? key,
     required this.controller,
     required this.panelController,
   }) : super(key: key);
   @override
-  slide_pageState createState() => slide_pageState();
+  State<SlidePage> createState() => _SlidePageState();
 }
 
-class slide_pageState extends State<slide_page> {
+class _SlidePageState extends State<SlidePage> {
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -24,10 +24,10 @@ class slide_pageState extends State<slide_page> {
       controller: widget.controller,
       children: <Widget>[
         SizedBox(height: 20, child: swipe_bottum()),
-        SizedBox(height: 80, child: bottom_bar()),
-        SizedBox(
+        SizedBox(height: 80, child: bottomBar()),
+        const SizedBox(
           height: 500,
-          child: buildList(),
+          child: BuildList(),
         ),
       ],
     );

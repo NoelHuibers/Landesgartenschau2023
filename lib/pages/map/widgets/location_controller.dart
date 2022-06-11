@@ -1,14 +1,14 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-class animationMarker extends StatefulWidget {
-  const animationMarker({Key? key}) : super(key: key);
+class AnimationMarker extends StatefulWidget {
+  const AnimationMarker({Key? key}) : super(key: key);
 
   @override
-  animationMarkerState createState() => animationMarkerState();
+  State<AnimationMarker> createState() => _AnimationMarkerState();
 }
 
-class animationMarkerState extends State<animationMarker>
+class _AnimationMarkerState extends State<AnimationMarker>
     with SingleTickerProviderStateMixin {
   //Dies Class wird bei verwendeung ein Animation verwendet
 
@@ -32,12 +32,12 @@ class animationMarkerState extends State<animationMarker>
 
   @override
   Widget build(BuildContext context) {
-    return locationMarker(animationController);
+    return LocationMarker(animationController);
   }
 }
 
-class locationMarker extends AnimatedWidget {
-  const locationMarker(Animation<double> animation, {Key? key})
+class LocationMarker extends AnimatedWidget {
+  const LocationMarker(Animation<double> animation, {Key? key})
       : super(key: key, listenable: animation);
 
   @override
@@ -75,6 +75,6 @@ class locationMarker extends AnimatedWidget {
   }
 }
 
-Widget with_out_Marker() {
+Widget withoutMarker() {
   return const Center();
 }

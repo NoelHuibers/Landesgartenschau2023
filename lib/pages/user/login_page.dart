@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (res['token'] != null) {
         // ignore: use_build_context_synchronously
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const user_setting()));
+            MaterialPageRoute(builder: (context) => const UserSetting()));
       }
       if (res['token'] == null) {
         // ignore: use_build_context_synchronously
@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget buildLoginButton() {
-    return Container(
+    return SizedBox(
         width: 250,
         child: RaisedButton(
           elevation: 5,
@@ -158,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget buildKeinKontoButton() {
-    return Container(
+    return SizedBox(
         width: 150,
         child: RaisedButton(
           elevation: 5,
@@ -166,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const registerScreen()));
+                    builder: (context) => const RegisterScreen()));
           },
           padding: const EdgeInsets.all(10),
           shape:

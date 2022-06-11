@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import '../../home/widgets/default_card.dart';
-import 'package:landesgartenschau2023/models/events_Stand_model.dart';
+import 'package:landesgartenschau2023/models/events_stand_model.dart';
 import 'package:landesgartenschau2023/models/events_Stand_Data.dart';
 import '../../home/widgets/searchbar.dart';
 import '../../events.dart';
 import '../../stands.dart';
 
-class buildList extends StatefulWidget {
+class BuildList extends StatefulWidget {
+  const BuildList({Key? key}) : super(key: key);
+
   @override
-  buildListState createState() => buildListState();
+  State<BuildList> createState() => _BuildListState();
 }
 
-class buildListState extends State<buildList> {
+class _BuildListState extends State<BuildList> {
   String query = '';
   late List<StandsList> stands;
   late List<EventsList> events;

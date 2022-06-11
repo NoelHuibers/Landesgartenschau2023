@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget bottom_bar() {
+Widget bottomBar() {
   return ButtonBar(
     alignment: MainAxisAlignment.center,
     children: <Widget>[
