@@ -41,10 +41,9 @@ class _BigMapState extends State<BigMap> {
   LatLng currentCenterHX = LatLng(51.773797392536636, 9.381120459653904);
   late bool _isServiceEnabled;
   late PermissionStatus _permissionGranted;
-  LocationData? _userLocation;
   bool isGetLocation = false;
   Location location = Location();
-  var mapPosition;
+  late LatLng mapPosition;
 
   //Methode zum Zoom Out
   _zoomOut() {
