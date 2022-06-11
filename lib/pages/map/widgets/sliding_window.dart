@@ -24,7 +24,7 @@ class _SlidePageState extends State<SlidePage> {
       controller: widget.controller,
       children: <Widget>[
         SizedBox(height: 20, child: swipe_bottum()),
-        SizedBox(height: 80, child: bottomBar()),
+        SizedBox(height: 80, child: buttonBar()),
         const SizedBox(
           height: 500,
           child: BuildList(),
