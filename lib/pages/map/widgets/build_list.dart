@@ -33,12 +33,9 @@ class buildListState extends State<buildList> {
           child: buildSearch(),
         ),
         SizedBox(
-            child: buildTextButton(
-                "Stands",
-                MaterialPageRoute(
-                    builder: (context) =>
-                        const Stands())) //Hier kommt die KLasse die abgerufen werden soll beim klicken ),
-            ),
+          child: buildTextButton("Stands", const Stands()),
+          //Hier kommt die KLasse die abgerufen werden soll beim klicken ),
+        ),
         SizedBox(
             height: 200,
             child: DefaultCard(
@@ -51,11 +48,8 @@ class buildListState extends State<buildList> {
               ),
             )),
         SizedBox(
-          child: buildTextButton(
-              "Events",
-              MaterialPageRoute(
-                  builder: (context) =>
-                      const Events())), //Hier kommt die KLasse die abgerufen werden soll beim klicken  ),
+          child: buildTextButton("Events",
+              const Events()), //Hier kommt die KLasse die abgerufen werden soll beim klicken  ),
         ),
         SizedBox(
             height: 200,
@@ -72,7 +66,7 @@ class buildListState extends State<buildList> {
     );
   }
 
-  Widget buildTextButton(String text, MaterialPageRoute routing) {
+  Widget buildTextButton(String text, Widget routing) {
     return Row(
       children: [
         Expanded(
@@ -93,9 +87,7 @@ class buildListState extends State<buildList> {
             shape: const CircleBorder(),
             onPressed: () {
               Navigator.push(
-                context,
-                routing,
-              );
+                  context, MaterialPageRoute(builder: (builder) => routing));
             },
             child: const Icon(Icons.view_list_rounded, color: Colors.white)),
       ],
