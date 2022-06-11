@@ -12,14 +12,19 @@ PreferredSizeWidget buildAppBar() {
 Widget buildButton(String text, Function funktion) {
   return SizedBox(
       width: 250,
-      child: RaisedButton(
-        elevation: 5,
+      child: ElevatedButton(
+        style: ButtonStyle(
+            elevation: MaterialStateProperty.all<double>(5.0),
+            padding:
+                MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.all(20)),
+            backgroundColor:
+                MaterialStateProperty.all<Color>(const Color(0xff22C95C)),
+            shape: MaterialStateProperty.all<OutlinedBorder>(
+                RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)))),
         onPressed: () {
           funktion();
         },
-        padding: const EdgeInsets.all(20),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        color: const Color(0xff22C95C),
         child: Text(
           text,
           style: const TextStyle(

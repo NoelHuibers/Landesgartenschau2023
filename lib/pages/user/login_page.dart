@@ -138,15 +138,19 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget buildLoginButton() {
     return SizedBox(
         width: 250,
-        child: RaisedButton(
-          elevation: 5,
+        child: ElevatedButton(
+          style: ButtonStyle(
+              elevation: MaterialStateProperty.all<double>(5.0),
+              padding: MaterialStateProperty.all<EdgeInsets>(
+                  const EdgeInsets.all(20)),
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(const Color(0xff22C95C)),
+              shape: MaterialStateProperty.all<OutlinedBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)))),
           onPressed: () {
             login();
           },
-          padding: const EdgeInsets.all(20),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          color: const Color(0xff22C95C),
           child: const Text(
             'Anmelden',
             style: TextStyle(
@@ -160,18 +164,22 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget buildKeinKontoButton() {
     return SizedBox(
         width: 150,
-        child: RaisedButton(
-          elevation: 5,
+        child: ElevatedButton(
+          style: ButtonStyle(
+              elevation: MaterialStateProperty.all<double>(5.0),
+              padding: MaterialStateProperty.all<EdgeInsets>(
+                  const EdgeInsets.all(10)),
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(const Color(0xff22C95C)),
+              shape: MaterialStateProperty.all<OutlinedBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)))),
           onPressed: () {
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => const RegisterScreen()));
           },
-          padding: const EdgeInsets.all(10),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          color: const Color(0xff22C95C),
           child: const Text(
             'Du hast noch kein Konto',
             style: TextStyle(
