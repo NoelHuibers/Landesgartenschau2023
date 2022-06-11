@@ -36,13 +36,13 @@ class _Language extends State<Language> {
                     final displayflag = L10n.getFlag(locale.languageCode);
 
                     return DropdownMenuItem(
-                      child: displayflag,
                       value: locale,
                       onTap: () {
                         final provider =
                             Provider.of<LocaleProvider>(context, listen: false);
                         provider.setLocale(locale);
                       },
+                      child: displayflag,
                     );
                   },
                 ).toList(),

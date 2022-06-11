@@ -17,14 +17,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController mailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final TextEditingController returnPassController = TextEditingController();
-  final API_call _API_call = API_call();
+  final ApiCall _apiCall = ApiCall();
   bool _showPassword = true;
   String password = '';
   String returnPassword = '';
 
   Future<void> register() async {
     if (_formKey.currentState!.validate()) {
-      dynamic res = await _API_call.register(
+      dynamic res = await _apiCall.register(
         mailController.text,
         passController.text,
       );

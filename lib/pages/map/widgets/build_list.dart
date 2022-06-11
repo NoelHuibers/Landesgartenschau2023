@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../home/widgets/default_card.dart';
 import 'package:landesgartenschau2023/models/events_stand_model.dart';
-import 'package:landesgartenschau2023/models/events_Stand_Data.dart';
+import 'package:landesgartenschau2023/models/events_stand_data.dart';
 import '../../home/widgets/searchbar.dart';
 import '../../events.dart';
 import '../../stands.dart';

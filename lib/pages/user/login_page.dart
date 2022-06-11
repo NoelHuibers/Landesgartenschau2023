@@ -16,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController mailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
-  final API_call _API_call = API_call();
+  final ApiCall _apiCall = ApiCall();
   bool _showPassword = true;
 
   Future<void> login() async {
@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Colors.green.shade300,
       ));
 
-      dynamic res = await _API_call.login(
+      dynamic res = await _apiCall.login(
         mailController.text,
         passController.text,
       );
