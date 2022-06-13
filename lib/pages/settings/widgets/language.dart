@@ -29,22 +29,24 @@ class _Language extends State<Language> {
         ),
         trailing: Container(
             margin: const EdgeInsets.only(right: 6.0),
-            child: DropdownButton(
-                value: locale,
-                items: L10n.all.map(
-                  (locale) {
-                    final displayflag = L10n.getFlag(locale.languageCode);
-                    return DropdownMenuItem(
-                      value: locale,
-                      onTap: () {
-                        final provider =
-                            Provider.of<LocaleProvider>(context, listen: false);
-                        provider.setLocale(locale);
-                      },
-                      child: displayflag,
-                    );
-                  },
-                ).toList(),
-                onChanged: (_) {})));
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton(
+                  value: locale,
+                  items: L10n.all.map(
+                    (locale) {
+                      final displayflag = L10n.getFlag(locale.languageCode);
+                      return DropdownMenuItem(
+                        value: locale,
+                        onTap: () {
+                          final provider = Provider.of<LocaleProvider>(context,
+                              listen: false);
+                          provider.setLocale(locale);
+                        },
+                        child: displayflag,
+                      );
+                    },
+                  ).toList(),
+                  onChanged: (_) {}),
+            )));
   }
 }
