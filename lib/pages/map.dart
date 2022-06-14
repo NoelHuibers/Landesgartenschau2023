@@ -163,6 +163,7 @@ class _BigMapState extends State<BigMap> {
       heroTag: tag, //Exception Vermeiden
       onPressed: function,
       tooltip: tip,
+      foregroundColor: Theme.of(context).colorScheme.onPrimary,
       child: Icon(iconData),
     );
   }

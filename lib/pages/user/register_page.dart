@@ -56,7 +56,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: buildAppBar(),
+        appBar: AppBar(
+          leading: BackButton(color: Theme.of(context).colorScheme.onPrimary),
+          actions: <Widget>[
+            Image.asset("assets/images/logo6.png", width: 110, height: 40)
+          ],
+        ),
         body: Form(
           key: _formKey,
           child: AnnotatedRegion<SystemUiOverlayStyle>(

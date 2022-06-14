@@ -19,7 +19,7 @@ mixin Palette {
     ),
 
     iconTheme: const IconThemeData(
-      color: Colors.white,
+      color: Color(0xFFF6FDFF),
     ),
     // Link Text Color: 1E77B7
 
@@ -66,7 +66,7 @@ mixin Palette {
     ),
 
     iconTheme: const IconThemeData(
-      color: Colors.white,
+      color: Color(0xFFF6FDFF),
     ),
 
     textTheme: const TextTheme(
