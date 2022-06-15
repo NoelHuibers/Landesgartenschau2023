@@ -18,6 +18,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.account_circle_sharp),

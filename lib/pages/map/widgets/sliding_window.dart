@@ -7,7 +7,7 @@ class SlidePage extends StatefulWidget {
   final ScrollController controller;
   final PanelController panelController;
 
-  const SlidePage({
+  SlidePage({
     Key? key,
     required this.controller,
     required this.panelController,

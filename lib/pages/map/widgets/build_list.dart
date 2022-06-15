@@ -41,6 +41,7 @@ class _BuildListState extends State<BuildList> {
         SizedBox(
             height: 200,
             child: DefaultCard(
+              color: Theme.of(context).colorScheme.onPrimary,
               child: ListView.builder(
                 itemCount: stands.length,
                 itemBuilder: (context, index) {
@@ -56,6 +57,7 @@ class _BuildListState extends State<BuildList> {
         SizedBox(
             height: 200,
             child: DefaultCard(
+              color: Theme.of(context).colorScheme.onPrimary,
               child: ListView.builder(
                 itemCount: events.length,
                 itemBuilder: (context, index) {
@@ -77,33 +79,51 @@ class _BuildListState extends State<BuildList> {
             alignment: const Alignment(-0.89, 0),
             child: Text(
               text,
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.black),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
             ),
           ),
         ),
         MaterialButton(
-            color: Colors.black38,
+            color: Theme.of(context).colorScheme.onPrimary,
             shape: const CircleBorder(),
             onPressed: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (builder) => routing));
             },
-            child: const Icon(Icons.view_list_rounded, color: Colors.white)),
+            child: Icon(
+              Icons.view_list_rounded,
+              color: Theme.of(context).colorScheme.secondary,
+            )),
       ],
     );
   }
 
   Widget buildStand(StandsList stand) => ListTile(
-        title: Text(stand.title),
-        subtitle: Text(stand.subtitle),
+        tileColor: Theme.of(context).colorScheme.onPrimary,
+        title: Text(
+          stand.title,
+          style: Theme.of(context).textTheme.subtitle2,
+        ),
+        subtitle: Text(
+          stand.subtitle,
+          style: Theme.of(context).textTheme.labelMedium,
+        ),
       );
 
   Widget buildEvents(EventsList event) => ListTile(
-        title: Text(event.titel),
-        subtitle: Text(event.subtitle),
+        tileColor: Theme.of(context).colorScheme.onPrimary,
+        title: Text(
+          event.titel,
+          style: Theme.of(context).textTheme.subtitle2,
+        ),
+        subtitle: Text(
+          event.subtitle,
+          style: Theme.of(context).textTheme.labelMedium,
+        ),
       );
 
   Widget buildSearch() => SearchWidget(
