@@ -41,7 +41,7 @@ class _SlidePageState extends State<SlidePage> {
             width: 70,
             height: 8,
             decoration: BoxDecoration(
-              color: Colors.grey[300],
+              color: Theme.of(context).colorScheme.onPrimary,
               borderRadius: BorderRadius.circular(12),
             ),
           ),
