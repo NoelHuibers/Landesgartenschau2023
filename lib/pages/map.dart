@@ -27,18 +27,23 @@ import 'package:location/location.dart';
 //     )
 //   }
 // }
+class BigMap extends StatefulWidget {
+  const BigMap({Key? key}) : super(key: key);
 
-class bigMap extends StatelessWidget {
-  bigMap({Key? key}) : super(key: key);
+  @override
+  State<BigMap> createState() => _BigMapState();
+}
+
+class _BigMapState extends State<BigMap> {
   double currentZoom = 13.0;
   MapController mapController = MapController();
   late LatLng currentCenter;
+  LatLng currentCenterHX = LatLng(51.773797392536636, 9.381120459653904);
   late bool _isServiceEnabled;
   late PermissionStatus _permissionGranted;
-  LocationData? _userLocation;
   bool isGetLocation = false;
   Location location = Location();
-  var mapPosition;
+  late LatLng mapPosition;
 
   //Methode zum Zoom Out
   _zoomOut() {
@@ -53,7 +58,7 @@ class bigMap extends StatelessWidget {
   }
 
   //Methode an die Aktuelle Position zu führen
-  void cuncretPosition() {
+  void concurrentPosition() {
     currentZoom = currentZoom + 3;
     mapController.move(currentCenter, currentZoom);
   }
@@ -84,22 +89,24 @@ class bigMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getRealPosition;
+    getRealPosition();
     return StreamBuilder(
       stream: location.onLocationChanged,
       builder: (context, snapshot) {
-        if (snapshot.connectionState != ConnectionState.waiting) {
+        if (snapshot.data != null &&
+            snapshot.connectionState != ConnectionState.waiting) {
           var data = snapshot.data as LocationData;
           LatLng posit = LatLng(data.latitude!, data.longitude!);
           currentCenter = posit;
-          return map_build();
+          return mapBuild(currentCenter);
+        } else {
+          return mapBuild(currentCenterHX);
         }
-        return map_build();
       },
     );
   }
 
-  Widget map_build() {
+  Widget mapBuild(LatLng centerposition) {
     return Scaffold(
         body: FlutterMap(
           mapController: mapController,
@@ -108,7 +115,7 @@ class bigMap extends StatelessWidget {
               setPosition(mapController.center);
             },
             minZoom: 10.0,
-            center: currentCenter,
+            center: centerposition,
           ),
           layers: [
             TileLayerOptions(
@@ -122,9 +129,13 @@ class bigMap extends StatelessWidget {
                   height: 60,
                   width: 60,
                   builder: (_) {
-                    return const animationMarker();
+                    if (centerposition == currentCenterHX) {
+                      return withoutMarker();
+                    } else {
+                      return const AnimationMarker();
+                    }
                   },
-                  point: currentCenter),
+                  point: centerposition),
             ]),
             PolylineLayerOptions(polylines: [
               Polyline(points: position, strokeWidth: 5.0, color: Colors.blue)
@@ -136,22 +147,23 @@ class bigMap extends StatelessWidget {
         ),
         floatingActionButton:
             Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-          build_button("btn1", _zoomIn, 'Zoom IN', Icons.zoom_in_sharp),
+          buildButton("btn1", _zoomIn, 'Zoom IN', Icons.zoom_in_sharp),
           const SizedBox(height: 10),
-          build_button("btn2", _zoomOut, 'Zoom OUT', Icons.zoom_out_outlined),
+          buildButton("btn2", _zoomOut, 'Zoom OUT', Icons.zoom_out_outlined),
           const SizedBox(height: 10),
-          build_button(
-              "btn3", cuncretPosition, 'Position', Icons.my_location_rounded),
+          buildButton("btn3", concurrentPosition, 'Position',
+              Icons.my_location_rounded),
           const SizedBox(height: 100),
         ]));
   }
 
-  Widget build_button(
+  Widget buildButton(
       String tag, Function() function, String tip, IconData iconData) {
     return FloatingActionButton(
       heroTag: tag, //Exception Vermeiden
       onPressed: function,
       tooltip: tip,
+      foregroundColor: Theme.of(context).colorScheme.onPrimary,
       child: Icon(iconData),
     );
   }

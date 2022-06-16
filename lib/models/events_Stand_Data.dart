@@ -1,4 +1,4 @@
-import 'package:landesgartenschau2023/models/events_Stand_model.dart';
+import '/models/events_stand_model.dart';
 
 final allevents = <EventsList>[
   const EventsList(

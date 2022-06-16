@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import '/config/insets.dart';
 
 class DefaultCard extends StatelessWidget {
-  const DefaultCard({
+  var color;
+
+  DefaultCard({
     Key? key,
     required this.child,
+    color,
   }) : super(key: key);
   final Widget child;
 

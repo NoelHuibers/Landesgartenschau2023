@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:landesgartenschau2023/pages/user/validator.dart';
 
-PreferredSizeWidget build_appBar() {
+PreferredSizeWidget buildAppBar() {
   return AppBar(
     actions: <Widget>[
       Image.asset("assets/images/logo6.png", width: 110, height: 40)
@@ -12,14 +12,19 @@ PreferredSizeWidget build_appBar() {
 Widget buildButton(String text, Function funktion) {
   return SizedBox(
       width: 250,
-      child: RaisedButton(
-        elevation: 5,
+      child: ElevatedButton(
+        style: ButtonStyle(
+            elevation: MaterialStateProperty.all<double>(5.0),
+            padding:
+                MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.all(20)),
+            backgroundColor:
+                MaterialStateProperty.all<Color>(const Color(0xff22C95C)),
+            shape: MaterialStateProperty.all<OutlinedBorder>(
+                RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)))),
         onPressed: () {
           funktion();
         },
-        padding: const EdgeInsets.all(20),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        color: const Color(0xff22C95C),
         child: Text(
           text,
           style: const TextStyle(
@@ -30,7 +35,7 @@ Widget buildButton(String text, Function funktion) {
       ));
 }
 
-Widget buildEmail(TextEditingController eMail_controller) {
+Widget buildEmail(TextEditingController eMailController) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -46,7 +51,7 @@ Widget buildEmail(TextEditingController eMail_controller) {
             ]),
         height: 60,
         child: TextFormField(
-          controller: eMail_controller,
+          controller: eMailController,
           validator: (value) {
             return Validator.validateEmail(value ?? "");
           },

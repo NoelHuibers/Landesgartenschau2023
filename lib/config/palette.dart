@@ -19,7 +19,7 @@ mixin Palette {
     ),
 
     iconTheme: const IconThemeData(
-      color: Colors.white,
+      color: Color(0xFFF6FDFF),
     ),
     // Link Text Color: 1E77B7
 
@@ -29,19 +29,23 @@ mixin Palette {
         //fontSize: 20.0,
       ), // Überschrift (appbar)
       subtitle1: TextStyle(
-        color: Colors.white70,
+        color: Color(0xE6333333),
         //fontSize: 18.0,
       ), // Switch Labeltext
+      subtitle2: TextStyle(
+        color: Color(0xE6333333),
+        //fontSize: 18.0,
+      ), // Sliding Panel
       labelMedium: TextStyle(
-        color: Colors.white,
+        color: Color(0xE6333333),
         //fontSize: 16.0,
-      ), // unbenutzt
+      ), // Sliding Panel
       bodyText1: TextStyle(
-        color: Colors.white,
+        color: Color(0xFFF6FDFF),
         //fontSize: 14.0,
       ), // Haupttext2
       bodyText2: TextStyle(
-        color: Colors.white,
+        color: Color(0xFFF6FDFF),
         //fontSize: 14.0,
       ), // Haupttext1
     ),
@@ -58,36 +62,40 @@ mixin Palette {
     ),
 
     colorScheme: const ColorScheme.light(
-      primary: Color(0xE6333333), // round container & default card & Icons
-      onPrimary: Color(0xE6333333), //
-      secondary: Color(0xFFF6FDFF), // Buttons
-      onSecondary: Color(0xFFF6FDFF), //
+      primary: Color(0xE6333333), // dark=grau - light=grau
+      onPrimary: Color(0xE6333333), // dark=weiß - light=grau
+      secondary: Color(0xFFF6FDFF), // dark=grau - light=weiß
+      onSecondary: Color(0xFFF6FDFF), // dark=weiß - light=weiß
       tertiary: Color.fromARGB(255, 25, 105, 243), // locationmarker
     ),
 
     iconTheme: const IconThemeData(
-      color: Colors.white,
+      color: Color(0xFFF6FDFF),
     ),
 
     textTheme: const TextTheme(
       headline5: TextStyle(
-        color: Color.fromRGBO(18, 19, 19, 1),
+        color: Colors.black,
         //fontSize: 20.0,
       ), // Überschrift (appbar)
       subtitle1: TextStyle(
         color: Colors.black,
         //fontSize: 18.0,
       ), // Switch Labeltext
+      subtitle2: TextStyle(
+        color: Color(0xFFF6FDFF),
+        //fontSize: 18.0,
+      ), // Sliding Panel
       labelMedium: TextStyle(
-        color: Colors.white,
+        color: Color(0xFFF6FDFF),
         //fontSize: 16.0,
-      ), // unbenutzt
+      ), // Sliding Panel
       bodyText1: TextStyle(
-        color: Colors.white,
+        color: Color(0xFFF6FDFF),
         //fontSize: 14.0,
       ), // Haupttext2
       bodyText2: TextStyle(
-        color: Colors.black,
+        color: Color(0xE6333333),
         //fontSize: 14.0,
       ), // Haupttext
     ),

@@ -3,26 +3,31 @@ import 'package:landesgartenschau2023/pages/map/widgets/build_list.dart';
 import '../../home/button_bar.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-class slide_page extends StatelessWidget {
+class SlidePage extends StatefulWidget {
   final ScrollController controller;
   final PanelController panelController;
 
-  const slide_page({
+  const SlidePage({
     Key? key,
     required this.controller,
     required this.panelController,
   }) : super(key: key);
   @override
+  State<SlidePage> createState() => _SlidePageState();
+}
+
+class _SlidePageState extends State<SlidePage> {
+  @override
   Widget build(BuildContext context) {
     return ListView(
       padding: EdgeInsets.zero,
-      controller: controller,
+      controller: widget.controller,
       children: <Widget>[
         SizedBox(height: 20, child: swipe_bottum()),
-        SizedBox(height: 80, child: bottom_bar()),
-        SizedBox(
+        SizedBox(height: 80, child: buttonBar()),
+        const SizedBox(
           height: 500,
-          child: buildList(),
+          child: BuildList(),
         ),
       ],
     );
@@ -36,7 +41,7 @@ class slide_page extends StatelessWidget {
             width: 70,
             height: 8,
             decoration: BoxDecoration(
-              color: Colors.grey[300],
+              color: Theme.of(context).colorScheme.onPrimary,
               borderRadius: BorderRadius.circular(12),
             ),
           ),
@@ -44,7 +49,7 @@ class slide_page extends StatelessWidget {
       );
 
   // ignore: non_constant_identifier_names
-  void slide_page_controll() => panelController.isPanelOpen
-      ? panelController.close()
-      : panelController.open();
+  void slide_page_controll() => widget.panelController.isPanelOpen
+      ? widget.panelController.close()
+      : widget.panelController.open();
 }

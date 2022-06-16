@@ -16,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController mailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
-  final API_call _API_call = API_call();
+  final ApiCall _apiCall = ApiCall();
   bool _showPassword = true;
 
   Future<void> login() async {
@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Colors.green.shade300,
       ));
 
-      dynamic res = await _API_call.login(
+      dynamic res = await _apiCall.login(
         mailController.text,
         passController.text,
       );
@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (res['token'] != null) {
         // ignore: use_build_context_synchronously
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const user_setting()));
+            MaterialPageRoute(builder: (context) => const UserSetting()));
       }
       if (res['token'] == null) {
         // ignore: use_build_context_synchronously
@@ -136,17 +136,21 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget buildLoginButton() {
-    return Container(
+    return SizedBox(
         width: 250,
-        child: RaisedButton(
-          elevation: 5,
+        child: ElevatedButton(
+          style: ButtonStyle(
+              elevation: MaterialStateProperty.all<double>(5.0),
+              padding: MaterialStateProperty.all<EdgeInsets>(
+                  const EdgeInsets.all(20)),
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(const Color(0xff22C95C)),
+              shape: MaterialStateProperty.all<OutlinedBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)))),
           onPressed: () {
             login();
           },
-          padding: const EdgeInsets.all(20),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          color: const Color(0xff22C95C),
           child: const Text(
             'Anmelden',
             style: TextStyle(
@@ -158,20 +162,24 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget buildKeinKontoButton() {
-    return Container(
+    return SizedBox(
         width: 150,
-        child: RaisedButton(
-          elevation: 5,
+        child: ElevatedButton(
+          style: ButtonStyle(
+              elevation: MaterialStateProperty.all<double>(5.0),
+              padding: MaterialStateProperty.all<EdgeInsets>(
+                  const EdgeInsets.all(10)),
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(const Color(0xff22C95C)),
+              shape: MaterialStateProperty.all<OutlinedBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)))),
           onPressed: () {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const registerScreen()));
+                    builder: (context) => const RegisterScreen()));
           },
-          padding: const EdgeInsets.all(10),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          color: const Color(0xff22C95C),
           child: const Text(
             'Du hast noch kein Konto',
             style: TextStyle(

@@ -15,8 +15,8 @@ class Language extends StatefulWidget {
 class _Language extends State<Language> {
   @override
   Widget build(BuildContext context) {
-    final locale = Localizations.localeOf(context);
-    final flag = L10n.getFlag(locale.languageCode);
+    final provider = Provider.of<LocaleProvider>(context);
+    final locale = provider.locale;
 
     return ListTile(
         leading: Icon(
@@ -29,17 +29,24 @@ class _Language extends State<Language> {
         ),
         trailing: Container(
             margin: const EdgeInsets.only(right: 6.0),
-            child: IconButton(
-                color: Theme.of(context).appBarTheme.backgroundColor,
-                icon: flag,
-                onPressed: () {
-                  if (locale == const Locale('en')) {
-                    Provider.of<LocaleProvider>(context, listen: false)
-                        .setLocale(const Locale('de'));
-                  } else {
-                    Provider.of<LocaleProvider>(context, listen: false)
-                        .setLocale(const Locale('en'));
-                  }
-                })));
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton(
+                  value: locale,
+                  items: L10n.all.map(
+                    (locale) {
+                      final displayflag = L10n.getFlag(locale.languageCode);
+                      return DropdownMenuItem(
+                        value: locale,
+                        onTap: () {
+                          final provider = Provider.of<LocaleProvider>(context,
+                              listen: false);
+                          provider.setLocale(locale);
+                        },
+                        child: displayflag,
+                      );
+                    },
+                  ).toList(),
+                  onChanged: (_) {}),
+            )));
   }
 }

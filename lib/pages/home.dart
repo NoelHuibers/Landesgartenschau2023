@@ -5,17 +5,20 @@ import 'package:landesgartenschau2023/pages/user/login_page.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:landesgartenschau2023/pages/map/widgets/sliding_window.dart';
 
-class Home_page extends StatefulWidget {
+class Homepage extends StatefulWidget {
+  const Homepage({Key? key}) : super(key: key);
+
   @override
-  Home_pageState createState() => Home_pageState();
+  State<Homepage> createState() => _HomepageState();
 }
 
-class Home_pageState extends State<Home_page> {
+class _HomepageState extends State<Homepage> {
   final panelController = PanelController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.account_circle_sharp),
@@ -49,8 +52,8 @@ class Home_pageState extends State<Home_page> {
           borderRadius: const BorderRadius.vertical(top: Radius.circular(18)),
           parallaxEnabled: true,
           parallaxOffset: .5,
-          body: bigMap(),
-          panelBuilder: (controller) => slide_page(
+          body: const BigMap(),
+          panelBuilder: (controller) => SlidePage(
             controller: controller,
             panelController: panelController,
           ),

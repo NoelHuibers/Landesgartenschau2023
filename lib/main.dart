@@ -7,6 +7,7 @@ import 'models/l10n/l10n.dart';
 import 'services/provider/locale_provider.dart';
 import 'services/provider/darkmode_provider.dart';
 import 'config/palette.dart';
+import 'services/client.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<ColorProvider>(create: (_) => ColorProvider()),
         ],
         builder: (context, child) {
+          fetchData();
           final languageProvider = Provider.of<LocaleProvider>(context);
           final colorProvider = Provider.of<ColorProvider>(context);
           return MaterialApp(
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate
             ],
-            home: Home_page(),
+            home: const Homepage(),
           );
         },
       );

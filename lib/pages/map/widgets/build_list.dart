@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import '../../home/widgets/default_card.dart';
-import 'package:landesgartenschau2023/models/events_Stand_model.dart';
-import 'package:landesgartenschau2023/models/events_Stand_Data.dart';
+import 'package:landesgartenschau2023/models/events_stand_model.dart';
+import 'package:landesgartenschau2023/models/events_stand_data.dart';
 import '../../home/widgets/searchbar.dart';
 import '../../events.dart';
 import '../../stands.dart';
 
-class buildList extends StatefulWidget {
+class BuildList extends StatefulWidget {
+  const BuildList({Key? key}) : super(key: key);
+
   @override
-  buildListState createState() => buildListState();
+  State<BuildList> createState() => _BuildListState();
 }
 
-class buildListState extends State<buildList> {
+class _BuildListState extends State<BuildList> {
   String query = '';
   late List<StandsList> stands;
   late List<EventsList> events;
@@ -33,15 +35,13 @@ class buildListState extends State<buildList> {
           child: buildSearch(),
         ),
         SizedBox(
-            child: buildTextButton(
-                "Stands",
-                MaterialPageRoute(
-                    builder: (context) =>
-                        const Stands())) //Hier kommt die KLasse die abgerufen werden soll beim klicken ),
-            ),
+          child: buildTextButton("Stands", const Stands()),
+          //Hier kommt die KLasse die abgerufen werden soll beim klicken ),
+        ),
         SizedBox(
             height: 200,
             child: DefaultCard(
+              color: Theme.of(context).colorScheme.onPrimary,
               child: ListView.builder(
                 itemCount: stands.length,
                 itemBuilder: (context, index) {
@@ -51,15 +51,13 @@ class buildListState extends State<buildList> {
               ),
             )),
         SizedBox(
-          child: buildTextButton(
-              "Events",
-              MaterialPageRoute(
-                  builder: (context) =>
-                      const Events())), //Hier kommt die KLasse die abgerufen werden soll beim klicken  ),
+          child: buildTextButton("Events",
+              const Events()), //Hier kommt die KLasse die abgerufen werden soll beim klicken  ),
         ),
         SizedBox(
             height: 200,
             child: DefaultCard(
+              color: Theme.of(context).colorScheme.onPrimary,
               child: ListView.builder(
                 itemCount: events.length,
                 itemBuilder: (context, index) {
@@ -72,7 +70,7 @@ class buildListState extends State<buildList> {
     );
   }
 
-  Widget buildTextButton(String text, MaterialPageRoute routing) {
+  Widget buildTextButton(String text, Widget routing) {
     return Row(
       children: [
         Expanded(
@@ -81,35 +79,51 @@ class buildListState extends State<buildList> {
             alignment: const Alignment(-0.89, 0),
             child: Text(
               text,
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.black),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
             ),
           ),
         ),
         MaterialButton(
-            color: Colors.black38,
+            color: Theme.of(context).colorScheme.onPrimary,
             shape: const CircleBorder(),
             onPressed: () {
               Navigator.push(
-                context,
-                routing,
-              );
+                  context, MaterialPageRoute(builder: (builder) => routing));
             },
-            child: const Icon(Icons.view_list_rounded, color: Colors.white)),
+            child: Icon(
+              Icons.view_list_rounded,
+              color: Theme.of(context).colorScheme.secondary,
+            )),
       ],
     );
   }
 
   Widget buildStand(StandsList stand) => ListTile(
-        title: Text(stand.title),
-        subtitle: Text(stand.subtitle),
+        tileColor: Theme.of(context).colorScheme.onPrimary,
+        title: Text(
+          stand.title,
+          style: Theme.of(context).textTheme.subtitle2,
+        ),
+        subtitle: Text(
+          stand.subtitle,
+          style: Theme.of(context).textTheme.labelMedium,
+        ),
       );
 
   Widget buildEvents(EventsList event) => ListTile(
-        title: Text(event.titel),
-        subtitle: Text(event.subtitle),
+        tileColor: Theme.of(context).colorScheme.onPrimary,
+        title: Text(
+          event.titel,
+          style: Theme.of(context).textTheme.subtitle2,
+        ),
+        subtitle: Text(
+          event.subtitle,
+          style: Theme.of(context).textTheme.labelMedium,
+        ),
       );
 
   Widget buildSearch() => SearchWidget(

@@ -9,7 +9,7 @@ Hinweis: der Token wird auch bei flaschen pass von server gesendet
 (!!!Email muss richtig sein!!!)
 */
 
-class API_call {
+class ApiCall {
   final Dio _dio = Dio();
 
   Future<dynamic> login(String email, String password) async {
