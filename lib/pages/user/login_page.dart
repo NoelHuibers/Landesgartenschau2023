@@ -73,16 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     height: double.infinity,
                     width: double.infinity,
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                          Color(0xff202020),
-                          Color(0xff202020),
-                          Color(0xff202020),
-                          Color(0xff202020)
-                        ])),
+                    decoration: const BoxDecoration(color: Color(0x00000000)),
                     child: SingleChildScrollView(
                       // physics: AlwaysScrollableScrollPhysics(), //buna bakalim bir kaydirmak icin
                       padding: const EdgeInsets.symmetric(horizontal: 0),
