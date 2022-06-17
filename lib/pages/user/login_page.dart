@@ -100,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 15),
-                          buildEmail(mailController),
+                          buildEmail(context, mailController),
                           const SizedBox(height: 10),
                           buildPassword(),
                           const SizedBox(height: 20),

@@ -36,7 +36,7 @@ Widget buildButton(String text, Function funktion, double width, double padding,
           )));
 }
 
-Widget buildEmail(TextEditingController eMailController) {
+Widget buildEmail(BuildContext context, TextEditingController eMailController) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
