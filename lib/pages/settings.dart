@@ -21,9 +21,9 @@ class Settings extends StatelessWidget {
         body: Padding(
             padding: const EdgeInsets.only(top: Insets.xxs),
             child: Column(
-              children: <Widget>[
-                DefaultCard(child: const Darkmode()),
-                DefaultCard(child: const Language()),
+              children: const <Widget>[
+                DefaultCard(child: Darkmode()),
+                DefaultCard(child: Language()),
               ],
             )),
         bottomNavigationBar: const Padding(

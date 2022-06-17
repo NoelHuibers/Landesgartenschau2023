@@ -17,9 +17,9 @@ class Events extends StatelessWidget {
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
-        body: Column(children: [
-          DefaultCard(child: const StarredView(model: EventsModel.eventsList)),
-          DefaultCard(child: const Eventslist()),
+        body: Column(children: const [
+          DefaultCard(child: StarredView(model: EventsModel.eventsList)),
+          DefaultCard(child: Eventslist()),
         ]));
   }
 }
