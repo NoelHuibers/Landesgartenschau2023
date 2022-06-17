@@ -83,9 +83,9 @@ class _UserSettingState extends State<UserSetting> {
                           buildPassword("neues Passwort wiederholen",
                               return_password, return_passController),
                           const SizedBox(height: 5),
-                          buildButton("Passwort ändern", test),
+                          buildButton("Passwort ändern", test, 250, 20, 15),
                           const SizedBox(height: 5),
-                          buildButton("Abmelden", test),
+                          buildButton("Abmelden", test, 250, 20, 15),
                           const SizedBox(height: 5),
                           const Text(
                             '© Landesgartenschau Höxter 2023 gGmbH \n                   Alle Rechte vorbehalten.',

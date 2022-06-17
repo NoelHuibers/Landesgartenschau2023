@@ -114,7 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           buildPassword("Passwort wiederholen", returnPassword,
                               returnPassController),
                           const SizedBox(height: 10),
-                          buildButton("Regestrieren", register),
+                          buildButton("Regestrieren", register, 250, 20, 15),
                           const SizedBox(height: 10),
                           const Text(
                             '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',

@@ -9,30 +9,31 @@ PreferredSizeWidget buildAppBar() {
   );
 }
 
-Widget buildButton(String text, Function funktion) {
+Widget buildButton(String text, Function funktion, double width, double padding,
+    double borderRadius) {
   return SizedBox(
-      width: 250,
+      width: width,
       child: ElevatedButton(
-        style: ButtonStyle(
-            elevation: MaterialStateProperty.all<double>(5.0),
-            padding:
-                MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.all(20)),
-            backgroundColor:
-                MaterialStateProperty.all<Color>(const Color(0xff22C95C)),
-            shape: MaterialStateProperty.all<OutlinedBorder>(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)))),
-        onPressed: () {
-          funktion();
-        },
-        child: Text(
-          text,
-          style: const TextStyle(
-              color: Color(0xff202020),
-              fontSize: 18,
-              fontWeight: FontWeight.bold),
-        ),
-      ));
+          style: ButtonStyle(
+              elevation: MaterialStateProperty.all<double>(0.5),
+              padding: MaterialStateProperty.all<EdgeInsets>(
+                  EdgeInsets.all(padding)),
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(const Color(0xff22C95C)),
+              shape: MaterialStateProperty.all<OutlinedBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(borderRadius)))),
+          onPressed: () {
+            funktion();
+          },
+          child: FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Text(
+              text,
+              style: const TextStyle(
+                  color: Color(0xff202020), fontWeight: FontWeight.bold),
+            ),
+          )));
 }
 
 Widget buildEmail(TextEditingController eMailController) {

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:landesgartenschau2023/pages/user/api_client.dart';
 import 'package:landesgartenschau2023/pages/user/register_page.dart';
 import 'package:landesgartenschau2023/pages/user/user_setting.dart';
-import 'package:landesgartenschau2023/pages/user/validator.dart';
+import 'package:landesgartenschau2023/pages/user/user_tools.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -100,13 +100,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                 fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 15),
-                          buildEmail(),
+                          buildEmail(mailController),
                           const SizedBox(height: 10),
                           buildPassword(),
                           const SizedBox(height: 20),
-                          buildLoginButton(),
+                          buildButton("Anmelden", login, 250, 20, 15),
                           const SizedBox(height: 10),
-                          buildKeinKontoButton(),
+                          buildButton("Du hast noch kein Konto",
+                              registerNavigate, 150, 10, 10),
                           const SizedBox(height: 10),
                           const Text(
                             '© Landesgartenschau Höxter 2023 gGmbH \n                   Alle Rechte vorbehalten.',
@@ -126,96 +127,9 @@ class _LoginScreenState extends State<LoginScreen> {
         ));
   }
 
-  Widget buildLoginButton() {
-    return SizedBox(
-        width: 250,
-        child: ElevatedButton(
-          style: ButtonStyle(
-              elevation: MaterialStateProperty.all<double>(5.0),
-              padding: MaterialStateProperty.all<EdgeInsets>(
-                  const EdgeInsets.all(20)),
-              backgroundColor:
-                  MaterialStateProperty.all<Color>(const Color(0xff22C95C)),
-              shape: MaterialStateProperty.all<OutlinedBorder>(
-                  RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)))),
-          onPressed: () {
-            login();
-          },
-          child: const Text(
-            'Anmelden',
-            style: TextStyle(
-                color: Color(0xff202020),
-                fontSize: 18,
-                fontWeight: FontWeight.bold),
-          ),
-        ));
-  }
-
-  Widget buildKeinKontoButton() {
-    return SizedBox(
-        width: 150,
-        child: ElevatedButton(
-          style: ButtonStyle(
-              elevation: MaterialStateProperty.all<double>(5.0),
-              padding: MaterialStateProperty.all<EdgeInsets>(
-                  const EdgeInsets.all(10)),
-              backgroundColor:
-                  MaterialStateProperty.all<Color>(const Color(0xff22C95C)),
-              shape: MaterialStateProperty.all<OutlinedBorder>(
-                  RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)))),
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const RegisterScreen()));
-          },
-          child: const Text(
-            'Du hast noch kein Konto',
-            style: TextStyle(
-                color: Color(0xff202020),
-                fontSize: 8,
-                fontWeight: FontWeight.bold),
-          ),
-        ));
-  }
-
-  Widget buildEmail() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const SizedBox(height: 10),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-              color: const Color(0xff202020),
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: const [
-                BoxShadow(
-                    color: Color(0xff202020),
-                    blurRadius: 6,
-                    offset: Offset(0, 2))
-              ]),
-          height: 60,
-          child: TextFormField(
-            controller: mailController,
-            validator: (value) {
-              return Validator.validateEmail(value ?? "");
-            },
-            //keyboardType: TextInputType.emailAddress,
-            style: const TextStyle(color: Color(0xffFFFFFF)),
-            decoration: const InputDecoration(
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.only(top: 14),
-                prefixIcon:
-                    Icon(Icons.account_box_outlined, color: Color(0xffFFFFFF)),
-                hintText: 'Benutzername',
-                hintStyle: TextStyle(color: Color(0xffFFFFFF))),
-          ),
-        )
-      ],
-    );
+  void registerNavigate() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const RegisterScreen()));
   }
 
   Widget buildPassword() {
