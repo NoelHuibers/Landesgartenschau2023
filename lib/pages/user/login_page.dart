@@ -74,25 +74,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Image.asset(
-                            "assets/images/lgs.png",
-                            width: double.infinity,
-                            height: 100,
-                          ),
+                          buildImage(
+                              "assets/images/lgs.png", double.infinity, 100),
                           const SizedBox(height: 10),
-                          Image.asset(
-                            "assets/images/konto.png",
-                            width: 100,
-                            height: 100,
-                          ),
+                          buildImage("assets/images/konto.png", 100, 100),
                           const SizedBox(height: 10),
-                          Text(
-                            'Wilkommen zurück!',
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.onSurface,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
+                          buildTest(context, 'Wilkommen zurück!', 20),
                           const SizedBox(height: 15),
                           buildEmail(context, mailController),
                           const SizedBox(height: 10),
@@ -103,13 +90,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           buildButton("Du hast noch kein Konto",
                               registerNavigate, 150, 10, 10, context),
                           const SizedBox(height: 10),
-                          Text(
-                            '© Landesgartenschau Höxter 2023 gGmbH \n                   Alle Rechte vorbehalten.',
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.onSurface,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold),
-                          ),
+                          buildTest(
+                              context,
+                              '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
+                              10),
                         ],
                       ),
                     ),

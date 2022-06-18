@@ -86,3 +86,21 @@ Widget buildEmail(BuildContext context, TextEditingController eMailController) {
     ],
   );
 }
+
+Widget buildImage(String imageLink, double width, double height) {
+  return Image.asset(
+    imageLink,
+    width: width,
+    height: height,
+  );
+}
+
+Widget buildTest(BuildContext context, String text, double fontSize) {
+  return Text(
+    text,
+    style: TextStyle(
+        color: Theme.of(context).colorScheme.onSurface,
+        fontSize: fontSize,
+        fontWeight: FontWeight.bold),
+  );
+}
