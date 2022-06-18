@@ -15,7 +15,8 @@ mixin Palette {
       onPrimary: Color(0xFFF6FDFF), // dark=weiß - light=grau
       secondary: Color(0xE6333333), // dark=grau - light=weiß
       onSecondary: Color(0xFFF6FDFF), // dark=weiß - light=weiß
-      tertiary: Color.fromARGB(255, 25, 105, 243), // locationmarker
+      tertiary: Color.fromARGB(255, 25, 105, 243),
+      surfaceVariant: Color(0xE6333333), // locationmarker
     ),
 
     iconTheme: const IconThemeData(
@@ -66,7 +67,8 @@ mixin Palette {
       onPrimary: Color(0xE6333333), // dark=weiß - light=grau
       secondary: Color(0xFFF6FDFF), // dark=grau - light=weiß
       onSecondary: Color(0xFFF6FDFF), // dark=weiß - light=weiß
-      tertiary: Color.fromARGB(255, 25, 105, 243), // locationmarker
+      tertiary: Color.fromARGB(255, 25, 105, 243),
+      surfaceVariant: Color(0xFFF6FDFF), // locationmarker
     ),
 
     iconTheme: const IconThemeData(

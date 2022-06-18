@@ -46,6 +46,7 @@ class _HomepageState extends State<Homepage> {
           actionsIconTheme: const IconThemeData(size: 32),
         ),
         body: SlidingUpPanel(
+          color: Theme.of(context).colorScheme.surfaceVariant,
           controller: panelController,
           minHeight: 25,
           maxHeight: 600,

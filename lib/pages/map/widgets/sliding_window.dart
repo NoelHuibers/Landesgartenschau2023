@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:landesgartenschau2023/pages/map/widgets/build_list.dart';
-import '../../home/button_bar.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class SlidePage extends StatefulWidget {
@@ -23,8 +22,17 @@ class _SlidePageState extends State<SlidePage> {
       padding: EdgeInsets.zero,
       controller: widget.controller,
       children: <Widget>[
-        SizedBox(height: 20, child: swipe_bottum()),
-        SizedBox(height: 80, child: buttonBar()),
+        Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surfaceVariant,
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(15.0),
+              topLeft: Radius.circular(15.0),
+            ),
+          ),
+          child: SizedBox(height: 20, child: swipe_bottum()),
+        ),
+        SizedBox(height: 80, child: bildButtonBar(context)),
         const SizedBox(
           height: 500,
           child: BuildList(),
@@ -52,4 +60,58 @@ class _SlidePageState extends State<SlidePage> {
   void slide_page_controll() => widget.panelController.isPanelOpen
       ? widget.panelController.close()
       : widget.panelController.open();
+
+  Widget bildButtonBar(BuildContext context) {
+    return Container(
+        color: Theme.of(context).colorScheme.surfaceVariant,
+        child: ButtonBar(
+          alignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RawMaterialButton(
+              onPressed: () {},
+              elevation: 2.0,
+              fillColor: Colors.black54,
+              padding: const EdgeInsets.all(15),
+              shape: const CircleBorder(),
+              child: const Icon(
+                Icons.home,
+                size: 35,
+              ),
+            ),
+            RawMaterialButton(
+              onPressed: () {},
+              elevation: 2.0,
+              fillColor: Colors.black54,
+              padding: const EdgeInsets.all(15),
+              shape: const CircleBorder(),
+              child: const Icon(
+                Icons.local_parking,
+                size: 35,
+              ),
+            ),
+            RawMaterialButton(
+              onPressed: () {},
+              elevation: 2.0,
+              fillColor: Colors.black54,
+              padding: const EdgeInsets.all(15),
+              shape: const CircleBorder(),
+              child: const Icon(
+                Icons.forest_outlined,
+                size: 35,
+              ),
+            ),
+            RawMaterialButton(
+              onPressed: () {},
+              elevation: 2.0,
+              fillColor: Colors.black54,
+              padding: const EdgeInsets.all(15),
+              shape: const CircleBorder(),
+              child: const Icon(
+                Icons.wc,
+                size: 35,
+              ),
+            )
+          ],
+        ));
+  }
 }

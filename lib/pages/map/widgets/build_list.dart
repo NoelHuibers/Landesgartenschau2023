@@ -27,47 +27,49 @@ class _BuildListState extends State<BuildList> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.zero,
-      children: <Widget>[
-        SizedBox(
-          height: 70,
-          child: buildSearch(),
-        ),
-        SizedBox(
-          child: buildTextButton("Stands", const Stands()),
-          //Hier kommt die KLasse die abgerufen werden soll beim klicken ),
-        ),
-        SizedBox(
-            height: 200,
-            child: DefaultCard(
-              color: Theme.of(context).colorScheme.onPrimary,
-              child: ListView.builder(
-                itemCount: stands.length,
-                itemBuilder: (context, index) {
-                  final stand = stands[index];
-                  return buildStand(stand);
-                },
-              ),
-            )),
-        SizedBox(
-          child: buildTextButton("Events",
-              const Events()), //Hier kommt die KLasse die abgerufen werden soll beim klicken  ),
-        ),
-        SizedBox(
-            height: 200,
-            child: DefaultCard(
-              color: Theme.of(context).colorScheme.onPrimary,
-              child: ListView.builder(
-                itemCount: events.length,
-                itemBuilder: (context, index) {
-                  final event = events[index];
-                  return buildEvents(event);
-                },
-              ),
-            )),
-      ],
-    );
+    return Container(
+        color: Theme.of(context).colorScheme.surfaceVariant,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            SizedBox(
+              height: 70,
+              child: buildSearch(),
+            ),
+            SizedBox(
+              child: buildTextButton("Stands", const Stands()),
+              //Hier kommt die KLasse die abgerufen werden soll beim klicken ),
+            ),
+            SizedBox(
+                height: 200,
+                child: DefaultCard(
+                  color: Theme.of(context).colorScheme.surfaceVariant,
+                  child: ListView.builder(
+                    itemCount: stands.length,
+                    itemBuilder: (context, index) {
+                      final stand = stands[index];
+                      return buildStand(stand);
+                    },
+                  ),
+                )),
+            SizedBox(
+              child: buildTextButton("Events",
+                  const Events()), //Hier kommt die KLasse die abgerufen werden soll beim klicken  ),
+            ),
+            SizedBox(
+                height: 200,
+                child: DefaultCard(
+                  color: Theme.of(context).colorScheme.surfaceVariant,
+                  child: ListView.builder(
+                    itemCount: events.length,
+                    itemBuilder: (context, index) {
+                      final event = events[index];
+                      return buildEvents(event);
+                    },
+                  ),
+                )),
+          ],
+        ));
   }
 
   Widget buildTextButton(String text, Widget routing) {
