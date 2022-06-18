@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '/services/provider/darkmode_provider.dart';
 
 class Darkmode extends StatelessWidget {

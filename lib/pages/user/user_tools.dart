@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:landesgartenschau2023/pages/user/validator.dart';
 
-PreferredSizeWidget buildAppBar() {
+import '../home.dart';
+
+PreferredSizeWidget buildAppBar(BuildContext context) {
   return AppBar(
-    actions: <Widget>[
-      Image.asset("assets/images/logo6.png", width: 110, height: 40)
-    ],
+    leading: BackButton(color: Theme.of(context).colorScheme.onPrimary),
+    title: InkWell(
+      onTap: () {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const Homepage()),
+          (Route<dynamic> route) => false,
+        );
+      },
+      child: Image.asset("assets/images/logo6.png", width: 270, height: 40),
+    ),
   );
 }
 

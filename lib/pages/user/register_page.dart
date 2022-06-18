@@ -56,12 +56,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: BackButton(color: Theme.of(context).colorScheme.onPrimary),
-          actions: <Widget>[
-            Image.asset("assets/images/logo6.png", width: 110, height: 40)
-          ],
-        ),
+        appBar: buildAppBar(context),
         body: Form(
           key: _formKey,
           child: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -74,7 +69,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     width: double.infinity,
                     decoration: const BoxDecoration(color: Color(0x00000000)),
                     child: SingleChildScrollView(
-                      // physics: AlwaysScrollableScrollPhysics(), //buna bakalim bir kaydirmak icin
                       padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
