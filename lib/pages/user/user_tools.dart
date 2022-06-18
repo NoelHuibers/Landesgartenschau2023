@@ -10,7 +10,7 @@ PreferredSizeWidget buildAppBar() {
 }
 
 Widget buildButton(String text, Function funktion, double width, double padding,
-    double borderRadius) {
+    double borderRadius, BuildContext context) {
   return SizedBox(
       width: width,
       child: ElevatedButton(
@@ -30,8 +30,9 @@ Widget buildButton(String text, Function funktion, double width, double padding,
             fit: BoxFit.fitWidth,
             child: Text(
               text,
-              style: const TextStyle(
-                  color: Color(0xff202020), fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
+                  fontWeight: FontWeight.bold),
             ),
           )));
 }
@@ -44,7 +45,7 @@ Widget buildEmail(BuildContext context, TextEditingController eMailController) {
       Container(
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
-            color: const Color(0xff202020),
+            color: Theme.of(context).colorScheme.background,
             borderRadius: BorderRadius.circular(10),
             boxShadow: const [
               BoxShadow(
@@ -56,14 +57,20 @@ Widget buildEmail(BuildContext context, TextEditingController eMailController) {
           validator: (value) {
             return Validator.validateEmail(value ?? "");
           },
-          style: const TextStyle(color: Color(0xffFFFFFF)),
-          decoration: const InputDecoration(
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+          decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14),
-              prefixIcon:
-                  Icon(Icons.account_box_outlined, color: Color(0xffFFFFFF)),
+              contentPadding: const EdgeInsets.only(top: 14),
+              prefixIcon: Icon(
+                Icons.account_box_outlined,
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
               hintText: 'Benutzername',
-              hintStyle: TextStyle(color: Color(0xffFFFFFF))),
+              hintStyle: TextStyle(
+                color: Theme.of(context).colorScheme.onPrimary,
+              )),
         ),
       )
     ],

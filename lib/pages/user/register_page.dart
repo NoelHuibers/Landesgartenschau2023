@@ -91,10 +91,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             height: 100,
                           ),
                           const SizedBox(height: 10),
-                          const Text(
+                          Text(
                             'Account erstellen!',
                             style: TextStyle(
-                                color: Color(0xffFFFFFF),
+                                color: Theme.of(context).colorScheme.onSurface,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -106,12 +106,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           buildPassword("Passwort wiederholen", returnPassword,
                               returnPassController),
                           const SizedBox(height: 10),
-                          buildButton("Regestrieren", register, 250, 20, 15),
+                          buildButton(
+                              "Regestrieren", register, 250, 20, 15, context),
                           const SizedBox(height: 10),
-                          const Text(
+                          Text(
                             '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
                             style: TextStyle(
-                                color: Color(0xffFFFFFF),
+                                color: Theme.of(context).colorScheme.onSurface,
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -141,7 +142,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         Container(
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
-                color: const Color(0xff202020),
+                color: Theme.of(context).colorScheme.background,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   BoxShadow(
@@ -151,6 +152,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ]),
             height: 60,
             child: TextFormField(
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
               obscureText: _showPassword,
               controller: controller,
               validator: (value) {
@@ -164,16 +168,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                   child: Icon(
                     _showPassword ? Icons.visibility : Icons.visibility_off,
-                    color: const Color(0xffFFFFFF),
+                    color: Theme.of(context).colorScheme.onPrimary,
                   ),
                 ),
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.only(top: 14),
-                prefixIcon: const Icon(Icons.lock_open_outlined,
-                    size: 23, color: Color(0xffFFFFFF)),
+                prefixIcon: Icon(Icons.lock_open_outlined,
+                    size: 23, color: Theme.of(context).colorScheme.onPrimary),
                 hintText: text,
-                hintStyle: const TextStyle(
-                  color: Color(0xffFFFFFF),
+                hintStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary,
                 ),
               ),
             ))

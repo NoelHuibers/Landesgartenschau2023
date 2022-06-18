@@ -42,16 +42,7 @@ class _UserSettingState extends State<UserSetting> {
                   Container(
                     height: double.infinity,
                     width: double.infinity,
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                          Color(0xff202020),
-                          Color(0xff202020),
-                          Color(0xff202020),
-                          Color(0xff202020)
-                        ])),
+                    decoration: const BoxDecoration(color: Color(0x00000000)),
                     child: SingleChildScrollView(
                       // physics: AlwaysScrollableScrollPhysics(), //buna bakalim bir kaydirmak icin
                       padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -64,10 +55,10 @@ class _UserSettingState extends State<UserSetting> {
                             height: 100,
                           ),
                           const SizedBox(height: 10),
-                          const Text(
+                          Text(
                             'Persönliche Daten!',
                             style: TextStyle(
-                                color: Color(0xffFFFFFF),
+                                color: Theme.of(context).colorScheme.onPrimary,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -83,14 +74,15 @@ class _UserSettingState extends State<UserSetting> {
                           buildPassword("neues Passwort wiederholen",
                               return_password, return_passController),
                           const SizedBox(height: 5),
-                          buildButton("Passwort ändern", test, 250, 20, 15),
+                          buildButton(
+                              "Passwort ändern", test, 250, 20, 15, context),
                           const SizedBox(height: 5),
-                          buildButton("Abmelden", test, 250, 20, 15),
+                          buildButton("Abmelden", test, 250, 20, 15, context),
                           const SizedBox(height: 5),
-                          const Text(
-                            '© Landesgartenschau Höxter 2023 gGmbH \n                   Alle Rechte vorbehalten.',
+                          Text(
+                            '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
                             style: TextStyle(
-                                color: Color(0xffFFFFFF),
+                                color: Theme.of(context).colorScheme.onSurface,
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -113,7 +105,7 @@ class _UserSettingState extends State<UserSetting> {
           Container(
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
-                color: const Color(0xff202020),
+                color: Theme.of(context).colorScheme.background,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   BoxShadow(
@@ -124,25 +116,28 @@ class _UserSettingState extends State<UserSetting> {
             height: 60,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 SizedBox(
                   height: 30.0,
                   width: 40.0,
                   child: Align(
-                    alignment: Alignment(0.5, 0.6),
+                    alignment: const Alignment(0.5, 0.6),
                     child: Icon(
                       Icons.email,
                       size: 25.0,
-                      color: Color(0xffFFFFFF),
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
                 ),
-                SizedBox(width: 24.0),
+                const SizedBox(width: 24.0),
                 SizedBox(
                   height: 20.0,
                   child: Text(
                     "username: ",
-                    style: TextStyle(fontSize: 18.0, color: Color(0xffFFFFFF)),
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
                 ),
               ],
@@ -160,7 +155,7 @@ class _UserSettingState extends State<UserSetting> {
         Container(
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
-                color: const Color(0xff202020),
+                color: Theme.of(context).colorScheme.background,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   BoxShadow(
@@ -183,16 +178,19 @@ class _UserSettingState extends State<UserSetting> {
                   },
                   child: Icon(
                     _showPassword ? Icons.visibility : Icons.visibility_off,
-                    color: const Color(0xffFFFFFF),
+                    color: Theme.of(context).colorScheme.onPrimary,
                   ),
                 ),
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.only(top: 14),
-                prefixIcon: const Icon(Icons.lock_open_outlined,
-                    size: 23, color: Color(0xffFFFFFF)),
+                prefixIcon: Icon(
+                  Icons.lock_open_outlined,
+                  size: 23,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
                 hintText: text,
-                hintStyle: const TextStyle(
-                  color: Color(0xffFFFFFF),
+                hintStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary,
                 ),
               ),
             ))
