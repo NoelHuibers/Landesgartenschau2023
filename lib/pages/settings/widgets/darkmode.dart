@@ -11,7 +11,7 @@ class Darkmode extends StatelessWidget {
     return SwitchListTile(
       title: Text(
         'Darkmode',
-        style: Theme.of(context).textTheme.bodyText1,
+        style: Theme.of(context).textTheme.bodyText2,
       ),
       value: Provider.of<ColorProvider>(context).isDarkMode,
       onChanged: (bool value) {
@@ -20,7 +20,7 @@ class Darkmode extends StatelessWidget {
       },
       secondary: Icon(
         Icons.lightbulb_outline,
-        color: Theme.of(context).colorScheme.onSecondary,
+        color: Theme.of(context).colorScheme.onBackground,
       ),
     );
   }

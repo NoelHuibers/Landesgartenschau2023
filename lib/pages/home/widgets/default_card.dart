@@ -14,11 +14,11 @@ class DefaultCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: Insets.s),
       child: Container(
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(137, 54, 54, 54),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.background,
           ),
-          child:
-              Card(color: Theme.of(context).colorScheme.primary, child: child)),
+          child: Card(
+              color: Theme.of(context).colorScheme.secondary, child: child)),
     );
   }
 }

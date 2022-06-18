@@ -21,16 +21,19 @@ class _Language extends State<Language> {
     return ListTile(
         leading: Icon(
           Icons.language,
-          color: Theme.of(context).colorScheme.onSecondary,
+          color: Theme.of(context).colorScheme.onBackground,
         ),
         title: Text(
           AppLocalizations.of(context)!.language,
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyText2,
         ),
         trailing: Container(
             margin: const EdgeInsets.only(right: 6.0),
             child: DropdownButtonHideUnderline(
               child: DropdownButton(
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ),
                   value: locale,
                   items: L10n.all.map(
                     (locale) {
