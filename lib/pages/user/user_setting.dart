@@ -27,11 +27,7 @@ class _UserSettingState extends State<UserSetting> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          actions: <Widget>[
-            Image.asset("assets/images/logo6.png", width: 110, height: 40)
-          ],
-        ),
+        appBar: buildAppBar(context),
         body: Form(
           key: _formKey,
           child: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -105,15 +101,12 @@ class _UserSettingState extends State<UserSetting> {
           Container(
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
+                border:
+                    Border.all(color: Theme.of(context).colorScheme.onPrimary),
                 color: Theme.of(context).colorScheme.background,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Color(0xff202020),
-                      blurRadius: 6,
-                      offset: Offset(0, 2))
-                ]),
+                borderRadius: BorderRadius.circular(10)),
             height: 60,
+            width: 380,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
@@ -155,15 +148,12 @@ class _UserSettingState extends State<UserSetting> {
         Container(
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
+                border:
+                    Border.all(color: Theme.of(context).colorScheme.onPrimary),
                 color: Theme.of(context).colorScheme.background,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Color(0xff202020),
-                      blurRadius: 6,
-                      offset: Offset(0, 2))
-                ]),
+                borderRadius: BorderRadius.circular(10)),
             height: 60,
+            width: 380,
             child: TextFormField(
               obscureText: _showPassword,
               controller: controller,

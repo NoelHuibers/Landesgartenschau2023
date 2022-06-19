@@ -55,13 +55,11 @@ Widget buildEmail(BuildContext context, TextEditingController eMailController) {
       Container(
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
+            border: Border.all(color: Theme.of(context).colorScheme.onPrimary),
             color: Theme.of(context).colorScheme.background,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: const [
-              BoxShadow(
-                  color: Color(0xff202020), blurRadius: 6, offset: Offset(0, 2))
-            ]),
+            borderRadius: BorderRadius.circular(10)),
         height: 60,
+        width: 380,
         child: TextFormField(
           controller: eMailController,
           validator: (value) {
@@ -92,6 +90,16 @@ Widget buildImage(String imageLink, double width, double height) {
     imageLink,
     width: width,
     height: height,
+  );
+}
+
+Widget buildImageLogo(
+    BuildContext context, String imageLink, double width, double height) {
+  return Image.asset(
+    imageLink,
+    width: width,
+    height: height,
+    color: Theme.of(context).colorScheme.onBackground,
   );
 }
 

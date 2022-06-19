@@ -77,7 +77,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           buildImage(
                               "assets/images/lgs.png", double.infinity, 100),
                           const SizedBox(height: 10),
-                          buildImage("assets/images/konto.png", 100, 100),
+                          buildImageLogo(context,
+                              "assets/images/kontoImage.png", 100, 100),
                           const SizedBox(height: 10),
                           buildTest(context, 'Wilkommen zurück!', 20),
                           const SizedBox(height: 15),
@@ -118,15 +119,12 @@ class _LoginScreenState extends State<LoginScreen> {
         Container(
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
+                border:
+                    Border.all(color: Theme.of(context).colorScheme.onPrimary),
                 color: Theme.of(context).colorScheme.background,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Color(0xff202020),
-                      blurRadius: 6,
-                      offset: Offset(0, 2))
-                ]),
+                borderRadius: BorderRadius.circular(10)),
             height: 60,
+            width: 380,
             child: TextField(
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onPrimary,
