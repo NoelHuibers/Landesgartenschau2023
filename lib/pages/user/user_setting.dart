@@ -38,9 +38,9 @@ class _UserSettingState extends State<UserSetting> {
                   Container(
                     height: double.infinity,
                     width: double.infinity,
-                    decoration: const BoxDecoration(color: Color(0x00000000)),
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.secondary),
                     child: SingleChildScrollView(
-                      // physics: AlwaysScrollableScrollPhysics(), //buna bakalim bir kaydirmak icin
                       padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -103,7 +103,7 @@ class _UserSettingState extends State<UserSetting> {
             decoration: BoxDecoration(
                 border:
                     Border.all(color: Theme.of(context).colorScheme.onPrimary),
-                color: Theme.of(context).colorScheme.background,
+                color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.circular(10)),
             height: 60,
             width: 380,
@@ -150,7 +150,7 @@ class _UserSettingState extends State<UserSetting> {
             decoration: BoxDecoration(
                 border:
                     Border.all(color: Theme.of(context).colorScheme.onPrimary),
-                color: Theme.of(context).colorScheme.background,
+                color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.circular(10)),
             height: 60,
             width: 380,

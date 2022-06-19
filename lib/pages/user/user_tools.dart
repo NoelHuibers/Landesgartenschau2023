@@ -56,7 +56,7 @@ Widget buildEmail(BuildContext context, TextEditingController eMailController) {
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
             border: Border.all(color: Theme.of(context).colorScheme.onPrimary),
-            color: Theme.of(context).colorScheme.background,
+            color: Theme.of(context).colorScheme.secondary,
             borderRadius: BorderRadius.circular(10)),
         height: 60,
         width: 380,
