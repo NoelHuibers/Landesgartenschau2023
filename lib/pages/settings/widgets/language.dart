@@ -31,7 +31,7 @@ class _Language extends State<Language> {
             margin: const EdgeInsets.only(right: 6.0),
             child: DropdownButtonHideUnderline(
               child: DropdownButton(
-                  dropdownColor: Theme.of(context).colorScheme.secondary,
+                  dropdownColor: Theme.of(context).colorScheme.surfaceTint,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onBackground,
                   ),

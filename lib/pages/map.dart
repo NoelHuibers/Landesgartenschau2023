@@ -160,10 +160,11 @@ class _BigMapState extends State<BigMap> {
   Widget buildButton(
       String tag, Function() function, String tip, IconData iconData) {
     return FloatingActionButton(
+      backgroundColor: Theme.of(context).colorScheme.surfaceTint,
       heroTag: tag, //Exception Vermeiden
       onPressed: function,
       tooltip: tip,
-      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+      foregroundColor: Theme.of(context).colorScheme.onBackground,
       child: Icon(iconData),
     );
   }

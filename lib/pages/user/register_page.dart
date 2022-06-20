@@ -68,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: double.infinity,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondary),
+                        color: Theme.of(context).colorScheme.primary),
                     child: SingleChildScrollView(
                       padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: Column(
@@ -80,7 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           buildImageLogo(context,
                               "assets/images/kontoImage.png", 100, 100),
                           const SizedBox(height: 10),
-                          buildTest(context, 'Account erstellen!', 20),
+                          buildText(context, 'Account erstellen!', 20),
                           const SizedBox(height: 15),
                           buildEmail(context, mailController),
                           const SizedBox(height: 10),
@@ -92,7 +92,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           buildButton(
                               "Regestrieren", register, 250, 20, 15, context),
                           const SizedBox(height: 10),
-                          buildTest(
+                          buildText(
                               context,
                               '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
                               10),
@@ -124,7 +124,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             decoration: BoxDecoration(
                 border:
                     Border.all(color: Theme.of(context).colorScheme.onPrimary),
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.primary,
                 borderRadius: BorderRadius.circular(10)),
             height: 60,
             width: 380,

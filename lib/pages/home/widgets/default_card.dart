@@ -13,12 +13,12 @@ class DefaultCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: Insets.s),
-      child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.background,
+      child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
           ),
-          child: Card(
-              color: Theme.of(context).colorScheme.secondary, child: child)),
+          color: Theme.of(context).colorScheme.surfaceTint,
+          child: child),
     );
   }
 }

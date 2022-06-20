@@ -5,7 +5,8 @@ import '../home.dart';
 
 PreferredSizeWidget buildAppBar(BuildContext context) {
   return AppBar(
-    leading: BackButton(color: Theme.of(context).colorScheme.onPrimary),
+    backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+    leading: BackButton(color: Theme.of(context).colorScheme.onBackground),
     title: InkWell(
       onTap: () {
         Navigator.pushAndRemoveUntil(
@@ -40,9 +41,8 @@ Widget buildButton(String text, Function funktion, double width, double padding,
             fit: BoxFit.fitWidth,
             child: Text(
               text,
-              style: TextStyle(
-                  color: Theme.of(context).colorScheme.onBackground,
-                  fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  color: Colors.black, fontWeight: FontWeight.bold),
             ),
           )));
 }
@@ -56,7 +56,7 @@ Widget buildEmail(BuildContext context, TextEditingController eMailController) {
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
             border: Border.all(color: Theme.of(context).colorScheme.onPrimary),
-            color: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(context).colorScheme.primary,
             borderRadius: BorderRadius.circular(10)),
         height: 60,
         width: 380,
@@ -103,7 +103,7 @@ Widget buildImageLogo(
   );
 }
 
-Widget buildTest(BuildContext context, String text, double fontSize) {
+Widget buildText(BuildContext context, String text, double fontSize) {
   return Text(
     text,
     style: TextStyle(

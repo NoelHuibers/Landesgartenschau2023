@@ -39,7 +39,7 @@ class _UserSettingState extends State<UserSetting> {
                     height: double.infinity,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondary),
+                        color: Theme.of(context).colorScheme.primary),
                     child: SingleChildScrollView(
                       padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: Column(
@@ -54,7 +54,8 @@ class _UserSettingState extends State<UserSetting> {
                           Text(
                             'Persönliche Daten!',
                             style: TextStyle(
-                                color: Theme.of(context).colorScheme.onPrimary,
+                                color:
+                                    Theme.of(context).colorScheme.onBackground,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -103,7 +104,7 @@ class _UserSettingState extends State<UserSetting> {
             decoration: BoxDecoration(
                 border:
                     Border.all(color: Theme.of(context).colorScheme.onPrimary),
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.primary,
                 borderRadius: BorderRadius.circular(10)),
             height: 60,
             width: 380,
@@ -129,7 +130,7 @@ class _UserSettingState extends State<UserSetting> {
                     "username: ",
                     style: TextStyle(
                       fontSize: 18.0,
-                      color: Theme.of(context).colorScheme.onSurface,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
                 ),
@@ -150,7 +151,7 @@ class _UserSettingState extends State<UserSetting> {
             decoration: BoxDecoration(
                 border:
                     Border.all(color: Theme.of(context).colorScheme.onPrimary),
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.primary,
                 borderRadius: BorderRadius.circular(10)),
             height: 60,
             width: 380,

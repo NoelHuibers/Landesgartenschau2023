@@ -21,8 +21,10 @@ class _SearchWidgetState extends State<SearchWidget> {
 
   @override
   Widget build(BuildContext context) {
-    const styleActive = TextStyle(color: Colors.black);
-    const styleHint = TextStyle(color: Colors.black54);
+    var styleActive =
+        TextStyle(color: Theme.of(context).colorScheme.onBackground);
+    var styleHint =
+        TextStyle(color: Theme.of(context).colorScheme.onBackground);
     final style = widget.text.isEmpty ? styleHint : styleActive;
 
     return Container(
@@ -30,17 +32,18 @@ class _SearchWidgetState extends State<SearchWidget> {
       margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: Colors.white,
-        border: Border.all(color: Colors.black26),
+        color: Theme.of(context).colorScheme.surfaceTint,
       ),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: TextField(
         controller: controller,
         decoration: InputDecoration(
-          icon: Icon(Icons.search, color: style.color),
+          icon: Icon(Icons.search,
+              color: Theme.of(context).colorScheme.onBackground),
           suffixIcon: widget.text.isNotEmpty
               ? GestureDetector(
-                  child: Icon(Icons.close, color: style.color),
+                  child: Icon(Icons.close,
+                      color: Theme.of(context).colorScheme.onBackground),
                   onTap: () {
                     controller.clear();
                     widget.onChanged('');

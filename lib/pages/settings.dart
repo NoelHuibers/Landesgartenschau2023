@@ -11,7 +11,9 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.primary,
         appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.surfaceTint,
           leading: BackButton(color: Theme.of(context).colorScheme.onPrimary),
           title: Text(
             'Settings Page',
@@ -26,8 +28,10 @@ class Settings extends StatelessWidget {
                 DefaultCard(child: Language()),
               ],
             )),
-        bottomNavigationBar: const Padding(
-            padding: EdgeInsets.only(bottom: Insets.m),
-            child: Impressumbutton()));
+        bottomNavigationBar: const SizedBox(
+            width: 20,
+            child: Padding(
+                padding: EdgeInsets.only(left: 100.0, right: 100.0, bottom: 30),
+                child: Impressumbutton())));
   }
 }

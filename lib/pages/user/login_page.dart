@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: double.infinity,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondary),
+                        color: Theme.of(context).colorScheme.primary),
                     child: SingleChildScrollView(
                       padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: Column(
@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           buildImageLogo(context,
                               "assets/images/kontoImage.png", 100, 100),
                           const SizedBox(height: 10),
-                          buildTest(context, 'Wilkommen zurück!', 20),
+                          buildText(context, 'Wilkommen zurück!', 20),
                           const SizedBox(height: 15),
                           buildEmail(context, mailController),
                           const SizedBox(height: 10),
@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           buildButton("Du hast noch kein Konto",
                               registerNavigate, 150, 10, 10, context),
                           const SizedBox(height: 10),
-                          buildTest(
+                          buildText(
                               context,
                               '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
                               10),
@@ -122,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
             decoration: BoxDecoration(
                 border:
                     Border.all(color: Theme.of(context).colorScheme.onPrimary),
-                color: Theme.of(context).colorScheme.secondary, //Background
+                color: Theme.of(context).colorScheme.primary, //Background
                 borderRadius: BorderRadius.circular(10)),
             height: 60,
             width: 380,

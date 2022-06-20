@@ -8,12 +8,17 @@ class Impressum extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.surfaceTint,
           leading: BackButton(color: Theme.of(context).colorScheme.onPrimary),
           title: Text(
             'Impressum',
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
-        body: const Impressumview());
+        body: Container(
+          decoration:
+              BoxDecoration(color: Theme.of(context).colorScheme.primary),
+          child: const Impressumview(),
+        ));
   }
 }

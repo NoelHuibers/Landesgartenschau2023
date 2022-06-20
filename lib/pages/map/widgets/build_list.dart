@@ -28,7 +28,7 @@ class _BuildListState extends State<BuildList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Theme.of(context).colorScheme.surfaceVariant,
+        color: Theme.of(context).colorScheme.primary,
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
@@ -38,12 +38,10 @@ class _BuildListState extends State<BuildList> {
             ),
             SizedBox(
               child: buildTextButton("Stands", const Stands()),
-              //Hier kommt die KLasse die abgerufen werden soll beim klicken ),
             ),
             SizedBox(
                 height: 200,
                 child: DefaultCard(
-                  color: Theme.of(context).colorScheme.surfaceVariant,
                   child: ListView.builder(
                     itemCount: stands.length,
                     itemBuilder: (context, index) {
@@ -53,13 +51,11 @@ class _BuildListState extends State<BuildList> {
                   ),
                 )),
             SizedBox(
-              child: buildTextButton("Events",
-                  const Events()), //Hier kommt die KLasse die abgerufen werden soll beim klicken  ),
+              child: buildTextButton("Events", const Events()),
             ),
             SizedBox(
                 height: 200,
                 child: DefaultCard(
-                  color: Theme.of(context).colorScheme.surfaceVariant,
                   child: ListView.builder(
                     itemCount: events.length,
                     itemBuilder: (context, index) {
@@ -84,13 +80,13 @@ class _BuildListState extends State<BuildList> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
-                color: Theme.of(context).colorScheme.onPrimary,
+                color: Theme.of(context).colorScheme.onBackground,
               ),
             ),
           ),
         ),
         MaterialButton(
-            color: Theme.of(context).colorScheme.onPrimary,
+            color: Theme.of(context).colorScheme.surfaceTint,
             shape: const CircleBorder(),
             onPressed: () {
               Navigator.push(
@@ -98,33 +94,31 @@ class _BuildListState extends State<BuildList> {
             },
             child: Icon(
               Icons.view_list_rounded,
-              color: Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).colorScheme.onBackground,
             )),
       ],
     );
   }
 
   Widget buildStand(StandsList stand) => ListTile(
-        tileColor: Theme.of(context).colorScheme.onPrimary,
+        textColor: Theme.of(context).colorScheme.onBackground,
+        tileColor: Theme.of(context).colorScheme.surfaceTint,
         title: Text(
           stand.title,
-          style: Theme.of(context).textTheme.subtitle2,
         ),
         subtitle: Text(
           stand.subtitle,
-          style: Theme.of(context).textTheme.labelMedium,
         ),
       );
 
   Widget buildEvents(EventsList event) => ListTile(
-        tileColor: Theme.of(context).colorScheme.onPrimary,
+        textColor: Theme.of(context).colorScheme.onBackground,
+        tileColor: Theme.of(context).colorScheme.surfaceTint,
         title: Text(
           event.titel,
-          style: Theme.of(context).textTheme.subtitle2,
         ),
         subtitle: Text(
           event.subtitle,
-          style: Theme.of(context).textTheme.labelMedium,
         ),
       );
 

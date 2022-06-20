@@ -18,11 +18,11 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.onPrimary,
         appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.surfaceTint,
           leading: IconButton(
             icon: const Icon(Icons.account_circle_sharp),
-            color: Theme.of(context).colorScheme.onPrimary,
+            color: Theme.of(context).colorScheme.onBackground,
             onPressed: () {
               Navigator.push(
                 context,
@@ -30,11 +30,11 @@ class _HomepageState extends State<Homepage> {
               );
             },
           ),
-          title: const Center(child: Text("Landesgartenschau 2022")),
+          title: Image.asset("assets/images/logo6.png", width: 270, height: 40),
           actions: [
             IconButton(
               icon: const Icon(Icons.more_vert_rounded),
-              color: Theme.of(context).colorScheme.onPrimary,
+              color: Theme.of(context).colorScheme.onBackground,
               onPressed: () {
                 Navigator.push(
                   context,
@@ -46,7 +46,6 @@ class _HomepageState extends State<Homepage> {
           actionsIconTheme: const IconThemeData(size: 32),
         ),
         body: SlidingUpPanel(
-          color: Theme.of(context).colorScheme.surfaceVariant,
           controller: panelController,
           minHeight: 25,
           maxHeight: 600,

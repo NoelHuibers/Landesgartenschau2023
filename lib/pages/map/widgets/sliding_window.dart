@@ -19,18 +19,20 @@ class _SlidePageState extends State<SlidePage> {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      physics:
+          const NeverScrollableScrollPhysics(), //Exception vermeinden (Bei öffnung die App direkt swipen)
       padding: EdgeInsets.zero,
       controller: widget.controller,
       children: <Widget>[
         Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surfaceVariant,
+            color: Theme.of(context).colorScheme.primary,
             borderRadius: const BorderRadius.only(
               topRight: Radius.circular(15.0),
               topLeft: Radius.circular(15.0),
             ),
           ),
-          child: SizedBox(height: 20, child: swipe_bottum()),
+          child: SizedBox(height: 21, child: swipe_bottum()),
         ),
         SizedBox(height: 80, child: bildButtonBar(context)),
         const SizedBox(
@@ -63,52 +65,56 @@ class _SlidePageState extends State<SlidePage> {
 
   Widget bildButtonBar(BuildContext context) {
     return Container(
-        color: Theme.of(context).colorScheme.surfaceVariant,
+        color: Theme.of(context).colorScheme.primary,
         child: ButtonBar(
           alignment: MainAxisAlignment.center,
           children: <Widget>[
             RawMaterialButton(
               onPressed: () {},
               elevation: 2.0,
-              fillColor: Colors.black54,
+              fillColor: Theme.of(context).colorScheme.surfaceTint,
               padding: const EdgeInsets.all(15),
               shape: const CircleBorder(),
-              child: const Icon(
+              child: Icon(
                 Icons.home,
+                color: Theme.of(context).colorScheme.onBackground,
                 size: 35,
               ),
             ),
             RawMaterialButton(
               onPressed: () {},
               elevation: 2.0,
-              fillColor: Colors.black54,
+              fillColor: Theme.of(context).colorScheme.surfaceTint,
               padding: const EdgeInsets.all(15),
               shape: const CircleBorder(),
-              child: const Icon(
+              child: Icon(
                 Icons.local_parking,
+                color: Theme.of(context).colorScheme.onBackground,
                 size: 35,
               ),
             ),
             RawMaterialButton(
               onPressed: () {},
               elevation: 2.0,
-              fillColor: Colors.black54,
+              fillColor: Theme.of(context).colorScheme.surfaceTint,
               padding: const EdgeInsets.all(15),
               shape: const CircleBorder(),
-              child: const Icon(
+              child: Icon(
                 Icons.forest_outlined,
+                color: Theme.of(context).colorScheme.onBackground,
                 size: 35,
               ),
             ),
             RawMaterialButton(
               onPressed: () {},
               elevation: 2.0,
-              fillColor: Colors.black54,
+              fillColor: Theme.of(context).colorScheme.surfaceTint,
               padding: const EdgeInsets.all(15),
               shape: const CircleBorder(),
-              child: const Icon(
+              child: Icon(
                 Icons.wc,
                 size: 35,
+                color: Theme.of(context).colorScheme.onBackground,
               ),
             )
           ],

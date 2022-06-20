@@ -11,13 +11,12 @@ mixin Palette {
     ),
 
     colorScheme: const ColorScheme.dark(
-      primary: Color(0xE6333333), // dark=grau - light=grau
-      onPrimary: Color(0xFFF6FDFF), // dark=weiß - light=grau
-      secondary: Color(0xE6333333), // dark=grau - light=weiß
-      onSecondary: Color(0xFFF6FDFF), // dark=weiß - light=weiß
-      tertiary: Color.fromARGB(255, 25, 105, 243),
-      surfaceVariant: Color(0xE6333333), // locationmarker
-    ),
+        primary: Color.fromARGB(255, 28, 28, 28), // dark=grau - light=grau
+        onPrimary: Color(0xFFF6FDFF), // dark=weiß - light=grau
+        tertiary: Color.fromARGB(255, 25, 105, 243),
+        surfaceVariant: Color(0xE6333333),
+        surfaceTint: Color(0xE6333333) // locationmarker
+        ),
 
     iconTheme: const IconThemeData(
       color: Color(0xFFF6FDFF),
@@ -63,12 +62,11 @@ mixin Palette {
     ),
 
     colorScheme: const ColorScheme.light(
-      primary: Color(0xE6333333), // dark=grau - light=grau
+      primary: Color.fromARGB(255, 255, 255, 255), // dark=grau - light=grau
       onPrimary: Color(0xE6333333), // dark=weiß - light=grau
-      secondary: Color(0xFFF6FDFF), // dark=grau - light=weiß
-      onSecondary: Color(0xFFF6FDFF), // dark=weiß - light=weiß
       tertiary: Color.fromARGB(255, 25, 105, 243),
-      surfaceVariant: Color(0xFFF6FDFF), // locationmarker
+      surfaceVariant: Color(0xFFF6FDFF),
+      surfaceTint: Color.fromARGB(230, 199, 195, 195), // locationmarker
     ),
 
     iconTheme: const IconThemeData(
