@@ -49,7 +49,6 @@ mixin Palette {
         //fontSize: 14.0,
       ), // Haupttext1
     ),
-    primaryColor: Colors.black, // unbenutzt
   );
 
   static final ThemeData lightTheme = ThemeData(
@@ -60,7 +59,6 @@ mixin Palette {
         color: Color.fromRGBO(246, 253, 255, 1),
       ),
     ),
-
     colorScheme: const ColorScheme.light(
       primary: Color.fromARGB(255, 255, 255, 255), // dark=grau - light=grau
       onPrimary: Color(0xE6333333), // dark=weiß - light=grau
@@ -68,11 +66,9 @@ mixin Palette {
       surfaceVariant: Color(0xFFF6FDFF),
       surfaceTint: Color.fromARGB(230, 199, 195, 195), // locationmarker
     ),
-
     iconTheme: const IconThemeData(
       color: Color(0xFFF6FDFF),
     ),
-
     textTheme: const TextTheme(
       headline5: TextStyle(
         color: Colors.black,
@@ -99,6 +95,5 @@ mixin Palette {
         //fontSize: 14.0,
       ), // Haupttext
     ),
-    primaryColor: Colors.white, // unbenutzt
   );
 }
