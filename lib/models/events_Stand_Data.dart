@@ -22,19 +22,19 @@ final allevents = <EventsList>[
 ];
 final allstands = <StandsList>[
   const StandsList(
-    title: "Horizontbank",
+    titel: "Horizontbank",
     subtitle: "Info of Horizontbank",
   ),
   const StandsList(
-    title: "Weserstufen",
+    titel: "Weserstufen",
     subtitle: "Info of Weserstufen",
   ),
   const StandsList(
-    title: "Galeriegärten",
+    titel: "Galeriegärten",
     subtitle: "Info of Galeriegärten",
   ),
   const StandsList(
-    title: "Hallo",
+    titel: "Hallo",
     subtitle: "Info of Galeriegärten",
   ),
 ];

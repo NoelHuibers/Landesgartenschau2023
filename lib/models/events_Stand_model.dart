@@ -16,17 +16,17 @@ class EventsList {
 }
 
 class StandsList {
-  final String title;
+  final String titel;
   final String subtitle;
 
   const StandsList({
-    required this.title,
+    required this.titel,
     required this.subtitle,
   });
 
   factory StandsList.fromJson(Map<String, dynamic> json) {
     return StandsList(
-      title: json['title'],
+      titel: json['titel'],
       subtitle: json['subtitle'],
     );
   }

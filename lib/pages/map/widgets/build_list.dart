@@ -30,6 +30,7 @@ class _BuildListState extends State<BuildList> {
     return Container(
         color: Theme.of(context).colorScheme.primary,
         child: ListView(
+          physics: const BouncingScrollPhysics(),
           padding: EdgeInsets.zero,
           children: <Widget>[
             SizedBox(
@@ -46,7 +47,7 @@ class _BuildListState extends State<BuildList> {
                     itemCount: stands.length,
                     itemBuilder: (context, index) {
                       final stand = stands[index];
-                      return buildStand(stand);
+                      return buildList(stand);
                     },
                   ),
                 )),
@@ -60,7 +61,7 @@ class _BuildListState extends State<BuildList> {
                     itemCount: events.length,
                     itemBuilder: (context, index) {
                       final event = events[index];
-                      return buildEvents(event);
+                      return buildList(event);
                     },
                   ),
                 )),
@@ -100,25 +101,14 @@ class _BuildListState extends State<BuildList> {
     );
   }
 
-  Widget buildStand(StandsList stand) => ListTile(
+  Widget buildList(liste) => ListTile(
         textColor: Theme.of(context).colorScheme.onBackground,
         tileColor: Theme.of(context).colorScheme.surfaceTint,
         title: Text(
-          stand.title,
+          liste.titel,
         ),
         subtitle: Text(
-          stand.subtitle,
-        ),
-      );
-
-  Widget buildEvents(EventsList event) => ListTile(
-        textColor: Theme.of(context).colorScheme.onBackground,
-        tileColor: Theme.of(context).colorScheme.surfaceTint,
-        title: Text(
-          event.titel,
-        ),
-        subtitle: Text(
-          event.subtitle,
+          liste.subtitle,
         ),
       );
 
@@ -130,7 +120,7 @@ class _BuildListState extends State<BuildList> {
 
   void search(String query) {
     final stands = allstands.where((stand) {
-      final titleLower = stand.title.toLowerCase();
+      final titleLower = stand.titel.toLowerCase();
       final subtitelLower = stand.subtitle.toLowerCase();
       final searchLower = query.toLowerCase();
 

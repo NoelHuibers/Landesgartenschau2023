@@ -12,13 +12,18 @@ class DefaultCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Insets.s),
-      child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          color: Theme.of(context).colorScheme.surfaceTint,
-          child: child),
-    );
+        padding: const EdgeInsets.symmetric(horizontal: Insets.s),
+        child: ScrollConfiguration(
+            behavior: const ScrollBehavior(),
+            child: GlowingOverscrollIndicator(
+              axisDirection: AxisDirection.down,
+              color: Theme.of(context).colorScheme.surfaceTint,
+              child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  color: Theme.of(context).colorScheme.surfaceTint,
+                  child: child),
+            )));
   }
 }

@@ -83,16 +83,21 @@ class Impressumview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: inhalt.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(
-            inhalt[index]['Zeile'],
-            style: Theme.of(context).textTheme.bodyText2,
-          ),
-        );
-      },
-    );
+    return ScrollConfiguration(
+        behavior: const ScrollBehavior(),
+        child: GlowingOverscrollIndicator(
+            axisDirection: AxisDirection.down,
+            color: Theme.of(context).colorScheme.surfaceTint,
+            child: ListView.builder(
+              itemCount: inhalt.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(
+                    inhalt[index]['Zeile'],
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
+                );
+              },
+            )));
   }
 }

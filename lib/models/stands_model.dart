@@ -12,17 +12,17 @@ class StandsModel {
   }
   static const List standsList = [
     {
-      "title": "Horizontbank",
+      "titel": "Horizontbank",
       "subtitle": "Info of Horizontbank",
       "starred": true
     },
     {
-      "title": "Weserstufen",
+      "titel": "Weserstufen",
       "subtitle": "Info of Weserstufen",
       "starred": false
     },
     {
-      "title": "Galeriegärten",
+      "titel": "Galeriegärten",
       "subtitle": "Info of Galeriegärten",
       "starred": false
     }
