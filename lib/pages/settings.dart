@@ -14,7 +14,8 @@ class Settings extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.primary,
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.surfaceTint,
-          leading: BackButton(color: Theme.of(context).colorScheme.onPrimary),
+          leading:
+              BackButton(color: Theme.of(context).colorScheme.onBackground),
           title: Text(
             'Settings Page',
             style: Theme.of(context).textTheme.headline5,

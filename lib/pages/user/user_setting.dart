@@ -156,6 +156,9 @@ class _UserSettingState extends State<UserSetting> {
             height: 60,
             width: 380,
             child: TextFormField(
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onBackground,
+              ),
               obscureText: _showPassword,
               controller: controller,
               validator: (value) {

@@ -38,6 +38,8 @@ class StandslistState extends State<Standslist> {
         itemCount: StandsModel.standsList.length,
         itemBuilder: (context, index) {
           return ListTile(
+            textColor: Theme.of(context).colorScheme.onBackground,
+            tileColor: Theme.of(context).colorScheme.surfaceTint,
             leading: IconButton(
                 icon: save
                     ? const Icon(Icons.star)

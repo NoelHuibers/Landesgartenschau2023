@@ -7,14 +7,19 @@ class Stands extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(color: Theme.of(context).colorScheme.onPrimary),
-        title: Text(
-          'Stands',
-          style: Theme.of(context).textTheme.headline5,
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+          leading:
+              BackButton(color: Theme.of(context).colorScheme.onBackground),
+          title: Text(
+            'Stands',
+            style: Theme.of(context).textTheme.headline5,
+          ),
         ),
-      ),
-      body: const Standslist(),
-    );
+        body: Container(
+          decoration:
+              BoxDecoration(color: Theme.of(context).colorScheme.primary),
+          child: const Standslist(),
+        ));
   }
 }

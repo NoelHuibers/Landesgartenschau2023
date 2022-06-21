@@ -11,15 +11,22 @@ class Events extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: BackButton(color: Theme.of(context).colorScheme.onPrimary),
+          backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+          leading:
+              BackButton(color: Theme.of(context).colorScheme.onBackground),
           title: Text(
             'Events',
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
-        body: Column(children: const [
-          DefaultCard(child: StarredView(model: EventsModel.eventsList)),
-          DefaultCard(child: Eventslist()),
-        ]));
+        body: Container(
+            decoration:
+                BoxDecoration(color: Theme.of(context).colorScheme.primary),
+            child: Column(children: const [
+              DefaultCard(
+                child: StarredView(model: EventsModel.eventsList),
+              ),
+              DefaultCard(child: Eventslist()),
+            ])));
   }
 }

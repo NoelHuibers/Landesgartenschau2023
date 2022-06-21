@@ -128,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
             width: 380,
             child: TextField(
               style: TextStyle(
-                color: Theme.of(context).colorScheme.onPrimary,
+                color: Theme.of(context).colorScheme.onBackground,
               ),
               obscureText: _showPassword,
               controller: passController,

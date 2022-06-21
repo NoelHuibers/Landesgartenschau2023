@@ -66,7 +66,7 @@ Widget buildEmail(BuildContext context, TextEditingController eMailController) {
             return Validator.validateEmail(value ?? "");
           },
           style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary,
+            color: Theme.of(context).colorScheme.onBackground,
           ),
           decoration: InputDecoration(
               border: InputBorder.none,

@@ -9,7 +9,8 @@ class Impressum extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.surfaceTint,
-          leading: BackButton(color: Theme.of(context).colorScheme.onPrimary),
+          leading:
+              BackButton(color: Theme.of(context).colorScheme.onBackground),
           title: Text(
             'Impressum',
             style: Theme.of(context).textTheme.headline5,

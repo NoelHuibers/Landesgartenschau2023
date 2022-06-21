@@ -45,7 +45,7 @@ mixin Palette {
         //fontSize: 14.0,
       ), // Haupttext2
       bodyText2: TextStyle(
-        color: Color(0xFFF6FDFF),
+        color: Color.fromARGB(255, 255, 255, 255),
         //fontSize: 14.0,
       ), // Haupttext1
     ),
@@ -95,7 +95,7 @@ mixin Palette {
         //fontSize: 14.0,
       ), // Haupttext2
       bodyText2: TextStyle(
-        color: Color(0xE6333333),
+        color: Color.fromARGB(230, 0, 0, 0),
         //fontSize: 14.0,
       ), // Haupttext
     ),

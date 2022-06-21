@@ -16,6 +16,8 @@ class StarredView extends StatelessWidget {
         shrinkWrap: true,
         itemBuilder: (context, index) {
           return ListTile(
+            textColor: Theme.of(context).colorScheme.onBackground,
+            tileColor: Theme.of(context).colorScheme.surfaceTint,
             title: Text(model[index]['title']),
             subtitle: Text(model[index]['subtitle'],
                 maxLines: lines ? 10 : 2, overflow: TextOverflow.ellipsis),

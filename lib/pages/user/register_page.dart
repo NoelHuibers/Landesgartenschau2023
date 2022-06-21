@@ -90,7 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               returnPassController),
                           const SizedBox(height: 10),
                           buildButton(
-                              "Regestrieren", register, 250, 20, 15, context),
+                              "Registrieren", register, 250, 20, 15, context),
                           const SizedBox(height: 10),
                           buildText(
                               context,
@@ -130,7 +130,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             width: 380,
             child: TextFormField(
               style: TextStyle(
-                color: Theme.of(context).colorScheme.onPrimary,
+                color: Theme.of(context).colorScheme.onBackground,
               ),
               obscureText: _showPassword,
               controller: controller,

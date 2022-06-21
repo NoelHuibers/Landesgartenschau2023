@@ -13,6 +13,8 @@ class Eventslist extends StatelessWidget {
         shrinkWrap: true,
         itemBuilder: (context, index) {
           return ListTile(
+            textColor: Theme.of(context).colorScheme.onBackground,
+            tileColor: Theme.of(context).colorScheme.surfaceTint,
             title: Text(EventsModel.eventsList[index]['title']),
             subtitle: Text(EventsModel.eventsList[index]['subtitle'],
                 maxLines: lines ? 10 : 2, overflow: TextOverflow.ellipsis),
