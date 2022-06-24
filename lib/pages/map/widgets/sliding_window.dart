@@ -64,11 +64,16 @@ class _SlidePageState extends State<SlidePage> {
       : widget.panelController.open();
 
   Widget bildButtonBar(BuildContext context) {
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
     return Container(
+        height: queryData.size.height,
+        width: queryData.size.width,
         color: Theme.of(context).colorScheme.primary,
         child: ButtonBar(
           alignment: MainAxisAlignment.center,
-          children: <Widget>[
+          buttonPadding: const EdgeInsets.symmetric(horizontal: 1),
+          children: [
             RawMaterialButton(
               onPressed: () {},
               elevation: 2.0,

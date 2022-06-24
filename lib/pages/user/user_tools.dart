@@ -15,7 +15,7 @@ PreferredSizeWidget buildAppBar(BuildContext context) {
           (Route<dynamic> route) => false,
         );
       },
-      child: Image.asset("assets/images/logo6.png", width: 270, height: 40),
+      child: Image.asset("assets/images/logo6.png", width: 250, height: 40),
     ),
   );
 }
