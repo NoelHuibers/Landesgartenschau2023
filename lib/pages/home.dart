@@ -30,7 +30,8 @@ class _HomepageState extends State<Homepage> {
               );
             },
           ),
-          title: Image.asset("assets/images/logo6.png", width: 270, height: 40),
+          centerTitle: true,
+          title: Image.asset("assets/images/logo6.png"),
           actions: [
             IconButton(
               icon: const Icon(Icons.more_vert_rounded),

@@ -7,6 +7,7 @@ PreferredSizeWidget buildAppBar(BuildContext context) {
   return AppBar(
     backgroundColor: Theme.of(context).colorScheme.surfaceTint,
     leading: BackButton(color: Theme.of(context).colorScheme.onBackground),
+    centerTitle: true,
     title: InkWell(
       onTap: () {
         Navigator.pushAndRemoveUntil(
@@ -15,7 +16,7 @@ PreferredSizeWidget buildAppBar(BuildContext context) {
           (Route<dynamic> route) => false,
         );
       },
-      child: Image.asset("assets/images/logo6.png", width: 250, height: 40),
+      child: Image.asset("assets/images/logo6.png"),
     ),
   );
 }
