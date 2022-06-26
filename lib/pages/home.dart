@@ -54,8 +54,7 @@ class _HomepageState extends State<Homepage> {
           parallaxEnabled: true,
           parallaxOffset: .5,
           body: const BigMap(),
-          panelBuilder: (controller) => SlidePage(
-            controller: controller,
+          panel: SlidePage(
             panelController: panelController,
           ),
         ));

@@ -3,12 +3,10 @@ import 'package:landesgartenschau2023/pages/map/widgets/build_list.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class SlidePage extends StatefulWidget {
-  final ScrollController controller;
   final PanelController panelController;
 
   const SlidePage({
     Key? key,
-    required this.controller,
     required this.panelController,
   }) : super(key: key);
   @override
@@ -22,7 +20,6 @@ class _SlidePageState extends State<SlidePage> {
       physics:
           const NeverScrollableScrollPhysics(), //Exception vermeinden (Bei öffnung die App direkt swipen)
       padding: EdgeInsets.zero,
-      controller: widget.controller,
       children: <Widget>[
         Container(
           decoration: BoxDecoration(

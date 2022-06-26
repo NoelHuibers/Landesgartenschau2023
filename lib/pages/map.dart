@@ -36,12 +36,13 @@ class BigMap extends StatefulWidget {
 
 class _BigMapState extends State<BigMap> {
   double currentZoom = 13.0;
+  final double currentZoomIn = 13.0;
   MapController mapController = MapController();
   late LatLng currentCenter;
   LatLng currentCenterHX = LatLng(51.773797392536636, 9.381120459653904);
   late bool _isServiceEnabled;
   late PermissionStatus _permissionGranted;
-  bool isGetLocation = false;
+  bool? isGetLocation;
   Location location = Location();
   late LatLng mapPosition;
 
@@ -59,8 +60,11 @@ class _BigMapState extends State<BigMap> {
 
   //Methode an die Aktuelle Position zu führen
   void concurrentPosition() {
-    currentZoom = currentZoom + 3;
-    mapController.move(currentCenter, currentZoom);
+    if (isGetLocation == true) {
+      mapController.move(currentCenter, currentZoomIn);
+    } else {
+      mapController.move(currentCenterHX, currentZoomIn);
+    }
   }
 
   void setPosition(LatLng center) {
@@ -98,8 +102,10 @@ class _BigMapState extends State<BigMap> {
           var data = snapshot.data as LocationData;
           LatLng posit = LatLng(data.latitude!, data.longitude!);
           currentCenter = posit;
+          isGetLocation = true;
           return mapBuild(currentCenter);
         } else {
+          isGetLocation = false;
           return mapBuild(currentCenterHX);
         }
       },
