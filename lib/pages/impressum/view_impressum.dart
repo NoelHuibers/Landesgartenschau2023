@@ -2,29 +2,15 @@ import 'package:flutter/material.dart';
 
 List inhalt = [
   {
-    "Zeile": "Impressum gemäß § 5 TMG / § 55 RStV",
-  },
-  {
     "Zeile": "Technische Hochschule Ostwestfalen-Lippe",
   },
   {
-    "Zeile": "Campusallee 12",
-  },
-  {
-    "Zeile": "32657 Lemgo",
-  },
-  {
-    "Zeile": "Telefon: +49 XXXX XXXX X",
-  },
-  {
-    "Zeile": "Telefax: +49 XXXX XXX XXXX",
-  },
-  {
-    "Zeile": "E-Mail: mustermail@th-owl.de",
+    "Zeile":
+        "Campusallee 12  \nTelefon: +49 XXXX XXXX X \nTelefax: +49 XXXX XXX XXXX \nE-Mail: mustermail@th-owl.de",
   },
   {
     "Zeile":
-        "Die Technische Hochschule Ostwestfalen-Lippe ist eine vom Land getragene rechtsfähige Körperschaft des öffentlichen Rechts.",
+        "\nDie Technische Hochschule Ostwestfalen-Lippe ist eine vom Land getragene rechtsfähige Körperschaft des öffentlichen Rechts.",
   },
   {
     "Zeile":
@@ -45,25 +31,8 @@ List inhalt = [
         "Ministerium für Kultur und Wissenschaft des Landes Nordrhein-Westfalen, Völklinger Straße 49, 40221 Düsseldorf",
   },
   {
-    "Zeile": "Inhaltliche Verantwortung",
-  },
-  {
-    "Zeile": "Dezernat Kommunikation und Marketing",
-  },
-  {
-    "Zeile": "Campusallee 12",
-  },
-  {
-    "Zeile": "32657 Lemgo",
-  },
-  {
-    "Zeile": "Telefon: +49 XXXX XXXX X",
-  },
-  {
-    "Zeile": "Telefax: +49 XXXX XXX XXXX",
-  },
-  {
-    "Zeile": "E-Mail: mustermail@th-owl.de",
+    "Zeile":
+        "\nInhaltliche Verantwortung \n \nDezernat Kommunikation und Marketing \nCampusallee 12 \n32657 Lemgo \nTelefon: +49 XXXX XXXX X \nTelefax: +49 XXXX XXX XXXX \nE-Mail: mustermail@th-owl.de \n",
   },
   {
     "Zeile":
@@ -83,21 +52,24 @@ class Impressumview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScrollConfiguration(
-        behavior: const ScrollBehavior(),
-        child: GlowingOverscrollIndicator(
-            axisDirection: AxisDirection.down,
-            color: Theme.of(context).colorScheme.surfaceTint,
-            child: ListView.builder(
-              itemCount: inhalt.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(
-                    inhalt[index]['Zeile'],
-                    style: Theme.of(context).textTheme.bodyText2,
-                  ),
-                );
-              },
-            )));
+    return SizedBox(
+      height: 490,
+      child: ScrollConfiguration(
+          behavior: const ScrollBehavior(),
+          child: GlowingOverscrollIndicator(
+              axisDirection: AxisDirection.down,
+              color: Theme.of(context).colorScheme.surfaceTint,
+              child: ListView.builder(
+                itemCount: inhalt.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(
+                      inhalt[index]['Zeile'],
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
+                  );
+                },
+              ))),
+    );
   }
 }
