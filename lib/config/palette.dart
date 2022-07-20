@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 mixin Palette {
   static final ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: const Color.fromRGBO(20, 20, 20, 1),
+    scaffoldBackgroundColor: const Color.fromARGB(6, 179, 179, 179),
     appBarTheme: const AppBarTheme(
-      color: Color.fromRGBO(47, 47, 47, 1),
+      color: Color.fromARGB(6, 94, 4, 4),
       iconTheme: IconThemeData(
-        color: Colors.white,
+        color: Color.fromARGB(255, 28, 28, 28),
       ),
     ),
 
@@ -52,11 +52,11 @@ mixin Palette {
   );
 
   static final ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: const Color(0xFFF6FDFF),
+    scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
     appBarTheme: const AppBarTheme(
-      color: Color(0xFFF6FDFF),
+      color: Color.fromARGB(197, 187, 187, 187),
       iconTheme: IconThemeData(
-        color: Color.fromRGBO(246, 253, 255, 1),
+        color: Color.fromARGB(255, 255, 255, 255),
       ),
     ),
     colorScheme: const ColorScheme.light(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '/pages/impressum.dart';
 
 class Impressumbutton extends StatelessWidget {
@@ -8,7 +7,7 @@ class Impressumbutton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: 10,
+        width: 200,
         child: ElevatedButton(
             style: ButtonStyle(
                 elevation: MaterialStateProperty.all<double>(0.5),
