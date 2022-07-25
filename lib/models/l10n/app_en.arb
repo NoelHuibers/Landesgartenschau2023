@@ -10,7 +10,5 @@
   "settings": "Settings",
   "@settings": {
     "description": "Settings"
-  },
-  "Login": "Login",
-  "@Login": {}
+  }
 }
