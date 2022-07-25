@@ -1,8 +1,16 @@
 {
-    "clanguage": "English",
-    "@clanguage":{"description": "The current Language"},
-    "language": "Language",
-    "@language":{"description": "Language"},
-    "settings": "Settings",
-    "@settings":{"description": "Settings"}
+  "clanguage": "English",
+  "@clanguage": {
+    "description": "The current Language"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings"
+  },
+  "Login": "Login",
+  "@Login": {}
 }
