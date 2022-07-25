@@ -12,5 +12,7 @@
     "description": "Settings"
   },
   "login": "Login",
-  "@login": {}
+  "@login": {},
+  "username": "Username",
+  "@username": {}
 }
