@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:latlong2/latlong.dart';
 import 'map/widgets/location_controller.dart';
 import 'package:location/location.dart';
@@ -154,12 +155,12 @@ class _BigMapState extends State<BigMap> {
         floatingActionButton:
             Column(mainAxisAlignment: MainAxisAlignment.end, children: [
           buildButton("btn1", _zoomIn, 'Zoom IN', Icons.zoom_in_sharp),
-          const SizedBox(height: 10),
+          SizedBox(height: 10.h),
           buildButton("btn2", _zoomOut, 'Zoom OUT', Icons.zoom_out_outlined),
-          const SizedBox(height: 10),
+          SizedBox(height: 10.h),
           buildButton("btn3", concurrentPosition, 'Position',
               Icons.my_location_rounded),
-          const SizedBox(height: 100),
+          SizedBox(height: 100.h),
         ]));
   }
 

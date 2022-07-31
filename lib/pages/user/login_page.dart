@@ -58,8 +58,12 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: buildAppBar(context),
-        body: SingleChildScrollView(
-          child: SizedBox(
+        body: Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration:
+              BoxDecoration(color: Theme.of(context).colorScheme.primary),
+          child: SingleChildScrollView(
             child: SafeArea(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5.w),
