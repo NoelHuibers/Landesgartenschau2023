@@ -3,12 +3,12 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:landesgartenschau2023/pages/home.dart';
+import 'package:landesgartenschau2023/services/logic.dart';
 import 'package:provider/provider.dart';
 import 'models/l10n/l10n.dart';
 import 'services/provider/locale_provider.dart';
 import 'services/provider/darkmode_provider.dart';
 import 'config/palette.dart';
-import 'services/client.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<ColorProvider>(create: (_) => ColorProvider()),
         ],
         builder: (context, child) {
-          fetchData();
+          final BloC bloc = BloC();
+          bloc.writeToDatabase();
           final languageProvider = Provider.of<LocaleProvider>(context);
           final colorProvider = Provider.of<ColorProvider>(context);
           return ScreenUtilInit(

@@ -1,10 +1,21 @@
-class Happenings {
+import 'happenings.dart';
+
+class HappeningsVersion {
   final int version;
-  final List happening;
+  final List<Happening> happenings;
 
-  const Happenings({required this.version, required this.happening});
+  const HappeningsVersion({required this.version, required this.happenings});
 
-  factory Happenings.fromJson(Map<String, dynamic> json) {
-    return Happenings(version: json['version'], happening: json['happening']);
+  factory HappeningsVersion.fromJson(Map<String, dynamic> json) {
+    return HappeningsVersion(
+        version: json['version'], happenings: json['happening']);
+  }
+
+  getHappenings() {
+    return happenings;
+  }
+
+  getVersion() {
+    return version;
   }
 }
