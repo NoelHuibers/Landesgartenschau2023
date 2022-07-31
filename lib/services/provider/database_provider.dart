@@ -6,12 +6,12 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseProvider {
-  static late Database _database;
+  static Database? _database;
   static final DatabaseProvider db = DatabaseProvider._();
 
   DatabaseProvider._();
 
-  Future<Database> get database async {
+  Future<Database?> get database async {
     // If database exists, return database
     if (_database != null) return _database;
 
@@ -21,7 +21,7 @@ class DatabaseProvider {
     return _database;
   }
 
-  // Create the database and the Employee table
+  // Create the database and the Happenings table
   initDB() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final path = join(documentsDirectory.path, 'happenings.db');
@@ -41,7 +41,7 @@ class DatabaseProvider {
   createHappening(Happening newHappening) async {
     await deleteAllHappenings();
     final db = await database;
-    final res = await db.insert('Happening', newHappening.toJson());
+    final res = await db!.insert('Happening', newHappening.toJson());
 
     return res;
   }
@@ -50,21 +50,21 @@ class DatabaseProvider {
     await deleteAllHappenings();
     final db = await database;
     for (var happening in newHappenings) {
-      await db.insert('Happening', happening.toJson());
+      await db!.insert('Happening', happening.toJson());
     }
   }
 
   // Delete all happenings from database
   Future<int> deleteAllHappenings() async {
     final db = await database;
-    final res = await db.rawDelete('DELETE FROM Happening');
+    final res = await db!.rawDelete('DELETE FROM Happening');
 
     return res;
   }
 
   Future<List<Happening>> getAllHappenings() async {
     final db = await database;
-    final res = await db.rawQuery("SELECT * FROM Happening");
+    final res = await db!.rawQuery("SELECT * FROM Happening");
 
     List<Happening> list =
         res.isNotEmpty ? res.map((c) => Happening.fromJson(c)).toList() : [];
