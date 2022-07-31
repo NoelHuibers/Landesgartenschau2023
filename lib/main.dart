@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:landesgartenschau2023/pages/home.dart';
+import 'package:landesgartenschau2023/services/logic.dart';
 import 'package:provider/provider.dart';
 import 'models/l10n/l10n.dart';
 import 'services/provider/locale_provider.dart';
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<ColorProvider>(create: (_) => ColorProvider()),
         ],
         builder: (context, child) {
-          fetchData();
+          final BloC bloc = BloC();
+          bloc.writeToDatabase();
           final languageProvider = Provider.of<LocaleProvider>(context);
           final colorProvider = Provider.of<ColorProvider>(context);
           return MaterialApp(
