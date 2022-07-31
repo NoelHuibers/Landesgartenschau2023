@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:landesgartenschau2023/pages/user/api_client.dart';
 import 'package:landesgartenschau2023/pages/user/register_page.dart';
 import 'package:landesgartenschau2023/pages/user/user_setting.dart';
@@ -58,49 +58,37 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: buildAppBar(context),
-        body: Form(
-          key: _formKey,
-          child: AnnotatedRegion<SystemUiOverlayStyle>(
-            value: SystemUiOverlayStyle.light,
-            child: GestureDetector(
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    height: double.infinity,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary),
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          buildImage(
-                              "assets/images/lgs.png", double.infinity, 100),
-                          const SizedBox(height: 10),
-                          buildImageLogo(context,
-                              "assets/images/kontoImage.png", 100, 100),
-                          const SizedBox(height: 10),
-                          buildText(context, 'Wilkommen zurück!', 20),
-                          const SizedBox(height: 15),
-                          buildEmail(context, mailController),
-                          const SizedBox(height: 10),
-                          buildPassword(),
-                          const SizedBox(height: 20),
-                          buildButton("Anmelden", login, 250, 20, 15, context),
-                          const SizedBox(height: 10),
-                          buildButton("Du hast noch kein Konto",
-                              registerNavigate, 150, 10, 10, context),
-                          const SizedBox(height: 10),
-                          buildText(
-                              context,
-                              '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
-                              10),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
+        body: SingleChildScrollView(
+          child: SizedBox(
+            child: SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    // buildImage("assets/images/lgs.png", double.infinity, 100),
+                    SizedBox(height: 10.h),
+                    buildImageLogo(
+                        context, "assets/images/kontoImage.png", 100, 100),
+                    SizedBox(height: 10.h),
+                    buildText(context, 'Wilkommen zurück!', 20),
+                    SizedBox(height: 15.h),
+                    buildEmail(context, mailController),
+                    SizedBox(height: 10.h),
+                    buildPassword(),
+                    SizedBox(height: 20.h),
+                    buildButton("Anmelden", login, 250, 20, 15, context),
+                    SizedBox(height: 150.h),
+                    buildButton("Du hast noch kein Konto", registerNavigate,
+                        150, 10, 10, context),
+                    //SizedBox(height: 10.h),
+                    buildText(
+                        context,
+                        '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
+                        10),
+                  ],
+                ),
               ),
             ),
           ),
@@ -124,8 +112,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     Border.all(color: Theme.of(context).colorScheme.onPrimary),
                 color: Theme.of(context).colorScheme.primary, //Background
                 borderRadius: BorderRadius.circular(10)),
-            height: 60,
-            width: 380,
             child: TextField(
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onBackground,

@@ -49,46 +49,38 @@ Widget buildButton(String text, Function funktion, double width, double padding,
 }
 
 Widget buildEmail(BuildContext context, TextEditingController eMailController) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      const SizedBox(height: 10),
-      Container(
-        alignment: Alignment.centerLeft,
-        decoration: BoxDecoration(
-            border: Border.all(color: Theme.of(context).colorScheme.onPrimary),
-            color: Theme.of(context).colorScheme.primary,
-            borderRadius: BorderRadius.circular(10)),
-        height: 60,
-        width: 380,
-        child: TextFormField(
-          controller: eMailController,
-          validator: (value) {
-            return Validator.validateEmail(value ?? "");
-          },
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onBackground,
+  return Container(
+    decoration: BoxDecoration(
+        border: Border.all(color: Theme.of(context).colorScheme.onPrimary),
+        color: Theme.of(context).colorScheme.primary,
+        borderRadius: BorderRadius.circular(10)),
+    child: TextFormField(
+      controller: eMailController,
+      validator: (value) {
+        return Validator.validateEmail(value ?? "");
+      },
+      style: TextStyle(
+        color: Theme.of(context).colorScheme.onBackground,
+      ),
+      decoration: InputDecoration(
+          border: InputBorder.none,
+          contentPadding: const EdgeInsets.only(top: 14),
+          prefixIcon: Icon(
+            Icons.account_box_outlined,
+            color: Theme.of(context).colorScheme.onPrimary,
           ),
-          decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: const EdgeInsets.only(top: 14),
-              prefixIcon: Icon(
-                Icons.account_box_outlined,
-                color: Theme.of(context).colorScheme.onPrimary,
-              ),
-              hintText: 'Benutzername',
-              hintStyle: TextStyle(
-                color: Theme.of(context).colorScheme.onPrimary,
-              )),
-        ),
-      )
-    ],
+          hintText: 'Benutzername',
+          hintStyle: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
+          )),
+    ),
   );
 }
 
 Widget buildImage(String imageLink, double width, double height) {
   return Image.asset(
     imageLink,
+    fit: BoxFit.contain,
     width: width,
     height: height,
   );
