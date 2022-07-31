@@ -2,9 +2,6 @@ import '/models/happenings.dart';
 import '/services/client.dart' as client;
 import './provider/database_provider.dart';
 
-import '/models/eventslist.dart';
-import 'internet_check.dart';
-
 class BloC {
   late int version;
   final int currentVersion = 1;

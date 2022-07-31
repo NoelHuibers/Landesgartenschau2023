@@ -8,7 +8,6 @@ import 'models/l10n/l10n.dart';
 import 'services/provider/locale_provider.dart';
 import 'services/provider/darkmode_provider.dart';
 import 'config/palette.dart';
-import 'services/client.dart';
 
 void main() {
   runApp(const MyApp());
