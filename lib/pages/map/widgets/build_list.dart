@@ -41,31 +41,27 @@ class _BuildListState extends State<BuildList> {
               SizedBox(
                 child: buildTextButton("Stands", const Stands()),
               ),
-              SizedBox(
-                  height: 200,
-                  child: DefaultCard(
-                    child: ListView.builder(
-                      itemCount: stands.length,
-                      itemBuilder: (context, index) {
-                        final stand = stands[index];
-                        return buildList(stand);
-                      },
-                    ),
-                  )),
+              DefaultCard(
+                child: ListView.builder(
+                  itemCount: stands.length,
+                  itemBuilder: (context, index) {
+                    final stand = stands[index];
+                    return buildList(stand);
+                  },
+                ),
+              ),
               SizedBox(
                 child: buildTextButton("Events", const Events()),
               ),
-              SizedBox(
-                  height: 200,
-                  child: DefaultCard(
-                    child: ListView.builder(
-                      itemCount: events.length,
-                      itemBuilder: (context, index) {
-                        final event = events[index];
-                        return buildList(event);
-                      },
-                    ),
-                  )),
+              DefaultCard(
+                child: ListView.builder(
+                  itemCount: events.length,
+                  itemBuilder: (context, index) {
+                    final event = events[index];
+                    return buildList(event);
+                  },
+                ),
+              ),
             ],
           ),
         ));
