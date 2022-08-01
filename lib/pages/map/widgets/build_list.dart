@@ -33,6 +33,7 @@ class _BuildListState extends State<BuildList> {
         child: ScrollConfiguration(
           behavior: const ScrollBehavior().copyWith(overscroll: false),
           child: ListView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             padding: EdgeInsets.symmetric(horizontal: 10.w),
             children: <Widget>[
               SizedBox(

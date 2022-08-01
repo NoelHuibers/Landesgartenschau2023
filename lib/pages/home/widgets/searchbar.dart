@@ -47,7 +47,6 @@ class _SearchWidgetState extends State<SearchWidget> {
                   onTap: () {
                     controller.clear();
                     widget.onChanged('');
-                    FocusScope.of(context).requestFocus(FocusNode());
                   },
                 )
               : null,

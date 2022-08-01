@@ -71,6 +71,9 @@ class _SlidePageState extends State<SlidePage> {
       widget.panelController.isPanelOpen
           ? widget.panelController.close()
           : widget.panelController.open();
+      if (widget.panelController.isPanelClosed) {
+        FocusManager.instance.primaryFocus?.unfocus();
+      }
     }
   }
 

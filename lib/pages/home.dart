@@ -17,46 +17,53 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.surfaceTint,
-          leading: IconButton(
-            icon: const Icon(Icons.account_circle_sharp),
-            color: Theme.of(context).colorScheme.onBackground,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginScreen()),
-              );
-            },
-          ),
-          centerTitle: true,
-          title: Image.asset("assets/images/logo6.png"),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.more_vert_rounded),
-              color: Theme.of(context).colorScheme.onBackground,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Settings()),
-                );
-              },
-            )
-          ],
-          actionsIconTheme: const IconThemeData(size: 32),
-        ),
-        body: SlidingUpPanel(
-          controller: panelController,
-          minHeight: 25,
-          maxHeight: 600,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(18)),
-          parallaxEnabled: true,
-          parallaxOffset: .5,
-          body: const BigMap(),
-          panel: SlidePage(
-            panelController: panelController,
-          ),
-        ));
+    return GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+              leading: IconButton(
+                icon: const Icon(Icons.account_circle_sharp),
+                color: Theme.of(context).colorScheme.onBackground,
+                onPressed: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()),
+                  );
+                },
+              ),
+              centerTitle: true,
+              title: Image.asset("assets/images/logo6.png"),
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.more_vert_rounded),
+                  color: Theme.of(context).colorScheme.onBackground,
+                  onPressed: () {
+                    FocusManager.instance.primaryFocus?.unfocus();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Settings()),
+                    );
+                  },
+                )
+              ],
+              actionsIconTheme: const IconThemeData(size: 32),
+            ),
+            body: SlidingUpPanel(
+              controller: panelController,
+              minHeight: 25,
+              maxHeight: 600,
+              onPanelSlide: (position) => FocusScope.of(context).unfocus(),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(18)),
+              parallaxEnabled: true,
+              parallaxOffset: .5,
+              body: const BigMap(),
+              panel: SlidePage(
+                panelController: panelController,
+              ),
+            )));
   }
 }

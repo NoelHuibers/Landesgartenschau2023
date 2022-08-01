@@ -11,7 +11,7 @@ class DefaultCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        borderRadius: const BorderRadius.all(Radius.circular(25)),
         child: ScrollConfiguration(
             behavior: const ScrollBehavior(),
             child: GlowingOverscrollIndicator(
