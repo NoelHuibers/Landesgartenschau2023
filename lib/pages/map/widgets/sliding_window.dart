@@ -63,9 +63,16 @@ class _SlidePageState extends State<SlidePage> {
       );
 
   // ignore: non_constant_identifier_names
-  void slide_page_controll() => widget.panelController.isPanelOpen
-      ? widget.panelController.close()
-      : widget.panelController.open();
+  void slide_page_controll() {
+    if (WidgetsBinding.instance.window.viewInsets.bottom > 0.0) {
+      //Wenn Keyboard ist offen
+      return;
+    } else {
+      widget.panelController.isPanelOpen
+          ? widget.panelController.close()
+          : widget.panelController.open();
+    }
+  }
 
   Widget bildButtonBar(BuildContext context) {
     MediaQueryData queryData;

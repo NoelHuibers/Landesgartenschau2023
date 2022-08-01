@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../home/widgets/default_card.dart';
 import 'package:landesgartenschau2023/models/events_stand_model.dart';
 import 'package:landesgartenschau2023/models/events_stand_data.dart';
@@ -32,36 +33,42 @@ class _BuildListState extends State<BuildList> {
         child: ScrollConfiguration(
           behavior: const ScrollBehavior().copyWith(overscroll: false),
           child: ListView(
-            padding: EdgeInsets.zero,
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
             children: <Widget>[
               SizedBox(
-                height: 70,
+                height: 70.h,
                 child: buildSearch(),
               ),
               SizedBox(
                 child: buildTextButton("Stands", const Stands()),
               ),
-              DefaultCard(
-                child: ListView.builder(
-                  itemCount: stands.length,
-                  itemBuilder: (context, index) {
-                    final stand = stands[index];
-                    return buildList(stand);
-                  },
+              SizedBox(
+                height: 200,
+                child: DefaultCard(
+                  child: ListView.builder(
+                    itemCount: stands.length,
+                    itemBuilder: (context, index) {
+                      final stand = stands[index];
+                      return buildList(stand);
+                    },
+                  ),
                 ),
               ),
               SizedBox(
                 child: buildTextButton("Events", const Events()),
               ),
-              DefaultCard(
-                child: ListView.builder(
-                  itemCount: events.length,
-                  itemBuilder: (context, index) {
-                    final event = events[index];
-                    return buildList(event);
-                  },
+              SizedBox(
+                height: 200,
+                child: DefaultCard(
+                  child: ListView.builder(
+                    itemCount: events.length,
+                    itemBuilder: (context, index) {
+                      final event = events[index];
+                      return buildList(event);
+                    },
+                  ),
                 ),
-              ),
+              )
             ],
           ),
         ));

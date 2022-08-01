@@ -10,18 +10,16 @@ class DefaultCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        height: 200,
-        child: ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
-            child: ScrollConfiguration(
-                behavior: const ScrollBehavior(),
-                child: GlowingOverscrollIndicator(
-                  axisDirection: AxisDirection.down,
+    return ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        child: ScrollConfiguration(
+            behavior: const ScrollBehavior(),
+            child: GlowingOverscrollIndicator(
+              axisDirection: AxisDirection.down,
+              color: Theme.of(context).colorScheme.surfaceTint,
+              child: Card(
                   color: Theme.of(context).colorScheme.surfaceTint,
-                  child: Card(
-                      color: Theme.of(context).colorScheme.surfaceTint,
-                      child: child),
-                ))));
+                  child: child),
+            )));
   }
 }
