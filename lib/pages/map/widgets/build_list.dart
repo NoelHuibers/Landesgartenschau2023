@@ -37,7 +37,7 @@ class _BuildListState extends State<BuildList> {
             padding: EdgeInsets.symmetric(horizontal: 10.w),
             children: <Widget>[
               SizedBox(
-                height: 70.h,
+                height: 35,
                 child: buildSearch(),
               ),
               SizedBox(
