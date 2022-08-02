@@ -10,6 +10,8 @@ mixin Palette {
       ),
     ),
 
+    primarySwatch: Colors.red,
+
     colorScheme: const ColorScheme.dark(
         primary: Color.fromARGB(255, 28, 28, 28), // dark=grau - light=grau
         onPrimary: Color(0xFFF6FDFF), // dark=weiß - light=grau
@@ -59,6 +61,7 @@ mixin Palette {
         color: Color.fromARGB(255, 255, 255, 255),
       ),
     ),
+    primarySwatch: Colors.blue,
     colorScheme: const ColorScheme.light(
       primary: Color.fromARGB(255, 255, 255, 255), // dark=grau - light=grau
       onPrimary: Color(0xE6333333), // dark=weiß - light=grau

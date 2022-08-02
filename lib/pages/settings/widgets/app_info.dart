@@ -15,7 +15,7 @@ class AppInfoButton extends StatelessWidget {
           color: Theme.of(context).colorScheme.onBackground,
         ),
         title: Text(
-          'Info zum App',
+          'Informationen zur Applikation',
           style: Theme.of(context).textTheme.bodyText2,
         ),
         onTap: () {
