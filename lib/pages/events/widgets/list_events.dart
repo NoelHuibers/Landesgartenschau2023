@@ -1,42 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:landesgartenschau2023/models/happenings.dart';
+
+import '/models/events/happening.dart';
 import '/services/provider/database_provider.dart';
 
-class Eventslist extends StatelessWidget {
-  const Eventslist({Key? key}) : super(key: key);
+class EventsList extends StatefulWidget {
+  const EventsList({Key? key}) : super(key: key);
+
+  @override
+  State<EventsList> createState() => _EventsListState();
+}
+
+class _EventsListState extends State<EventsList> {
+  late List<Happening> happeningslist;
+  bool loading = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    getHappeningslist();
+  }
+
+  getHappeningslist() async {
+    happeningslist = await DatabaseProvider.instance.getAllHappenings();
+    setState(() => loading = false);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: FutureBuilder<List<Happening>>(
-        future: DatabaseProvider.db.getAllHappenings(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                Happening happening = snapshot.data![index];
-                return ListTile(
-                  textColor: Theme.of(context).colorScheme.onBackground,
-                  tileColor: Theme.of(context).colorScheme.surfaceTint,
-                  title: Text(happening.name),
-                  subtitle: Text(happening.description,
-                      maxLines: 2, overflow: TextOverflow.ellipsis),
-                  trailing: const Icon(Icons.keyboard_arrow_right),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/event',
-                        arguments: happening);
-                  },
-                );
-              },
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
-      ),
-    );
+    return loading
+        ? const CircularProgressIndicator()
+        : ListView.builder(
+            itemCount: happeningslist.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                textColor: Theme.of(context).colorScheme.onBackground,
+                tileColor: Theme.of(context).colorScheme.surfaceTint,
+                title: Text(happeningslist[index].name),
+                subtitle: Text(happeningslist[index].description,
+                    maxLines: 2, overflow: TextOverflow.ellipsis),
+                trailing: const Icon(Icons.keyboard_arrow_right),
+                onTap: () {
+                  Navigator.pushNamed(context, '/detailedview',
+                      arguments: happeningslist[index]);
+                },
+              );
+            });
   }
 }

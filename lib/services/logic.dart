@@ -1,19 +1,26 @@
-import '/models/happenings.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '/models/events/happening.dart';
 import '/services/client.dart' as client;
-import './provider/database_provider.dart';
+import '/services/provider/database_provider.dart';
 
 class BloC {
   late int version;
-  final int currentVersion = 1;
-  late List<Happening> happenings;
+  late int currentVersion;
+  late List<Happening> happeningsList;
 
   writeToDatabase() async {
+    final prefs = await SharedPreferences.getInstance();
+    final currentVersion = prefs.getInt('Happeningsversion') ?? 0;
     try {
       final data = await client.fetchData();
-      version = data.version;
+      final version = data.version;
       if (version != currentVersion) {
-        happenings = data.happenings;
-        DatabaseProvider.db.createAllHappenings(happenings);
+        final happeningsList = data.happenings
+            .map((happening) => Happening.fromJsonAPI(happening))
+            .toList();
+        DatabaseProvider.instance.updateAllHappenings(happeningsList);
+        prefs.setInt('Happeningsversion', version);
       }
     } on Exception catch (_) {
       return false;

@@ -11,6 +11,7 @@ import 'services/provider/darkmode_provider.dart';
 import 'config/palette.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     ChangeNotifierProvider<ThemeProvider>(
       create: (_) => ThemeProvider()..initialize(),

@@ -1,11 +1,12 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
-import '/models/eventslist.dart';
+import '/models/events/happeningsversion.dart';
 
 Future<HappeningsVersion> fetchData() async {
   final response =
-      await http.get(Uri.parse('https://api.pwi-2022.org/happenings/1'));
+      await http.get(Uri.parse('https://api.pwi-2022.org/events/1/happenings'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,

@@ -1,74 +1,109 @@
 import 'dart:io';
-import '/models/happenings.dart';
-import 'package:path/path.dart';
 
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '/models/events/happening.dart';
+
 class DatabaseProvider {
   static Database? _database;
-  static final DatabaseProvider db = DatabaseProvider._();
+  static final DatabaseProvider instance = DatabaseProvider._init();
 
-  DatabaseProvider._();
+  DatabaseProvider._init();
 
-  Future<Database?> get database async {
-    // If database exists, return database
-    if (_database != null) return _database;
+  Future<Database> get database async {
+    // If the database is created, return it
+    if (_database != null) return _database!;
 
-    // If database don't exists, create one
-    _database = await initDB();
+    // Else, create the database
+    _database = await _initDB('happenings.db');
 
-    return _database;
-  }
+    return _database!;
+  } // get the database
 
-  // Create the database and the Happenings table
-  initDB() async {
+  Future<Database> _initDB(String filePath) async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    final path = join(documentsDirectory.path, 'happenings.db');
+    final path = join(documentsDirectory.path, filePath);
 
-    return await openDatabase(path, version: 0, onOpen: (db) {},
-        onCreate: (Database db, int version) async {
-      await db.execute('CREATE TABLE Happening('
-          'id INTEGER PRIMARY KEY,'
-          'name TEXT,'
-          'description TEXT,'
-          'date TEXT,'
-          ')');
-    });
-  }
+    return await openDatabase(path, version: 1, onCreate: _creatDatabase);
+  } // initialize a database
 
-  // Insert happenings on database
-  createHappening(Happening newHappening) async {
-    await deleteAllHappenings();
-    final db = await database;
-    final res = await db!.insert('Happening', newHappening.toJson());
+  Future _creatDatabase(Database db, int version) async {
+    const idx = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    const text = 'TEXT NOT NULL';
+    const integer = 'INTEGER NOT NULL';
 
-    return res;
-  }
+    await db.execute('''
+      CREATE TABLE $tableHappenings (
+        ${HappeningFields.id} $idx,
+        ${HappeningFields.name} $text,
+        ${HappeningFields.description} $text,
+        ${HappeningFields.startdate} $text,
+        ${HappeningFields.enddate} $text,
+        ${HappeningFields.areaId} $integer
+      )'''); // create a table
+  } // create a database
 
-  createAllHappenings(List<Happening> newHappenings) async {
-    await deleteAllHappenings();
-    final db = await database;
-    for (var happening in newHappenings) {
-      await db!.insert('Happening', happening.toJson());
+  Future<Happening> createHappening(Happening newHappening) async {
+    final db = await instance.database;
+    final id = await db.insert(tableHappenings, newHappening.toJson());
+
+    return newHappening.copy(id: id);
+  } // Creating a new happening
+
+  updateAllHappenings(List<Happening> newHappenings) async {
+    final db = await instance.database;
+    instance.deleteAllHappenings();
+    for (Happening newHappening in newHappenings) {
+      final id = await db.insert(tableHappenings, newHappening.toJson());
+      newHappening.copy(id: id);
     }
-  }
+  } // Creating multiple happenings
 
-  // Delete all happenings from database
-  Future<int> deleteAllHappenings() async {
-    final db = await database;
-    final res = await db!.rawDelete('DELETE FROM Happening');
+  Future<Happening> getHappening(int id) async {
+    final db = await instance.database;
+    final res = await db.query(tableHappenings,
+        where: '${HappeningFields.id} = ?', whereArgs: [id]);
 
-    return res;
-  }
+    if (res.isNotEmpty) {
+      return Happening.fromJsonDB(res.first);
+    } else {
+      throw Exception('ID $id not found');
+    } //Throw an exception if the id is not found
+  } // Getting a happening by ID
 
   Future<List<Happening>> getAllHappenings() async {
-    final db = await database;
-    final res = await db!.rawQuery("SELECT * FROM Happening");
-
+    final db = await instance.database;
+    final res = await db.query(tableHappenings);
     List<Happening> list =
-        res.isNotEmpty ? res.map((c) => Happening.fromJson(c)).toList() : [];
+        res.map((json) => Happening.fromJsonDB(json)).toList();
 
-    return list;
-  }
+    if (list.isNotEmpty) {
+      return list;
+    } else {
+      throw Exception('Table is empty');
+    } // If table is empty, throw exception
+  } // Get all happenings from database
+
+  Future<int> delete(int id) async {
+    final db = await instance.database;
+
+    return await db.delete(
+      tableHappenings,
+      where: '${HappeningFields.id} = ?',
+      whereArgs: [id],
+    );
+  } // Delete happening from database
+
+  Future<int> deleteAllHappenings() async {
+    final db = await database;
+    return await db.delete(tableHappenings);
+  } // Delete all happenings from database
+
+  Future close() async {
+    final db = await instance.database;
+
+    db.close();
+  } // Close database
 }
