@@ -11,7 +11,12 @@ import 'services/provider/darkmode_provider.dart';
 import 'config/palette.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider<ThemeProvider>(
+      create: (_) => ThemeProvider()..initialize(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -28,26 +33,25 @@ class MyApp extends StatelessWidget {
           final BloC bloc = BloC();
           bloc.writeToDatabase();
           final languageProvider = Provider.of<LocaleProvider>(context);
-          final colorProvider = Provider.of<ColorProvider>(context);
-          return ScreenUtilInit(
-              builder: ((context, child) => MaterialApp(
-                    title: 'LGS2023',
-                    themeMode: colorProvider.isDarkMode
-                        ? ThemeMode.light
-                        : ThemeMode.dark,
-                    theme: Palette.lightTheme,
-                    darkTheme: Palette.darkTheme,
-                    locale: languageProvider.locale,
-                    supportedLocales: L10n.all,
-                    localizationsDelegates: const [
-                      AppLocalizations.delegate,
-                      GlobalMaterialLocalizations.delegate,
-                      GlobalCupertinoLocalizations.delegate,
-                      GlobalWidgetsLocalizations.delegate
-                    ],
-                    home: const Homepage(),
-                  )),
-              designSize: const Size(360, 690));
+          return Consumer<ThemeProvider>(builder: (context, provider, child) {
+            return ScreenUtilInit(
+                builder: ((context, child) => MaterialApp(
+                      title: 'LGS2023',
+                      theme: Palette.lightTheme,
+                      darkTheme: Palette.darkTheme,
+                      themeMode: provider.themeMode,
+                      locale: languageProvider.locale,
+                      supportedLocales: L10n.all,
+                      localizationsDelegates: const [
+                        AppLocalizations.delegate,
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalCupertinoLocalizations.delegate,
+                        GlobalWidgetsLocalizations.delegate
+                      ],
+                      home: const Homepage(),
+                    )),
+                designSize: const Size(360, 690));
+          });
         },
       );
 }

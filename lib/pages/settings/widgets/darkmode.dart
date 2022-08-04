@@ -10,32 +10,52 @@ class Darkmode extends StatefulWidget {
 }
 
 class DarkmodeState extends State<Darkmode> {
-  late bool select = false;
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        leading: Icon(
-          Provider.of<ColorProvider>(context).isDarkMode
-              ? Icons.light_mode_outlined
-              : Icons.dark_mode_outlined,
-          color: Theme.of(context).colorScheme.onBackground,
-        ),
-        title: Text(
-          Provider.of<ColorProvider>(context).isDarkMode
-              ? 'Lightmode'
-              : 'Darkmode',
-          style: Theme.of(context).textTheme.bodyText2,
-        ),
-        trailing: Container(
-            width: 32,
-            margin: const EdgeInsets.only(right: 25.0),
-            child: SwitchListTile(
-              value: Provider.of<ColorProvider>(context).isDarkMode,
-              onChanged: (bool value) {
-                final provider =
-                    Provider.of<ColorProvider>(context, listen: false);
-                provider.toggleTheme(value);
+      leading: Icon(
+        Icons.light_mode_outlined,
+        color: Theme.of(context).colorScheme.onBackground,
+      ),
+      title: Text(
+        'Theme-Mode',
+        style: Theme.of(context).textTheme.bodyText2,
+      ),
+      trailing: Consumer<ThemeProvider>(builder: (context, provider, child) {
+        return SizedBox(
+            width: 75,
+            child: DropdownButtonHideUnderline(
+                child: DropdownButton<String>(
+              dropdownColor: Theme.of(context).colorScheme.surfaceTint,
+              value: provider.currentTheme,
+              items: [
+                DropdownMenuItem<String>(
+                  value: 'light',
+                  child: Text(
+                    'Light',
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
+                ),
+                DropdownMenuItem<String>(
+                  value: 'dark',
+                  child: Text(
+                    'Dark',
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
+                ),
+                DropdownMenuItem<String>(
+                  value: 'system',
+                  child: Text(
+                    'System',
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
+                ),
+              ],
+              onChanged: (String? value) {
+                provider.changeTheme(value ?? 'system');
               },
             )));
+      }),
+    );
   }
 }
