@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '/models/events/happening.dart';
 import '/services/provider/database_provider.dart';
+import '/pages/detailsview.dart';
 
 class EventsList extends StatefulWidget {
   const EventsList({Key? key}) : super(key: key);
@@ -57,8 +58,10 @@ class _EventsListState extends State<EventsList> {
                 subtitle: Text(happeningslist[index].description,
                     maxLines: 2, overflow: TextOverflow.ellipsis),
                 onTap: () {
-                  Navigator.pushNamed(context, '/detailedview',
-                      arguments: happeningslist[index]);
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Detailsview(
+                            happening: happeningslist[index],
+                          )));
                 },
               );
             });
