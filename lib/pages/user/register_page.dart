@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:landesgartenschau2023/pages/user/api_client.dart';
 import 'package:landesgartenschau2023/pages/user/user_setting.dart';
@@ -57,44 +58,52 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: buildAppBar(context),
-        body: Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration:
-                BoxDecoration(color: Theme.of(context).colorScheme.primary),
-            child: SingleChildScrollView(
-              child: SizedBox(
-                  child: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      buildImageLogo(
-                          context, "assets/images/kontoImage.png", 100, 100),
-                      SizedBox(height: 10.h),
-                      buildText(context, 'Account erstellen!', 20),
-                      SizedBox(height: 15.h),
-                      buildEmail(context, mailController),
-                      SizedBox(height: 15.h),
-                      buildPassword("passwort", password, passController),
-                      SizedBox(height: 15.h),
-                      buildPassword("Passwort wiederholen", returnPassword,
-                          returnPassController),
-                      SizedBox(height: 25.h),
-                      buildButton(
-                          "Registrieren", register, 250, 20, 15, context),
-                      SizedBox(height: 120.h),
-                      buildText(
-                          context,
-                          '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
-                          10),
-                    ],
-                  ),
-                ),
-              )),
-            )));
+        body: Form(
+            key: _formKey,
+            child: AnnotatedRegion<SystemUiOverlayStyle>(
+                value: SystemUiOverlayStyle.light,
+                child: GestureDetector(
+                    child: Stack(children: <Widget>[
+                  Container(
+                      height: double.infinity,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primary),
+                      child: SingleChildScrollView(
+                        child: SizedBox(
+                            child: SafeArea(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 5.w),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                buildImageLogo(context,
+                                    "assets/images/kontoImage.png", 100, 100),
+                                SizedBox(height: 10.h),
+                                buildText(context, 'Account erstellen!', 20),
+                                SizedBox(height: 15.h),
+                                buildEmail(context, mailController),
+                                SizedBox(height: 15.h),
+                                buildPassword(
+                                    "passwort", password, passController),
+                                SizedBox(height: 15.h),
+                                buildPassword("Passwort wiederholen",
+                                    returnPassword, returnPassController),
+                                SizedBox(height: 25.h),
+                                buildButton("Registrieren", register, 250, 20,
+                                    15, context),
+                                SizedBox(height: 120.h),
+                                buildText(
+                                    context,
+                                    '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
+                                    10),
+                              ],
+                            ),
+                          ),
+                        )),
+                      ))
+                ])))));
   }
 
   /*

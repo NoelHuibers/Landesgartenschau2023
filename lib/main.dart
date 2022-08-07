@@ -12,12 +12,7 @@ import 'config/palette.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    ChangeNotifierProvider<ThemeProvider>(
-      create: (_) => ThemeProvider()..initialize(),
-      child: const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -29,6 +24,9 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<LocaleProvider>(
               create: (_) => LocaleProvider(const Locale("en"))),
           ChangeNotifierProvider<ColorProvider>(create: (_) => ColorProvider()),
+          ChangeNotifierProvider<ThemeProvider>(
+            create: (_) => ThemeProvider()..initialize(),
+          )
         ],
         builder: (context, child) {
           final BloC bloc = BloC();

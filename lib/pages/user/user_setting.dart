@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:landesgartenschau2023/pages/user/user_tools.dart';
 import 'package:landesgartenschau2023/pages/user/validator.dart';
@@ -20,65 +21,78 @@ class _UserSettingState extends State<UserSetting> {
   final TextEditingController oldPassController = TextEditingController();
   final TextEditingController mailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController return_passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: buildAppBar(context),
-        body: Container(
-          height: double.infinity,
-          width: double.infinity,
-          decoration:
-              BoxDecoration(color: Theme.of(context).colorScheme.primary),
-          child: SingleChildScrollView(
-            child: SizedBox(
-                child: SafeArea(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    buildImageLogo(
-                        context, "assets/images/kontoImage.png", 100, 100),
-                    SizedBox(height: 10.h),
-                    Text(
-                      'Persönliche Daten!',
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.onBackground,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
+        body: Form(
+            key: _formKey,
+            child: AnnotatedRegion<SystemUiOverlayStyle>(
+                value: SystemUiOverlayStyle.light,
+                child: GestureDetector(
+                    child: Stack(children: <Widget>[
+                  Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary),
+                    child: SingleChildScrollView(
+                      child: SizedBox(
+                          child: SafeArea(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 5.w),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              buildImageLogo(context,
+                                  "assets/images/kontoImage.png", 100, 100),
+                              SizedBox(height: 10.h),
+                              Text(
+                                'Persönliche Daten!',
+                                style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(height: 20.h),
+                              usertext_build(),
+                              SizedBox(height: 5.h),
+                              buildPassword("altes Passwort", old_password,
+                                  oldPassController),
+                              SizedBox(height: 5.h),
+                              buildPassword("neues Passwort", new_password,
+                                  passController),
+                              SizedBox(height: 5.h),
+                              buildPassword("neues Passwort wiederholen",
+                                  return_password, return_passController),
+                              SizedBox(height: 20.h),
+                              buildButton("Passwort ändern", test, 250, 20, 15,
+                                  context),
+                              SizedBox(height: 5.h),
+                              buildButton(
+                                  "Abmelden", test, 250, 20, 15, context),
+                              SizedBox(height: 20.h),
+                              Text(
+                                '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
+                                style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.onSurface,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )),
                     ),
-                    SizedBox(height: 20.h),
-                    usertext_build(),
-                    SizedBox(height: 5.h),
-                    buildPassword(
-                        "altes Passwort", old_password, oldPassController),
-                    SizedBox(height: 5.h),
-                    buildPassword(
-                        "neues Passwort", new_password, passController),
-                    SizedBox(height: 5.h),
-                    buildPassword("neues Passwort wiederholen", return_password,
-                        return_passController),
-                    SizedBox(height: 20.h),
-                    buildButton("Passwort ändern", test, 250, 20, 15, context),
-                    SizedBox(height: 5.h),
-                    buildButton("Abmelden", test, 250, 20, 15, context),
-                    SizedBox(height: 20.h),
-                    Text(
-                      '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurface,
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-            )),
-          ),
-        ));
+                  )
+                ])))));
   }
 
   Widget usertext_build() {
