@@ -18,7 +18,6 @@ class _EventsListState extends State<EventsList> {
   bool loading = true;
   bool favoritesLoading = true;
   Map<int, bool> favorites = {};
-  List<Happening> favoritesList = [];
 
   @override
   void initState() {
@@ -46,7 +45,7 @@ class _EventsListState extends State<EventsList> {
           child: favoritesLoading
               ? const CircularProgressIndicator()
               : ListView.builder(
-                  itemCount: favoritesList.length,
+                  itemCount: favorites.entries.where((e) => e.value).length,
                   itemBuilder: (context, index) {
                     int id = happeningslist[index].id!;
                     return ListTile(
@@ -108,17 +107,12 @@ class _EventsListState extends State<EventsList> {
     List<String> favoritesShared = prefs.getStringList('favorites') ?? [];
     List<int> favoritesInt = favoritesShared.map((i) => int.parse(i)).toList();
     Map<int, bool> favoriteMap = {};
-    List<Happening> favoritesList2 = [];
     for (int i = 0; i < happeningslist.length; i++) {
       int id = happeningslist[i].id!;
       favoriteMap[id] = favoritesInt.contains(id);
-      if (favoriteMap[id] == true) {
-        favoritesList2.add(happeningslist[i]);
-      }
     }
     setState(() {
       favorites = favoriteMap;
-      favoritesList = favoritesList2;
       favoritesLoading = false;
     });
   }
@@ -134,10 +128,7 @@ class _EventsListState extends State<EventsList> {
 
   void toggleFavorite(int id) {
     setState(() {
-      favoritesLoading = true;
       favorites[id] = !favorites[id]!;
-      favoritesList.remove(id);
-      favoritesLoading = false;
     });
   }
 }
