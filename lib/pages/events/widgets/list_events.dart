@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:landesgartenschau2023/pages/home/widgets/searchbar.dart';
+import '/pages/home/widgets/searchbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '/models/events/happening.dart';
 import '/services/provider/database_provider.dart';
@@ -130,6 +130,8 @@ class _EventsListState extends State<EventsList> {
                                       happeningslist[index].description,
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis),
+                                  trailing:
+                                      Text(happeningslist[index].startdate),
                                   onTap: () {
                                     Navigator.of(context)
                                         .push(MaterialPageRoute(
