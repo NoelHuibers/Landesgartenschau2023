@@ -18,7 +18,8 @@ class _EventsListState extends State<EventsList> {
   late List<Happening> happeningslist;
   bool loading = true;
   bool favoritesLoading = true;
-  Map<int, bool> favorites = {};
+  Map<Happening, bool> favorites = {};
+  List<Happening> favoritesList = [];
   String query = '';
 
   @override
@@ -69,11 +70,8 @@ class _EventsListState extends State<EventsList> {
                       child: favoritesLoading
                           ? const CircularProgressIndicator()
                           : ListView.builder(
-                              itemCount: favorites.entries
-                                  .where((e) => e.value)
-                                  .length,
+                              itemCount: favoritesList.length,
                               itemBuilder: (context, index) {
-                                int id = happeningslist[index].id!;
                                 return ListTile(
                                   textColor: Theme.of(context)
                                       .colorScheme
@@ -81,18 +79,19 @@ class _EventsListState extends State<EventsList> {
                                   tileColor:
                                       Theme.of(context).colorScheme.surfaceTint,
                                   leading: IconButton(
-                                    icon: favorites[id]!
+                                    icon: favorites[favoritesList[index]]!
                                         ? Icon(color: Colors.yellow, Icons.star)
                                         : const Icon(Icons.star_border),
-                                    onPressed: () => toggleFavorite(id),
+                                    onPressed: () =>
+                                        toggleFavorite(favoritesList[index]),
                                   ),
-                                  title: Text(happeningslist[index].name),
+                                  title: Text(favoritesList[index].name),
                                   onTap: () {
                                     Navigator.of(context)
                                         .push(MaterialPageRoute(
                                             builder: (context) => Detailsview(
                                                   happening:
-                                                      happeningslist[index],
+                                                      favoritesList[index],
                                                 )));
                                   },
                                 );
@@ -113,13 +112,13 @@ class _EventsListState extends State<EventsList> {
                           : ListView.builder(
                               itemCount: happeningslist.length,
                               itemBuilder: (context, index) {
-                                int id = happeningslist[index].id!;
                                 return ListTile(
                                   leading: IconButton(
-                                    icon: favorites[id]!
+                                    icon: favorites[happeningslist[index]]!
                                         ? Icon(color: Colors.yellow, Icons.star)
                                         : const Icon(Icons.star_border),
-                                    onPressed: () => toggleFavorite(id),
+                                    onPressed: () =>
+                                        toggleFavorite(happeningslist[index]),
                                   ),
                                   textColor: Theme.of(context)
                                       .colorScheme
@@ -158,13 +157,15 @@ class _EventsListState extends State<EventsList> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> favoritesShared = prefs.getStringList('favorites') ?? [];
     List<int> favoritesInt = favoritesShared.map((i) => int.parse(i)).toList();
-    Map<int, bool> favoriteMap = {};
+    Map<Happening, bool> favoriteMap = {};
     for (int i = 0; i < happeningslist.length; i++) {
       int id = happeningslist[i].id!;
-      favoriteMap[id] = favoritesInt.contains(id);
+      favoriteMap[happeningslist[i]] = favoritesInt.contains(id);
     }
     setState(() {
       favorites = favoriteMap;
+      favoritesList =
+          favorites.entries.where((e) => e.value).map((e) => e.key).toList();
       favoritesLoading = false;
     });
   }
@@ -173,14 +174,16 @@ class _EventsListState extends State<EventsList> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> favoritesShared = favorites.entries
         .where((e) => e.value)
-        .map((e) => e.key.toString())
+        .map((e) => e.key.id.toString())
         .toList();
     prefs.setStringList('favorites', favoritesShared);
   }
 
-  void toggleFavorite(int id) {
+  void toggleFavorite(Happening happening) {
     setState(() {
-      favorites[id] = !favorites[id]!;
+      favorites[happening] = !favorites[happening]!;
+      favoritesList =
+          favorites.entries.where((e) => e.value).map((e) => e.key).toList();
     });
   }
 }
