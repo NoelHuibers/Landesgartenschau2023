@@ -1,10 +1,13 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart';
+import 'package:landesgartenschau2023/pages/home.dart';
 import 'package:landesgartenschau2023/pages/user/api_client.dart';
 import 'package:landesgartenschau2023/pages/user/register_page.dart';
-import 'package:landesgartenschau2023/pages/user/user_setting.dart';
 import 'package:landesgartenschau2023/pages/user/user_tools.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -22,35 +25,28 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> login() async {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text('Processing Data'),
-        backgroundColor: Colors.green.shade300,
-      ));
-
-      dynamic res = await _apiCall.login(
+      Response res = await _apiCall.login(
         mailController.text,
         passController.text,
       );
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      if (res.statusCode == 200) {
+        final body = jsonDecode(res.body);
+        final SharedPreferences _prefs = await SharedPreferences.getInstance();
+        await _prefs.setString("login", body['token']);
 
-      if (res['token'] != null) {
-        // ignore: use_build_context_synchronously
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const UserSetting()));
+        //Hier Kommt die uleitung auf die UserSetting Page
       }
-      if (res['token'] == null) {
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: const Text("Die angegebene daten sind Falsch"),
-          backgroundColor: Colors.red.shade300,
-        ));
-      } else {
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error: ${res['Message']}'),
-          backgroundColor: Colors.red.shade300,
-        ));
+      if (res.statusCode == 400) {
+        massage(context, 'Fehler ist aufgetreten');
+        return;
+      }
+      if (res.statusCode == 401) {
+        massage(context, 'Passwort oder username falsch');
+        return;
+      }
+      if (res.statusCode == 404) {
+        massage(context, 'user nicht gefunden');
+        return;
       }
     }
   }
@@ -58,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: buildAppBar(context),
+        appBar: buildAppBar(context, const Homepage()),
         body: Form(
             key: _formKey,
             child: AnnotatedRegion<SystemUiOverlayStyle>(

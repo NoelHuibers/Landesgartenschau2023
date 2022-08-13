@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart';
+import 'package:landesgartenschau2023/pages/home.dart';
 import 'package:landesgartenschau2023/pages/user/api_client.dart';
 import 'package:landesgartenschau2023/pages/user/user_setting.dart';
 import 'package:landesgartenschau2023/pages/user/user_tools.dart';
@@ -25,31 +27,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Future<void> register() async {
     if (_formKey.currentState!.validate()) {
-      dynamic res = await _apiCall.register(
-        mailController.text,
-        passController.text,
-      );
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text('Processing Data'),
+        backgroundColor: Colors.green.shade300,
+      ));
 
-      if (res['id'] != null && res['token'] != null) {
-        // ignore: use_build_context_synchronously
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const UserSetting()));
+      Response res = await _apiCall.register(
+          "eve.holt@reqres.in",
+          // mailController.text,
+          // passController.text,
+          "us123.Q");
+
+      if (res.statusCode == 201) {
+        popupRegister(context);
+        //Hier Kommt die uleitung auf die LoginPage Page
       }
-
-      if (res['token'] == null || res['id'] == null) {
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: const Text("Die angegebene daten sind Falsch"),
-          backgroundColor: Colors.red.shade300,
-        ));
-      } else {
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error: ${res['Message']}'),
-          backgroundColor: Colors.red.shade300,
-        ));
+      if (res.statusCode == 409) {
+        massage(context, 'User gibt schon');
+      }
+      if (res.statusCode == 413) {
+        massage(context, 'Passwort & name lang"');
+      }
+      if (res.statusCode == 422) {
+        massage(context, 'passwprt name kurz"');
       }
     }
   }
@@ -57,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: buildAppBar(context),
+        appBar: buildAppBar(context, const Homepage()),
         body: Form(
             key: _formKey,
             child: AnnotatedRegion<SystemUiOverlayStyle>(

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:landesgartenschau2023/pages/user/login_page.dart';
 import 'package:landesgartenschau2023/pages/user/validator.dart';
 
 import '../home.dart';
 
-PreferredSizeWidget buildAppBar(BuildContext context) {
+PreferredSizeWidget buildAppBar(BuildContext context, var seite) {
   return AppBar(
     backgroundColor: Theme.of(context).colorScheme.surfaceTint,
     leading: BackButton(color: Theme.of(context).colorScheme.onBackground),
@@ -12,7 +13,7 @@ PreferredSizeWidget buildAppBar(BuildContext context) {
       onTap: () {
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => const Homepage()),
+          MaterialPageRoute(builder: (context) => seite),
           (Route<dynamic> route) => false,
         );
       },
@@ -104,4 +105,57 @@ Widget buildText(BuildContext context, String text, double fontSize) {
         fontSize: fontSize,
         fontWeight: FontWeight.bold),
   );
+}
+
+popupRegister(BuildContext context) {
+  return showDialog(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(
+          "Registration Message",
+          style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+              fontSize: 20,
+              fontWeight: FontWeight.bold),
+        ),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Text(
+                "Registration erfolgreich melden sich sich an",
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontSize: 18,
+                    fontWeight: FontWeight.normal),
+              ),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text(
+              "Ok",
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontSize: 18,
+                  fontWeight: FontWeight.normal),
+            ),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()));
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+void massage(BuildContext context, String text) {
+  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+    content: Text('Fehler ist aufgetreten'),
+    backgroundColor: Colors.red,
+  ));
 }

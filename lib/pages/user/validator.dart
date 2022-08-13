@@ -1,6 +1,7 @@
 class Validator {
   static String? validateEmail(String value) {
-    Pattern pattern = r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+';
+    Pattern pattern =
+        r'^(?=.{6,8}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$';
     RegExp regex = RegExp(pattern as String);
     if (!regex.hasMatch(value)) {
       return 'Bitte gültigen E-Mail geben';
