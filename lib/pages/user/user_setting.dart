@@ -3,8 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart';
+import 'package:landesgartenschau2023/pages/home.dart';
+import 'package:landesgartenschau2023/pages/user/api_client.dart';
 import 'package:landesgartenschau2023/pages/user/user_tools.dart';
 import 'package:landesgartenschau2023/pages/user/validator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserSetting extends StatefulWidget {
   const UserSetting({Key? key}) : super(key: key);
@@ -23,11 +27,48 @@ class _UserSettingState extends State<UserSetting> {
   final TextEditingController passController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController return_passController = TextEditingController();
+  final ApiCall _apiCall = ApiCall();
+
+  Future<void> setPass() async {
+    if (_formKey.currentState!.validate()) {
+      Response res = await _apiCall.register(
+          "eve.holt@reqres.in",
+          // mailController.text,
+          // passController.text,
+          "us123.Q");
+
+      if (res.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Passwort wurde geändert'),
+          backgroundColor: Colors.green,
+        ));
+      }
+      if (res.statusCode == 401) {
+        massage(context, 'falsche angegebene Passwort');
+      }
+    }
+  }
+
+  logout() async {
+    Response res = await _apiCall.logOut();
+    if (res.statusCode == 200) {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.remove("login");
+
+      //Hier Kommt die umleitung auf die LoginPage oder HomePage
+    }
+    if (res.statusCode == 400) {
+      massage(context, 'Fehler mit Token');
+    }
+    if (res.statusCode == 401) {
+      massage(context, 'melde dich zuerst an');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: buildAppBar(context),
+        appBar: buildAppBar(context, const Homepage()),
         body: Form(
             key: _formKey,
             child: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -72,11 +113,11 @@ class _UserSettingState extends State<UserSetting> {
                               buildPassword("neues Passwort wiederholen",
                                   return_password, return_passController),
                               SizedBox(height: 20.h),
-                              buildButton("Passwort ändern", test, 250, 20, 15,
-                                  context),
+                              buildButton("Passwort ändern", setPass, 250, 20,
+                                  15, context),
                               SizedBox(height: 5.h),
                               buildButton(
-                                  "Abmelden", test, 250, 20, 15, context),
+                                  "Abmelden", logout, 250, 20, 15, context),
                               SizedBox(height: 20.h),
                               Text(
                                 '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
@@ -103,8 +144,6 @@ class _UserSettingState extends State<UserSetting> {
           Container(
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
-                // border:
-                //     Border.all(color: Theme.of(context).colorScheme.onPrimary),
                 color: Theme.of(context).colorScheme.primary,
                 borderRadius: BorderRadius.circular(10)),
             child: Row(
@@ -188,6 +227,4 @@ class _UserSettingState extends State<UserSetting> {
       ],
     );
   }
-
-  void test() {}
 }
