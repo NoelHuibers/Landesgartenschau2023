@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
 import 'package:landesgartenschau2023/pages/home.dart';
 import '/services/client.dart' as client;
-import 'package:landesgartenschau2023/pages/login/user_setting.dart';
 import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import 'package:landesgartenschau2023/pages/login/validator.dart';
 
@@ -32,10 +31,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ));
 
       Response res = await client.register(
-          "eve.holt@reqres.in",
-          // mailController.text,
-          // passController.text,
-          "us123.Q");
+        mailController.text,
+        passController.text,
+      );
 
       if (res.statusCode == 201) {
         popupRegister(context);
@@ -45,10 +43,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
         massage(context, 'User gibt schon');
       }
       if (res.statusCode == 413) {
-        massage(context, 'Passwort & name lang"');
+        massage(context, 'Passwort & name lang');
       }
       if (res.statusCode == 422) {
-        massage(context, 'passwprt name kurz"');
+        massage(context, 'passwprt name kurz');
       }
     }
   }

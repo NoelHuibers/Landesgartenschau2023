@@ -37,9 +37,17 @@ Future<StandsVersion> fetchStands() async {
 }
 
 Future<dynamic> login(String username, String password) async {
-  var response = await http.post(
-      Uri.parse("https://api.pwi-2022.org/users/login"),
-      body: ({"event_id": '12', "name": username, "password": password}));
+  final response =
+      await http.post(Uri.parse("https://api.pwi-2022.org/users/login"),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{
+            'event_id': "1",
+            'name': username,
+            'password': password,
+            //sthowl
+          }));
   return response;
 }
 
@@ -52,19 +60,18 @@ Future<dynamic> register(String username, String password) async {
         'name': username,
         'password': password,
       }));
-  if (response.statusCode == 201) {
-    return response;
-  } else {
-    throw Exception('User already exists');
-  }
+  return response;
 }
 
 Future<dynamic> resetPass(String username, String password) async {
-  var response = await http.post(
-      Uri.parse("https://api.pwi-2022.org/users/logout"),
-      body: ({
-        "name": "user123",
-        "new_password": "1234567",
+  final response = await http.post(
+      Uri.parse("https://api.pwi-2022.org/users/changepw"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        "name": username,
+        "new_password": password,
         "password": "123456"
       }));
   return response;
@@ -72,11 +79,14 @@ Future<dynamic> resetPass(String username, String password) async {
 
 Future<dynamic> logOut() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.getString("login");
 
-  var response = await http.post(
-      Uri.parse("https://api.pwi-2022.org/users/changepw"),
-      body: ({"Token": prefs.getString("login")}));
-
+  final response =
+      await http.post(Uri.parse("https://api.pwi-2022.org/users/logout"),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{
+            'token': prefs.getString("login").toString(),
+          }));
   return response;
 }

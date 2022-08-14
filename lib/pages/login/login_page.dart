@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
 import 'package:landesgartenschau2023/pages/home.dart';
+import 'package:landesgartenschau2023/pages/login/user_setting.dart';
 import '/services/client.dart' as client;
 import 'package:landesgartenschau2023/pages/login/register_page.dart';
 import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
@@ -28,11 +29,15 @@ class _LoginScreenState extends State<LoginScreen> {
         mailController.text,
         passController.text,
       );
+
+      // final body = jsonDecode(res.body);
+      // print(body['token']);
+
       if (res.statusCode == 200) {
         final body = jsonDecode(res.body);
-        final SharedPreferences _prefs = await SharedPreferences.getInstance();
-        await _prefs.setString("login", body['token']);
-
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString("login", body['token']);
+        routeToPage(context, const UserSetting());
         //Hier Kommt die uleitung auf die UserSetting Page
       }
       if (res.statusCode == 400) {
@@ -73,7 +78,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              // buildImage("assets/images/lgs.png", double.infinity, 100),
                               SizedBox(height: 10.h),
                               buildImageLogo(context,
                                   "assets/images/kontoImage.png", 100, 100),
@@ -89,7 +93,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               SizedBox(height: 150.h),
                               buildButton("Du hast noch kein Konto",
                                   registerNavigate, 150, 10, 10, context),
-                              //SizedBox(height: 10.h),
                               buildText(
                                   context,
                                   '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
