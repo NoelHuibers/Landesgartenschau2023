@@ -5,9 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
 import 'package:landesgartenschau2023/pages/home.dart';
-import 'package:landesgartenschau2023/pages/user/api_client.dart';
-import 'package:landesgartenschau2023/pages/user/user_tools.dart';
-import 'package:landesgartenschau2023/pages/user/validator.dart';
+import '/services/client.dart' as client;
+import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
+import 'package:landesgartenschau2023/pages/login/validator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserSetting extends StatefulWidget {
@@ -27,11 +27,10 @@ class _UserSettingState extends State<UserSetting> {
   final TextEditingController passController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController return_passController = TextEditingController();
-  final ApiCall _apiCall = ApiCall();
 
   Future<void> setPass() async {
     if (_formKey.currentState!.validate()) {
-      Response res = await _apiCall.register(
+      Response res = await client.register(
           "eve.holt@reqres.in",
           // mailController.text,
           // passController.text,
@@ -50,7 +49,7 @@ class _UserSettingState extends State<UserSetting> {
   }
 
   logout() async {
-    Response res = await _apiCall.logOut();
+    Response res = await client.logOut();
     if (res.statusCode == 200) {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.remove("login");

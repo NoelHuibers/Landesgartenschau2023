@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:landesgartenschau2023/pages/map.dart';
 import 'package:landesgartenschau2023/pages/settings.dart';
-import 'package:landesgartenschau2023/pages/user/login_page.dart';
+import 'package:landesgartenschau2023/pages/login/login_page.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:landesgartenschau2023/pages/map/widgets/sliding_window.dart';
 

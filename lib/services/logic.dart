@@ -13,7 +13,7 @@ class BloC {
     final prefs = await SharedPreferences.getInstance();
     final currentVersion = prefs.getInt('Happeningsversion') ?? 0;
     try {
-      final data = await client.fetchData();
+      final data = await client.fetchHappenings();
       final version = data.version;
       if (version != currentVersion) {
         final happeningsList = data.happenings
