@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
 import 'package:landesgartenschau2023/pages/home.dart';
-import 'package:landesgartenschau2023/pages/user/api_client.dart';
-import 'package:landesgartenschau2023/pages/user/user_setting.dart';
-import 'package:landesgartenschau2023/pages/user/user_tools.dart';
-import 'package:landesgartenschau2023/pages/user/validator.dart';
+import '/services/client.dart' as client;
+import 'package:landesgartenschau2023/pages/login/user_setting.dart';
+import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
+import 'package:landesgartenschau2023/pages/login/validator.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -20,7 +20,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController mailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final TextEditingController returnPassController = TextEditingController();
-  final ApiCall _apiCall = ApiCall();
   bool _showPassword = true;
   String password = '';
   String returnPassword = '';
@@ -32,7 +31,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         backgroundColor: Colors.green.shade300,
       ));
 
-      Response res = await _apiCall.register(
+      Response res = await client.register(
           "eve.holt@reqres.in",
           // mailController.text,
           // passController.text,

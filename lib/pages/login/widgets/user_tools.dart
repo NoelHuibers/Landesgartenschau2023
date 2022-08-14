@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:landesgartenschau2023/pages/user/login_page.dart';
-import 'package:landesgartenschau2023/pages/user/validator.dart';
-
-import '../home.dart';
+import 'package:landesgartenschau2023/pages/login/login_page.dart';
+import 'package:landesgartenschau2023/pages/login/validator.dart';
 
 PreferredSizeWidget buildAppBar(BuildContext context, var seite) {
   return AppBar(

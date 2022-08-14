@@ -4,9 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
 import 'package:landesgartenschau2023/pages/home.dart';
-import 'package:landesgartenschau2023/pages/user/api_client.dart';
-import 'package:landesgartenschau2023/pages/user/register_page.dart';
-import 'package:landesgartenschau2023/pages/user/user_tools.dart';
+import '/services/client.dart' as client;
+import 'package:landesgartenschau2023/pages/login/register_page.dart';
+import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -20,12 +20,11 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController mailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
-  final ApiCall _apiCall = ApiCall();
   bool _showPassword = true;
 
   Future<void> login() async {
     if (_formKey.currentState!.validate()) {
-      Response res = await _apiCall.login(
+      Response res = await client.login(
         mailController.text,
         passController.text,
       );
