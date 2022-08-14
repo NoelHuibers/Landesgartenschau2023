@@ -42,7 +42,7 @@ class DataFetcher {
       if (version != currentStandsVersion) {
         final List<Stand> standsList =
             data.stands.map((stand) => Stand.fromJsonAPI(stand)).toList();
-        //DatabaseProvider.instance.updateAllStands(standsList);
+        DatabaseProvider.instance.updateAllStands(standsList);
         prefs.setInt('Standsversion', version);
         return true;
       } else {
