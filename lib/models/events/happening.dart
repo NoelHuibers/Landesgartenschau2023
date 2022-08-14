@@ -3,7 +3,7 @@ const String tableHappenings = 'Happenings';
 class HappeningFields {
   static const String id = '_id';
   static const String name = 'name';
-  static const String description = 'descrition';
+  static const String description = 'description';
   static const String startdate = 'startdate';
   static const String enddate = 'enddate';
   static const String areaId = 'areaId';
@@ -28,21 +28,23 @@ class Happening {
 
   factory Happening.fromJsonAPI(Map<String, dynamic> json) {
     return Happening(
-        name: json['name'] as String,
-        description: json['description'] as String,
-        startdate: json['startDayTime'] as String,
-        enddate: json['endDayTime'] as String,
-        areaId: json['area_id'] as int);
+      name: json['name'] as String,
+      description: json['description'] as String,
+      startdate: json['startDayTime'] as String,
+      enddate: json['endDayTime'] as String,
+      areaId: json['area_id'] as int,
+    );
   }
 
   factory Happening.fromJsonDB(Map<String, dynamic> json) {
     return Happening(
-        id: json[HappeningFields.id] as int,
-        name: json[HappeningFields.name] as String,
-        description: json[HappeningFields.description] as String,
-        startdate: json[HappeningFields.startdate] as String,
-        enddate: json[HappeningFields.enddate] as String,
-        areaId: json[HappeningFields.areaId] as int);
+      id: json[HappeningFields.id] as int,
+      name: json[HappeningFields.name] as String,
+      description: json[HappeningFields.description] as String,
+      startdate: json[HappeningFields.startdate] as String,
+      enddate: json[HappeningFields.enddate] as String,
+      areaId: json[HappeningFields.areaId] as int,
+    );
   }
 
   Map<String, Object?> toJson() => {

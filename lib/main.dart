@@ -29,8 +29,10 @@ class MyApp extends StatelessWidget {
           )
         ],
         builder: (context, child) {
-          final BloC bloc = BloC();
-          bloc.writeToDatabase();
+          final DataFetcher dataFetcher = DataFetcher();
+          dataFetcher.init();
+          dataFetcher.writeHappeningsToDatabase();
+          dataFetcher.writeStandsToDatabase();
           final languageProvider = Provider.of<LocaleProvider>(context);
           return Consumer<ThemeProvider>(builder: (context, provider, child) {
             return ScreenUtilInit(
