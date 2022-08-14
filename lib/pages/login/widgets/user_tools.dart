@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:landesgartenschau2023/pages/login/login_page.dart';
+import 'package:landesgartenschau2023/pages/home.dart';
 import 'package:landesgartenschau2023/pages/login/validator.dart';
 
 PreferredSizeWidget buildAppBar(BuildContext context, var seite) {
@@ -141,8 +141,9 @@ popupRegister(BuildContext context) {
                   fontWeight: FontWeight.normal),
             ),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()));
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const Homepage()),
+                  (Route<dynamic> route) => false);
             },
           ),
         ],
@@ -152,8 +153,15 @@ popupRegister(BuildContext context) {
 }
 
 void massage(BuildContext context, String text) {
-  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-    content: Text('Fehler ist aufgetreten'),
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: Text(text),
     backgroundColor: Colors.red,
   ));
+}
+
+void routeToPage(BuildContext context, var page) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => page),
+  );
 }

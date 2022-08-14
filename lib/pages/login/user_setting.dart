@@ -18,6 +18,7 @@ class UserSetting extends StatefulWidget {
 }
 
 class _UserSettingState extends State<UserSetting> {
+  String? username;
   bool _showPassword = true;
   String old_password = '';
   String new_password = '';
@@ -31,10 +32,9 @@ class _UserSettingState extends State<UserSetting> {
   Future<void> setPass() async {
     if (_formKey.currentState!.validate()) {
       Response res = await client.register(
-          "eve.holt@reqres.in",
-          // mailController.text,
-          // passController.text,
-          "us123.Q");
+        mailController.text,
+        passController.text,
+      );
 
       if (res.statusCode == 200) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -49,12 +49,14 @@ class _UserSettingState extends State<UserSetting> {
   }
 
   logout() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove("login");
+    routeToPage(context, const Homepage());
     Response res = await client.logOut();
     if (res.statusCode == 200) {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.remove("login");
-
-      //Hier Kommt die umleitung auf die LoginPage oder HomePage
+      routeToPage(context, const Homepage());
     }
     if (res.statusCode == 400) {
       massage(context, 'Fehler mit Token');
@@ -67,7 +69,32 @@ class _UserSettingState extends State<UserSetting> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: buildAppBar(context, const Homepage()),
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back,
+                  color: Theme.of(context).colorScheme.onBackground),
+              onPressed: () async {
+                final SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                if (prefs.getString("login") != null) {
+                  routeToPage(context, const Homepage());
+                } else {
+                  return;
+                }
+              }),
+          centerTitle: true,
+          title: InkWell(
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const Homepage()),
+                (Route<dynamic> route) => false,
+              );
+            },
+            child: Image.asset("assets/images/logo6.png"),
+          ),
+        ),
         body: Form(
             key: _formKey,
             child: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -226,4 +253,6 @@ class _UserSettingState extends State<UserSetting> {
       ],
     );
   }
+
+  void setUserName() {}
 }

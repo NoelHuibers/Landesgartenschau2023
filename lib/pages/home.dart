@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:landesgartenschau2023/pages/login/user_setting.dart';
+import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import 'package:landesgartenschau2023/pages/map.dart';
 import 'package:landesgartenschau2023/pages/settings.dart';
 import 'package:landesgartenschau2023/pages/login/login_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:landesgartenschau2023/pages/map/widgets/sliding_window.dart';
 
@@ -25,13 +28,14 @@ class _HomepageState extends State<Homepage> {
               leading: IconButton(
                 icon: const Icon(Icons.account_circle_sharp),
                 color: Theme.of(context).colorScheme.onBackground,
-                onPressed: () {
+                onPressed: () async {
                   FocusManager.instance.primaryFocus?.unfocus();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const LoginScreen()),
-                  );
+                  final SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  if (prefs.getString("login") != null) {
+                    routeToPage(context, const UserSetting());
+                  } else
+                    routeToPage(context, const LoginScreen());
                 },
               ),
               centerTitle: true,
