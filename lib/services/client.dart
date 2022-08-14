@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:landesgartenschau2023/models/stands/standsversion.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '/models/events/happeningsversion.dart';
@@ -13,6 +14,21 @@ Future<HappeningsVersion> fetchHappenings() async {
     // If the server did return a 200 OK response,
     // then parse the JSON.
     return HappeningsVersion.fromJson(jsonDecode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load data');
+  }
+}
+
+Future<StandsVersion> fetchStands() async {
+  final response =
+      await http.get(Uri.parse('https://api.pwi-2022.org/events/1/stands'));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return StandsVersion.fromJson(jsonDecode(response.body));
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
