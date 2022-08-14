@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '/models/events/happening.dart';
+import '/models/stands/stand.dart';
 
 class DatabaseProvider {
   static Database? _database;
@@ -17,7 +18,7 @@ class DatabaseProvider {
     if (_database != null) return _database!;
 
     // Else, create the database
-    _database = await _initDB('happenings.db');
+    _database = await _initDB('lgs2023.db');
 
     return _database!;
   } // get the database
@@ -42,6 +43,17 @@ class DatabaseProvider {
         ${HappeningFields.startdate} $text,
         ${HappeningFields.enddate} $text,
         ${HappeningFields.areaId} $integer
+      )''');
+    await db.execute('''
+      CREATE TABLE $tableStands (
+        ${StandsFields.id} $idx,
+        ${StandsFields.name} $text,
+        ${StandsFields.description} $text,
+        ${StandsFields.latitude} $text,
+        ${StandsFields.longitude} $text,
+        ${StandsFields.openingHours} $text,
+        ${StandsFields.standCategory} $text,
+        ${StandsFields.standCategoryId} $integer
       )'''); // create a table
   } // create a database
 
@@ -100,6 +112,64 @@ class DatabaseProvider {
     final db = await database;
     return await db.delete(tableHappenings);
   } // Delete all happenings from database
+
+  Future<Stand> createStand(Stand newStand) async {
+    final db = await instance.database;
+    final id = await db.insert(tableStands, newStand.toJson());
+
+    return newStand.copy(id: id);
+  } // Creating a new stand
+
+  updateAllStands(List<Stand> newStands) async {
+    final db = await instance.database;
+    instance.deleteAllStands();
+    for (Stand newStand in newStands) {
+      final id = await db.insert(tableStands, newStand.toJson());
+      newStand.copy(id: id);
+    }
+  } // Creating multiple stands
+
+  Future<Stand> getStand(int id) async {
+    final db = await instance.database;
+    final res = await db.query(
+      tableStands,
+      where: '${StandsFields.id} = ?',
+      whereArgs: [id],
+    );
+
+    if (res.isNotEmpty) {
+      return Stand.fromJsonDB(res.first);
+    } else {
+      throw Exception('ID $id not found');
+    } //Throw an exception if the id is not found
+  } // Getting a stand by ID
+
+  Future<List<Stand>> getAllStands() async {
+    final db = await instance.database;
+    final res = await db.query(tableStands);
+    List<Stand> list = res.map((json) => Stand.fromJsonDB(json)).toList();
+
+    if (list.isNotEmpty) {
+      return list;
+    } else {
+      throw Exception('Table is empty');
+    } // If table is empty, throw exception
+  } // Get all stands from database
+
+  Future<int> deleteStand(int id) async {
+    final db = await instance.database;
+
+    return await db.delete(
+      tableStands,
+      where: '${StandsFields.id} = ?',
+      whereArgs: [id],
+    );
+  } // Delete stand from database
+
+  Future<int> deleteAllStands() async {
+    final db = await database;
+    return await db.delete(tableStands);
+  } // Delete all stands from database
 
   Future close() async {
     final db = await instance.database;
