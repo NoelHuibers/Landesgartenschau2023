@@ -17,7 +17,7 @@ class Stand {
   final String description;
   final double latitude;
   final double longitude;
-  final openingHours;
+  final Map openingHours;
   final String standCategory;
   final int standCategoryId;
 
@@ -38,8 +38,8 @@ class Stand {
       description: json['description'] as String,
       latitude: json['latitude'] as double,
       longitude: json['longitude'] as double,
-      openingHours: json['opening_hours'],
-      standCategory: json['stand_category'] as String,
+      openingHours: json['openings_hours'] as Map,
+      standCategory: json['stand_category_name'] as String,
       standCategoryId: json['stand_category_id'] as int,
     );
   }
@@ -51,7 +51,7 @@ class Stand {
       description: json[StandsFields.description] as String,
       latitude: json[StandsFields.latitude] as double,
       longitude: json[StandsFields.longitude] as double,
-      openingHours: json[StandsFields.openingHours],
+      openingHours: json[StandsFields.openingHours] as Map,
       standCategory: json[StandsFields.standCategory] as String,
       standCategoryId: json[StandsFields.standCategoryId] as int,
     );
@@ -74,7 +74,7 @@ class Stand {
     String? description,
     double? latitude,
     double? longitude,
-    openingHours,
+    Map? openingHours,
     String? standCategory,
     int? standCategoryId,
   }) =>
