@@ -19,14 +19,14 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController mailController = TextEditingController();
+  final TextEditingController userController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   bool _showPassword = true;
 
   Future<void> login() async {
     if (_formKey.currentState!.validate()) {
       Response res = await client.login(
-        mailController.text,
+        userController.text,
         passController.text,
       );
 
@@ -37,6 +37,8 @@ class _LoginScreenState extends State<LoginScreen> {
         final body = jsonDecode(res.body);
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString("login", body['token']);
+        await prefs.setString("username", userController.text);
+
         routeToPage(context, const UserSetting());
         //Hier Kommt die uleitung auf die UserSetting Page
       }
@@ -84,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               SizedBox(height: 10.h),
                               buildText(context, 'Wilkommen zurück!', 20),
                               SizedBox(height: 15.h),
-                              buildEmail(context, mailController),
+                              buildUser(context, userController),
                               SizedBox(height: 10.h),
                               buildPassword(),
                               SizedBox(height: 20.h),

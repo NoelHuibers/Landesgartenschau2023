@@ -16,7 +16,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController mailController = TextEditingController();
+  final TextEditingController userController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final TextEditingController returnPassController = TextEditingController();
   bool _showPassword = true;
@@ -31,7 +31,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ));
 
       Response res = await client.register(
-        mailController.text,
+        userController.text,
         passController.text,
       );
 
@@ -80,7 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 SizedBox(height: 10.h),
                                 buildText(context, 'Account erstellen!', 20),
                                 SizedBox(height: 15.h),
-                                buildEmail(context, mailController),
+                                buildUser(context, userController),
                                 SizedBox(height: 15.h),
                                 buildPassword(
                                     "passwort", password, passController),
