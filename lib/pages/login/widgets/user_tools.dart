@@ -47,14 +47,14 @@ Widget buildButton(String text, Function funktion, double width, double padding,
           )));
 }
 
-Widget buildEmail(BuildContext context, TextEditingController eMailController) {
+Widget buildUser(BuildContext context, TextEditingController userController) {
   return Container(
     decoration: BoxDecoration(
         border: Border.all(color: Theme.of(context).colorScheme.onPrimary),
         color: Theme.of(context).colorScheme.primary,
         borderRadius: BorderRadius.circular(10)),
     child: TextFormField(
-      controller: eMailController,
+      controller: userController,
       validator: (value) {
         return Validator.validateEmail(value ?? "");
       },

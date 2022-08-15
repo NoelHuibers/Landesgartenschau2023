@@ -63,7 +63,8 @@ Future<dynamic> register(String username, String password) async {
   return response;
 }
 
-Future<dynamic> resetPass(String username, String password) async {
+Future<dynamic> resetPass(
+    String username, String password, String oldPassword) async {
   final response = await http.post(
       Uri.parse("https://api.pwi-2022.org/users/changepw"),
       headers: <String, String>{
@@ -72,8 +73,9 @@ Future<dynamic> resetPass(String username, String password) async {
       body: jsonEncode(<String, String>{
         "name": username,
         "new_password": password,
-        "password": "123456"
+        "password": oldPassword
       }));
+  print(response.statusCode);
   return response;
 }
 

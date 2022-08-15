@@ -18,23 +18,23 @@ class UserSetting extends StatefulWidget {
 }
 
 class _UserSettingState extends State<UserSetting> {
-  String? username;
   bool _showPassword = true;
   String old_password = '';
   String new_password = '';
   String return_password = '';
   final TextEditingController oldPassController = TextEditingController();
-  final TextEditingController mailController = TextEditingController();
+  final TextEditingController userController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController return_passController = TextEditingController();
 
   Future<void> setPass() async {
     if (_formKey.currentState!.validate()) {
-      Response res = await client.register(
-        mailController.text,
-        passController.text,
-      );
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      Response res = await client.resetPass(
+          prefs.getString("username").toString(),
+          passController.text,
+          oldPassController.text);
 
       if (res.statusCode == 200) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -51,6 +51,8 @@ class _UserSettingState extends State<UserSetting> {
   logout() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove("login");
+    prefs.remove("username");
+
     routeToPage(context, const Homepage());
     Response res = await client.logOut();
     if (res.statusCode == 200) {
@@ -130,7 +132,7 @@ class _UserSettingState extends State<UserSetting> {
                               SizedBox(height: 20.h),
                               usertext_build(),
                               SizedBox(height: 5.h),
-                              buildPassword("altes Passwort", old_password,
+                              buildOldPassword("altes Passwort", old_password,
                                   oldPassController),
                               SizedBox(height: 5.h),
                               buildPassword("neues Passwort", new_password,
@@ -254,5 +256,56 @@ class _UserSettingState extends State<UserSetting> {
     );
   }
 
-  void setUserName() {}
+  Widget buildOldPassword(
+      String text, String pass, TextEditingController controller) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        const SizedBox(height: 10),
+        Container(
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
+                border:
+                    Border.all(color: Theme.of(context).colorScheme.onPrimary),
+                color: Theme.of(context).colorScheme.primary,
+                borderRadius: BorderRadius.circular(10)),
+            child: TextFormField(
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onBackground,
+              ),
+              obscureText: _showPassword,
+              controller: controller,
+              onChanged: (value) => pass = value,
+              decoration: InputDecoration(
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() => _showPassword = !_showPassword);
+                  },
+                  child: Icon(
+                    _showPassword ? Icons.visibility : Icons.visibility_off,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                ),
+                border: InputBorder.none,
+                contentPadding: const EdgeInsets.only(top: 14),
+                prefixIcon: Icon(
+                  Icons.lock_open_outlined,
+                  size: 23,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+                hintText: text,
+                hintStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
+            ))
+      ],
+    );
+  }
+
+  // setUserName() async {
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   username = prefs.getString("username").toString();
+  //   return prefs.getString("username").toString();
+  // }
 }
