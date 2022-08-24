@@ -13,10 +13,7 @@ class Events extends StatelessWidget {
         leading: BackButton(color: Theme.of(context).colorScheme.onBackground),
         title: Text('Events', style: Theme.of(context).textTheme.headline5),
       ),
-      body: Container(
-          decoration:
-              BoxDecoration(color: Theme.of(context).colorScheme.primary),
-          child: const EventsList()),
+      body: const EventsList(),
     );
   }
 }
