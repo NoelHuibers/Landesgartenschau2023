@@ -18,9 +18,45 @@ class Detailsview extends StatelessWidget {
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
-        body: Container(
-            decoration:
-                BoxDecoration(color: Theme.of(context).colorScheme.primary),
-            child: Text(happening.name)));
+        body: ListView(
+          children: <Widget>[
+            Container(
+                decoration:
+                    BoxDecoration(color: Theme.of(context).colorScheme.primary),
+                child: Text(
+                  happening.name,
+                  style: Theme.of(context).textTheme.subtitle1,
+                )),
+            Container(
+                decoration:
+                    BoxDecoration(color: Theme.of(context).colorScheme.primary),
+                child: Text(
+                  happening.description,
+                  style: Theme.of(context).textTheme.bodyText2,
+                )),
+            /*Container(
+                decoration:
+                    BoxDecoration(color: Theme.of(context).colorScheme.primary),
+                child: Text(happening.areaId, style: Theme.of(context).textTheme.bodyText2,)),
+            Container(
+                decoration:
+                    BoxDecoration(color: Theme.of(context).colorScheme.primary),
+                child: (happening.id, style: Theme.of(context).textTheme.bodyText2,)),*/
+            Container(
+                decoration:
+                    BoxDecoration(color: Theme.of(context).colorScheme.primary),
+                child: Text(
+                  happening.startdate,
+                  style: Theme.of(context).textTheme.bodyText2,
+                )),
+            Container(
+                decoration:
+                    BoxDecoration(color: Theme.of(context).colorScheme.primary),
+                child: Text(
+                  happening.enddate,
+                  style: Theme.of(context).textTheme.bodyText2,
+                )),
+          ],
+        ));
   }
 }
