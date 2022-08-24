@@ -65,7 +65,7 @@ Future<dynamic> register(String username, String password) async {
 
 Future<dynamic> resetPass(
     String username, String password, String oldPassword) async {
-  final response = await http.post(
+  final response = await http.put(
       Uri.parse("https://api.pwi-2022.org/users/changepw"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -75,20 +75,15 @@ Future<dynamic> resetPass(
         "new_password": password,
         "password": oldPassword
       }));
-  print(response.statusCode);
   return response;
 }
 
-Future<dynamic> logOut() async {
+Future<dynamic> logOut(String token) async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-  final response =
-      await http.post(Uri.parse("https://api.pwi-2022.org/users/logout"),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: jsonEncode(<String, String>{
-            'token': prefs.getString("login").toString(),
-          }));
+  final response = await http.post(
+      Uri.parse("https://api.pwi-2022.org/users/logout"),
+      headers: <String, String>{
+        'token': token,
+      });
   return response;
 }

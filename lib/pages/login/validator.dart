@@ -4,7 +4,7 @@ class Validator {
         r'^(?=.{6,8}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$';
     RegExp regex = RegExp(pattern as String);
     if (!regex.hasMatch(value)) {
-      return 'Bitte gültigen E-Mail geben';
+      return 'Bitte Sechs bis Achtstellige username eingeben';
     } else {
       return null;
     }

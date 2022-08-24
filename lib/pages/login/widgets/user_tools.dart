@@ -1,6 +1,10 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:landesgartenschau2023/pages/home.dart';
+import 'package:landesgartenschau2023/pages/login/user_setting.dart';
 import 'package:landesgartenschau2023/pages/login/validator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '/services/client.dart' as client;
+import 'package:http/http.dart';
 
 PreferredSizeWidget buildAppBar(BuildContext context, var seite) {
   return AppBar(
@@ -105,7 +109,7 @@ Widget buildText(BuildContext context, String text, double fontSize) {
   );
 }
 
-popupRegister(BuildContext context) {
+popupRegister(BuildContext context, String userName, String passwort) {
   return showDialog(
     context: context,
     barrierDismissible: false, // user must tap button!
@@ -140,10 +144,19 @@ popupRegister(BuildContext context) {
                   fontSize: 18,
                   fontWeight: FontWeight.normal),
             ),
-            onPressed: () {
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const Homepage()),
-                  (Route<dynamic> route) => false);
+            onPressed: () async {
+              Response res = await client.login(
+                userName,
+                passwort,
+              );
+              if (res.statusCode == 200) {
+                final body = jsonDecode(res.body);
+                final SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                await prefs.setString("login", body['token']);
+                await prefs.setString("username", userName);
+                routeToPage(context, const UserSetting());
+              }
             },
           ),
         ],

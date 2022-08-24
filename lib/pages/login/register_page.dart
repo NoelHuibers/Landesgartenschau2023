@@ -36,8 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       );
 
       if (res.statusCode == 201) {
-        popupRegister(context);
-        //Hier Kommt die uleitung auf die LoginPage Page
+        popupRegister(context, userController.text, passController.text);
       }
       if (res.statusCode == 409) {
         massage(context, 'User gibt schon');
@@ -144,8 +143,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.only(top: 14),
-                prefixIcon: Icon(Icons.lock_open_outlined,
-                    size: 23, color: Theme.of(context).colorScheme.onPrimary),
+                prefixIcon: Icon(
+                    _showPassword
+                        ? Icons.lock_open_outlined
+                        : Icons.lock_outline,
+                    size: 23,
+                    color: Theme.of(context).colorScheme.onPrimary),
                 hintText: text,
                 hintStyle: TextStyle(
                   color: Theme.of(context).colorScheme.onPrimary,

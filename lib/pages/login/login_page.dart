@@ -30,17 +30,12 @@ class _LoginScreenState extends State<LoginScreen> {
         passController.text,
       );
 
-      // final body = jsonDecode(res.body);
-      // print(body['token']);
-
       if (res.statusCode == 200) {
         final body = jsonDecode(res.body);
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString("login", body['token']);
         await prefs.setString("username", userController.text);
-
         routeToPage(context, const UserSetting());
-        //Hier Kommt die uleitung auf die UserSetting Page
       }
       if (res.statusCode == 400) {
         massage(context, 'Fehler ist aufgetreten');
@@ -84,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               buildImageLogo(context,
                                   "assets/images/kontoImage.png", 100, 100),
                               SizedBox(height: 10.h),
-                              buildText(context, 'Wilkommen zurück!', 20),
+                              buildText(context, 'Anmelden!', 20),
                               SizedBox(height: 15.h),
                               buildUser(context, userController),
                               SizedBox(height: 10.h),
@@ -144,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.only(top: 14),
                 prefixIcon: Icon(
-                  Icons.lock_open_outlined,
+                  _showPassword ? Icons.lock_open_outlined : Icons.lock_outline,
                   size: 23,
                   color: Theme.of(context).colorScheme.onPrimary,
                 ),

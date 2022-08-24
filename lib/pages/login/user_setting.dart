@@ -1,5 +1,4 @@
 // ignore_for_file: non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,7 +22,6 @@ class _UserSettingState extends State<UserSetting> {
   String new_password = '';
   String return_password = '';
   final TextEditingController oldPassController = TextEditingController();
-  final TextEditingController userController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController return_passController = TextEditingController();
@@ -41,6 +39,9 @@ class _UserSettingState extends State<UserSetting> {
           content: Text('Passwort wurde geändert'),
           backgroundColor: Colors.green,
         ));
+        passController.clear();
+        oldPassController.clear();
+        return_passController.clear();
       }
       if (res.statusCode == 401) {
         massage(context, 'falsche angegebene Passwort');
@@ -50,14 +51,13 @@ class _UserSettingState extends State<UserSetting> {
 
   logout() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove("login");
-    prefs.remove("username");
-
-    routeToPage(context, const Homepage());
-    Response res = await client.logOut();
+    Response res = await client.logOut(
+      prefs.getString("login").toString(),
+    );
     if (res.statusCode == 200) {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.remove("login");
+      prefs.remove("username");
       routeToPage(context, const Homepage());
     }
     if (res.statusCode == 400) {
