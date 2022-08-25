@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:landesgartenschau2023/pages/home.dart';
 import 'package:landesgartenschau2023/pages/login/user_setting.dart';
 import 'package:landesgartenschau2023/pages/login/validator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,13 +10,24 @@ import 'package:http/http.dart';
 PreferredSizeWidget buildAppBar(BuildContext context, var seite) {
   return AppBar(
     backgroundColor: Theme.of(context).colorScheme.surfaceTint,
-    leading: BackButton(color: Theme.of(context).colorScheme.onBackground),
+    leading: IconButton(
+        icon: Icon(Icons.arrow_back,
+            color: Theme.of(context).colorScheme.onBackground),
+        onPressed: () async {
+          final SharedPreferences prefs = await SharedPreferences.getInstance();
+          if (prefs.getString("login") != null) {
+            routeToPage(context, const Homepage());
+          }
+          if (prefs.getString("login") == null) {
+            routeToPage(context, const Homepage());
+          }
+        }),
     centerTitle: true,
     title: InkWell(
       onTap: () {
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => seite),
+          MaterialPageRoute(builder: (context) => const Homepage()),
           (Route<dynamic> route) => false,
         );
       },
@@ -52,32 +64,31 @@ Widget buildButton(String text, Function funktion, double width, double padding,
 }
 
 Widget buildUser(BuildContext context, TextEditingController userController) {
-  return Container(
-    decoration: BoxDecoration(
-        border: Border.all(color: Theme.of(context).colorScheme.onPrimary),
-        color: Theme.of(context).colorScheme.primary,
-        borderRadius: BorderRadius.circular(10)),
-    child: TextFormField(
-      controller: userController,
-      validator: (value) {
-        return Validator.validateEmail(value ?? "");
-      },
-      style: TextStyle(
-        color: Theme.of(context).colorScheme.onBackground,
-      ),
-      decoration: InputDecoration(
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.only(top: 14),
-          prefixIcon: Icon(
-            Icons.account_box_outlined,
-            color: Theme.of(context).colorScheme.onPrimary,
+  return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        const SizedBox(height: 5),
+        TextFormField(
+          controller: userController,
+          validator: (value) {
+            return Validator.validateEmail(value ?? "");
+          },
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onBackground,
           ),
-          hintText: 'Benutzername',
-          hintStyle: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary,
-          )),
-    ),
-  );
+          decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: const EdgeInsets.only(top: 14),
+              prefixIcon: Icon(
+                Icons.account_box_outlined,
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
+              hintText: 'Benutzername',
+              hintStyle: TextStyle(
+                color: Theme.of(context).colorScheme.onPrimary,
+              )),
+        )
+      ]);
 }
 
 Widget buildImage(String imageLink, double width, double height) {
@@ -116,7 +127,7 @@ popupRegister(BuildContext context, String userName, String passwort) {
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text(
-          "Registration Message",
+          "Registration erfolgreich",
           style: TextStyle(
               color: Theme.of(context).colorScheme.onSurface,
               fontSize: 20,
@@ -126,7 +137,7 @@ popupRegister(BuildContext context, String userName, String passwort) {
           child: ListBody(
             children: <Widget>[
               Text(
-                "Registration erfolgreich melden sich sich an",
+                "Sie werden Automatisch angemeldet",
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface,
                     fontSize: 18,

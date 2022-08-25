@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
 import 'package:landesgartenschau2023/pages/home.dart';
+import 'package:landesgartenschau2023/pages/home/widgets/default_card.dart';
 import '/services/client.dart' as client;
 import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import 'package:landesgartenschau2023/pages/login/validator.dart';
@@ -53,7 +54,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: buildAppBar(context, const Homepage()),
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+          leading:
+              BackButton(color: Theme.of(context).colorScheme.onBackground),
+          centerTitle: true,
+          title: InkWell(
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const Homepage()),
+                (Route<dynamic> route) => false,
+              );
+            },
+            child: Image.asset("assets/images/logo6.png"),
+          ),
+        ),
         body: Form(
             key: _formKey,
             child: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -78,18 +94,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     "assets/images/kontoImage.png", 100, 100),
                                 SizedBox(height: 10.h),
                                 buildText(context, 'Account erstellen!', 20),
+                                SizedBox(height: 30.h),
+                                DefaultCard(
+                                  child: buildUser(context, userController),
+                                ),
                                 SizedBox(height: 15.h),
-                                buildUser(context, userController),
+                                DefaultCard(
+                                  child: buildPassword(
+                                      "passwort", password, passController),
+                                ),
                                 SizedBox(height: 15.h),
-                                buildPassword(
-                                    "passwort", password, passController),
-                                SizedBox(height: 15.h),
-                                buildPassword("Passwort wiederholen",
-                                    returnPassword, returnPassController),
+                                DefaultCard(
+                                  child: buildPassword("Passwort wiederholen",
+                                      returnPassword, returnPassController),
+                                ),
                                 SizedBox(height: 25.h),
                                 buildButton("Registrieren", register, 250, 20,
                                     15, context),
-                                SizedBox(height: 120.h),
+                                SizedBox(height: 110.h),
                                 buildText(
                                     context,
                                     '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
@@ -113,14 +135,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
         Container(
             alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-                border:
-                    Border.all(color: Theme.of(context).colorScheme.onPrimary),
-                color: Theme.of(context).colorScheme.primary,
-                borderRadius: BorderRadius.circular(10)),
             child: TextFormField(
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onBackground,

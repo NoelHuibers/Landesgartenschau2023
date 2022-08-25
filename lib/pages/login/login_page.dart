@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
 import 'package:landesgartenschau2023/pages/home.dart';
+import 'package:landesgartenschau2023/pages/home/widgets/default_card.dart';
 import 'package:landesgartenschau2023/pages/login/user_setting.dart';
 import '/services/client.dart' as client;
 import 'package:landesgartenschau2023/pages/login/register_page.dart';
@@ -80,14 +81,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                   "assets/images/kontoImage.png", 100, 100),
                               SizedBox(height: 10.h),
                               buildText(context, 'Anmelden!', 20),
-                              SizedBox(height: 15.h),
-                              buildUser(context, userController),
+                              SizedBox(height: 30.h),
+                              DefaultCard(
+                                  child: buildUser(context, userController)),
                               SizedBox(height: 10.h),
-                              buildPassword(),
+                              DefaultCard(child: buildPassword()),
                               SizedBox(height: 20.h),
                               buildButton(
                                   "Anmelden", login, 250, 20, 15, context),
-                              SizedBox(height: 150.h),
+                              SizedBox(height: 130.h),
                               buildButton("Du hast noch kein Konto",
                                   registerNavigate, 150, 10, 10, context),
                               buildText(
@@ -112,14 +114,9 @@ class _LoginScreenState extends State<LoginScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
         Container(
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-                border:
-                    Border.all(color: Theme.of(context).colorScheme.onPrimary),
-                color: Theme.of(context).colorScheme.primary, //Background
-                borderRadius: BorderRadius.circular(10)),
+            alignment: Alignment.center,
             child: TextField(
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onBackground,
