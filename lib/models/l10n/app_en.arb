@@ -16,5 +16,7 @@
   "username": "Username",
   "@username": {},
   "password": "Password",
-  "@password": {}
+  "@password": {},
+  "all rights reserved": "All rights reserved",
+  "@all rights reserved": {}
 }
