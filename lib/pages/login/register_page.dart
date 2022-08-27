@@ -145,7 +145,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               obscureText: _showPassword,
               controller: controller,
               validator: (value) {
-                return Validator.validatePassword(value!, pass);
+                return Validator.validatePassword(
+                  value!,
+                  pass,
+                  '    Für das registrieren 6 bis 8 Stellige Passwörter eingeben',
+                );
               },
               onChanged: (value) => pass = value,
               decoration: InputDecoration(

@@ -71,7 +71,7 @@ Widget buildUser(BuildContext context, TextEditingController userController) {
         TextFormField(
           controller: userController,
           validator: (value) {
-            return Validator.validateEmail(value ?? "");
+            return Validator.validateUser(value ?? "");
           },
           style: TextStyle(
             color: Theme.of(context).colorScheme.onBackground,

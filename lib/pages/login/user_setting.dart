@@ -97,9 +97,7 @@ class _UserSettingState extends State<UserSetting> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  buildImageLogo(context,
-                                      "assets/images/kontoImage.png", 100, 100),
-                                  SizedBox(height: 10.h),
+                                  SizedBox(height: 20.h),
                                   Text(
                                     'Persönliche Daten!',
                                     style: TextStyle(
@@ -130,13 +128,13 @@ class _UserSettingState extends State<UserSetting> {
                                         return_password,
                                         return_passController),
                                   ),
-                                  SizedBox(height: 20.h),
-                                  buildButton("Passwort ändern", setPass, 250,
-                                      20, 15, context),
+                                  SizedBox(height: 100.h),
+                                  buildButton("Passwort ändern", setPass, 200,
+                                      15, 15, context),
                                   SizedBox(height: 5.h),
                                   buildButton(
-                                      "Abmelden", logout, 250, 20, 15, context),
-                                  SizedBox(height: 20.h),
+                                      "Abmelden", logout, 150, 10, 15, context),
+                                  SizedBox(height: 30.h),
                                   Text(
                                     '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
                                     style: TextStyle(
@@ -206,7 +204,8 @@ class _UserSettingState extends State<UserSetting> {
               obscureText: _showPassword,
               controller: controller,
               validator: (value) {
-                return Validator.validatePassword(value!, pass);
+                return Validator.validatePassword(value!, pass,
+                    '    Bitte passwort in beiden feldern eigeben ');
               },
               onChanged: (value) => pass = value,
               decoration: InputDecoration(
@@ -250,6 +249,9 @@ class _UserSettingState extends State<UserSetting> {
               ),
               obscureText: _showPassword,
               controller: controller,
+              validator: (value) {
+                return Validator.validatePass(value!);
+              },
               onChanged: (value) => pass = value,
               decoration: InputDecoration(
                 suffixIcon: GestureDetector(

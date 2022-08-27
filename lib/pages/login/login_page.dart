@@ -6,6 +6,7 @@ import 'package:http/http.dart';
 import 'package:landesgartenschau2023/pages/home.dart';
 import 'package:landesgartenschau2023/pages/home/widgets/default_card.dart';
 import 'package:landesgartenschau2023/pages/login/user_setting.dart';
+import 'package:landesgartenschau2023/pages/login/validator.dart';
 import '/services/client.dart' as client;
 import 'package:landesgartenschau2023/pages/login/register_page.dart';
 import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
@@ -85,7 +86,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               DefaultCard(
                                   child: buildUser(context, userController)),
                               SizedBox(height: 10.h),
-                              DefaultCard(child: buildPassword()),
+                              DefaultCard(
+                                  child: buildPassword(passController.text)),
                               SizedBox(height: 20.h),
                               buildButton(
                                   "Anmelden", login, 250, 20, 15, context),
@@ -110,19 +112,23 @@ class _LoginScreenState extends State<LoginScreen> {
         MaterialPageRoute(builder: (context) => const RegisterScreen()));
   }
 
-  Widget buildPassword() {
+  Widget buildPassword(String pass) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const SizedBox(height: 5),
         Container(
             alignment: Alignment.center,
-            child: TextField(
+            child: TextFormField(
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onBackground,
               ),
               obscureText: _showPassword,
               controller: passController,
+              validator: (value) {
+                return Validator.validatePass(value!);
+              },
+              onChanged: (value) => pass = value,
               decoration: InputDecoration(
                 suffixIcon: GestureDetector(
                   onTap: () {
