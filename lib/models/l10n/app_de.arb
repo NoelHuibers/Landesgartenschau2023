@@ -1,5 +1,10 @@
 {
-    "clanguage": "Deutsch",
-    "language": "Sprache",
-    "settings": "Einstellungen"
+  "clanguage": "Deutsch",
+  "@clanguage": {},
+  "language": "Sprache",
+  "@language": {},
+  "settings": "Einstellungen",
+  "@settings": {},
+  "dark": "Dunkel",
+  "@dark": {}
 }
