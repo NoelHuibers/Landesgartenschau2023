@@ -8,6 +8,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:landesgartenschau2023/pages/map/widgets/sliding_window.dart';
 
+/*
+Die Datei ist für das Bilden
+der HomePage der App
+*/
+
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
 
@@ -64,7 +69,7 @@ class _HomepageState extends State<Homepage> {
                   const BorderRadius.vertical(top: Radius.circular(18)),
               parallaxEnabled: true,
               parallaxOffset: .5,
-              body: const BigMap(),
+              body: const Map(),
               panel: SlidePage(
                 panelController: panelController,
               ),

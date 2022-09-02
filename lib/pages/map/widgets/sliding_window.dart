@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:landesgartenschau2023/pages/map/widgets/build_list.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
+/*
+Die Datei ist für das Bilden der SlidePage
+in der Home Page
+*/
+
 class SlidePage extends StatefulWidget {
   final PanelController panelController;
 
@@ -35,7 +40,7 @@ class _SlidePageState extends State<SlidePage> {
                 children: <Widget>[
                   SizedBox(
                     height: 21,
-                    child: swipe_bottum(),
+                    child: swipeBottun(),
                   ),
                   SizedBox(height: 80, child: bildButtonBar(context)),
                   const SizedBox(
@@ -47,9 +52,10 @@ class _SlidePageState extends State<SlidePage> {
         ]);
   }
 
-  // ignore: non_constant_identifier_names
-  Widget swipe_bottum() => GestureDetector(
-        onTap: slide_page_controll,
+  ///Bildet die Button in der SlidePage
+  ///um die SlidePage zu schließen || öffnen
+  Widget swipeBottun() => GestureDetector(
+        onTap: slidePageControll,
         child: Center(
           child: Container(
             width: 70,
@@ -62,8 +68,7 @@ class _SlidePageState extends State<SlidePage> {
         ),
       );
 
-  // ignore: non_constant_identifier_names
-  void slide_page_controll() {
+  void slidePageControll() {
     if (WidgetsBinding.instance.window.viewInsets.bottom > 0.0) {
       //Wenn Keyboard ist offen
       return;
@@ -77,6 +82,8 @@ class _SlidePageState extends State<SlidePage> {
     }
   }
 
+  ///Bildet die 4 Buttons, die in der
+  ///SlideBar zu finden sind
   Widget bildButtonBar(BuildContext context) {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);

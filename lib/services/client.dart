@@ -1,9 +1,6 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:landesgartenschau2023/models/stands/standsversion.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '/models/events/happeningsversion.dart';
 
 Future<HappeningsVersion> fetchHappenings() async {
@@ -36,6 +33,9 @@ Future<StandsVersion> fetchStands() async {
   }
 }
 
+/// Dies dient um Angabedaten an Servern zu senden
+/// nimmt [username],[password]
+/// dies wird fürs Login verwendet
 Future<dynamic> login(String username, String password) async {
   final response =
       await http.post(Uri.parse("https://api.pwi-2022.org/users/login"),
@@ -46,11 +46,13 @@ Future<dynamic> login(String username, String password) async {
             'event_id': "1",
             'name': username,
             'password': password,
-            //sthowl
           }));
   return response;
 }
 
+/// Dies dient um Angabedaten an Servern zu senden
+/// nimmt [username],[password]
+/// dies wird fürs registrieren verwendet
 Future<dynamic> register(String username, String password) async {
   final response = await http.post(Uri.parse("https://api.pwi-2022.org/users"),
       headers: <String, String>{
@@ -63,6 +65,9 @@ Future<dynamic> register(String username, String password) async {
   return response;
 }
 
+/// Dies dient um Angabedaten an Servern zu senden
+/// nimmt [username],[password]
+/// dies wird für die Passwort-Zurücksetzung verwendet
 Future<dynamic> resetPass(
     String username, String password, String oldPassword) async {
   final response = await http.put(
@@ -78,8 +83,10 @@ Future<dynamic> resetPass(
   return response;
 }
 
+/// Dies dient um den token an Server zu senden
+/// nimmt [token]
+/// dies wird für das Ausloggen verwendet
 Future<dynamic> logOut(String token) async {
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
   final response = await http.post(
       Uri.parse("https://api.pwi-2022.org/users/logout"),
       headers: <String, String>{

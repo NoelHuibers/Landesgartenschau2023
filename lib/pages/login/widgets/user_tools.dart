@@ -7,6 +7,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '/services/client.dart' as client;
 import 'package:http/http.dart';
 
+/*
+Die Datei besteht aus allen Widgets, die 
+in der Login, Register und User setting Pages 
+verwendet wurden 
+*/
+
+///Bildet die App Bar
 PreferredSizeWidget buildAppBar(BuildContext context, var seite) {
   return AppBar(
     backgroundColor: Theme.of(context).colorScheme.surfaceTint,
@@ -36,6 +43,7 @@ PreferredSizeWidget buildAppBar(BuildContext context, var seite) {
   );
 }
 
+/// Bildet die Buttons die in der User Pages verwdnet wurden
 Widget buildButton(String text, Function funktion, double width, double padding,
     double borderRadius, BuildContext context) {
   return SizedBox(
@@ -63,6 +71,7 @@ Widget buildButton(String text, Function funktion, double width, double padding,
           )));
 }
 
+/// Bildet die Text die in der User Pages verwendet wurde
 Widget buildUser(BuildContext context, TextEditingController userController) {
   return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,6 +100,7 @@ Widget buildUser(BuildContext context, TextEditingController userController) {
       ]);
 }
 
+/// Bildet die Image die in der User Pages verwendet wurden
 Widget buildImage(String imageLink, double width, double height) {
   return Image.asset(
     imageLink,
@@ -100,6 +110,7 @@ Widget buildImage(String imageLink, double width, double height) {
   );
 }
 
+/// Bildet die Logo die in der User Pages verwendet wurden
 Widget buildImageLogo(
     BuildContext context, String imageLink, double width, double height) {
   return Image.asset(
@@ -110,6 +121,7 @@ Widget buildImageLogo(
   );
 }
 
+/// Bildet weitere text die in der User Pages verwendet wurden
 Widget buildText(BuildContext context, String text, double fontSize) {
   return Text(
     text,
@@ -120,6 +132,7 @@ Widget buildText(BuildContext context, String text, double fontSize) {
   );
 }
 
+/// Bildet die PupUp fenster die nach der Registeration erschient
 popupRegister(BuildContext context, String userName, String passwort) {
   return showDialog(
     context: context,
@@ -176,6 +189,7 @@ popupRegister(BuildContext context, String userName, String passwort) {
   );
 }
 
+/// Methode bildet Massage die bsp. bei falsche Passwort erschient
 void massage(BuildContext context, String text) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     content: Text(text),
@@ -183,6 +197,7 @@ void massage(BuildContext context, String text) {
   ));
 }
 
+///Methode ist für das weiterleiten zu anderen Pages
 void routeToPage(BuildContext context, var page) {
   Navigator.push(
     context,

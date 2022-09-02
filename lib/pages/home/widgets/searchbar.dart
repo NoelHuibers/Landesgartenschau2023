@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+/*
+Die Datei ist für das Bilden der SearchBar
+*/
+
 class SearchWidget extends StatefulWidget {
   final String text;
   final ValueChanged<String> onChanged;

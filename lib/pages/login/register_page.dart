@@ -8,6 +8,11 @@ import '/services/client.dart' as client;
 import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import 'package:landesgartenschau2023/pages/login/validator.dart';
 
+/*
+Die Datei ist für das Bilden der Registration-Page
+wo der User sich registrieren kann
+*/
+
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
@@ -124,12 +129,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ])))));
   }
 
-  /*
-    Die beiden BildPasswort Widget können in einen gebaut werden 
-    und in der User_tools verschieben, ich wusste es nicht wie man das macht wegen 
-    setState()
-    */
-
+  ///Bildet den  Passwort-Eingabebereich
+  ///in der Register Page
   Widget buildPassword(
       String text, String pass, TextEditingController controller) {
     return Column(

@@ -4,6 +4,10 @@ import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import 'impressum/view_impressum.dart';
 import '/pages/home/widgets/default_card.dart';
 
+/*
+Die Datei ist für das Bilden
+der Impressum Page
+*/
 class Impressum extends StatelessWidget {
   const Impressum({Key? key}) : super(key: key);
 

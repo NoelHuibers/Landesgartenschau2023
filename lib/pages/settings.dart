@@ -7,6 +7,10 @@ import 'settings/widgets/darkmode.dart';
 import 'settings/widgets/impressum_button.dart';
 import 'settings/widgets/language.dart';
 
+/*
+Die Datei ist für das Bilden
+der Setting Page in der App
+*/
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
 

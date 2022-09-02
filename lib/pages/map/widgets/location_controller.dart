@@ -1,6 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
+/*
+Die Datei ist für das Bilde der LocationMarker 
+auf der Map
+*/
+
 class AnimationMarker extends StatefulWidget {
   const AnimationMarker({Key? key}) : super(key: key);
 
@@ -10,8 +15,6 @@ class AnimationMarker extends StatefulWidget {
 
 class _AnimationMarkerState extends State<AnimationMarker>
     with SingleTickerProviderStateMixin {
-  //Dies Class wird bei verwendeung ein Animation verwendet
-
   static late AnimationController animationController;
 
   @override

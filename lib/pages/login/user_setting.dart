@@ -1,4 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +10,11 @@ import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import 'package:landesgartenschau2023/pages/login/validator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/*
+Die Datei ist für das Bilden der User Page
+dh. nachdem der User sich angemeldet hat 
+*/
+
 class UserSetting extends StatefulWidget {
   const UserSetting({Key? key}) : super(key: key);
 
@@ -20,14 +24,14 @@ class UserSetting extends StatefulWidget {
 
 class _UserSettingState extends State<UserSetting> {
   bool _showPassword = true;
-  String old_password = '';
-  String new_password = '';
-  String return_password = '';
+  String oldPassword = '';
+  String newPassword = '';
+  String returnPassword = '';
   String userName = "";
   final TextEditingController oldPassController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController return_passController = TextEditingController();
+  final TextEditingController returnPassController = TextEditingController();
 
   Future<void> setPass() async {
     if (_formKey.currentState!.validate()) {
@@ -44,7 +48,7 @@ class _UserSettingState extends State<UserSetting> {
         ));
         passController.clear();
         oldPassController.clear();
-        return_passController.clear();
+        returnPassController.clear();
       }
       if (res.statusCode == 401) {
         massage(context, 'falsche angegebene Passwort');
@@ -109,24 +113,24 @@ class _UserSettingState extends State<UserSetting> {
                                   ),
                                   SizedBox(height: 20.h),
                                   DefaultCard(
-                                    child: usertext_build(),
+                                    child: usertextBuild(),
                                   ),
                                   SizedBox(height: 5.h),
                                   DefaultCard(
                                     child: buildOldPassword("altes Passwort",
-                                        old_password, oldPassController),
+                                        oldPassword, oldPassController),
                                   ),
                                   SizedBox(height: 5.h),
                                   DefaultCard(
                                     child: buildPassword("neues Passwort",
-                                        new_password, passController),
+                                        newPassword, passController),
                                   ),
                                   SizedBox(height: 5.h),
                                   DefaultCard(
                                     child: buildPassword(
                                         "neues Passwort wiederholen",
-                                        return_password,
-                                        return_passController),
+                                        returnPassword,
+                                        returnPassController),
                                   ),
                                   SizedBox(height: 100.h),
                                   buildButton("Passwort ändern", setPass, 200,
@@ -153,7 +157,8 @@ class _UserSettingState extends State<UserSetting> {
                     ]))))));
   }
 
-  Widget usertext_build() {
+  ///Bildet die User name in der User Page
+  Widget usertextBuild() {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -189,6 +194,9 @@ class _UserSettingState extends State<UserSetting> {
         ]);
   }
 
+  ///Bildet den Passwort-Eingabebereich
+  ///für die Eingabe der neuen Passwörter
+  ///in der User Page
   Widget buildPassword(
       String text, String pass, TextEditingController controller) {
     return Column(
@@ -235,6 +243,9 @@ class _UserSettingState extends State<UserSetting> {
     );
   }
 
+  ///Bildet die passwort eingabe bereich
+  ///für die eingabe die alte passwort
+  ///in der User Page
   Widget buildOldPassword(
       String text, String pass, TextEditingController controller) {
     return Column(

@@ -12,6 +12,11 @@ import 'package:landesgartenschau2023/pages/login/register_page.dart';
 import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/*
+Die Datei ist für das Bilden der Login Page,
+wo der User sich anmelden kann
+*/
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -112,6 +117,8 @@ class _LoginScreenState extends State<LoginScreen> {
         MaterialPageRoute(builder: (context) => const RegisterScreen()));
   }
 
+  ///Bildet den Passwort-Eingabebereich
+  ///in der Login Page
   Widget buildPassword(String pass) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
