@@ -37,7 +37,7 @@ class Validator {
 
   static String? validatePass(String pass) {
     if (pass.isEmpty) {
-      return '    geben sie ihre altes Passwort ein';
+      return '    geben sie ihre Passwort ein';
     } else {
       return null;
     }
