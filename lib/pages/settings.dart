@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:landesgartenschau2023/pages/settings/widgets/app_info.dart';
 import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import '/pages/home/widgets/default_card.dart';
@@ -23,7 +24,7 @@ class Settings extends StatelessWidget {
           leading:
               BackButton(color: Theme.of(context).colorScheme.onBackground),
           title: Text(
-            'Settings Page',
+            AppLocalizations.of(context)!.settings,
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
