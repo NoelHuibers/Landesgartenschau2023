@@ -19,7 +19,7 @@ class Stands extends StatelessWidget {
         body: Container(
           decoration:
               BoxDecoration(color: Theme.of(context).colorScheme.primary),
-          child: const Standslist(),
+          child: const StandsList(),
         ));
   }
 }

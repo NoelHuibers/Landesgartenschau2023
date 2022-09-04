@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '/models/events/happening.dart';
+import '/models/stands/stand.dart';
 
 class Detailsview extends StatelessWidget {
-  const Detailsview({Key? key, required this.happening}) : super(key: key);
-  final Happening happening;
+  const Detailsview({Key? key, required this.happening, required this.stand})
+      : super(key: key);
+  final Happening? happening;
+  final Stand? stand;
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +27,14 @@ class Detailsview extends StatelessWidget {
                 decoration:
                     BoxDecoration(color: Theme.of(context).colorScheme.primary),
                 child: Text(
-                  happening.name,
+                  happening!.name,
                   style: Theme.of(context).textTheme.subtitle1,
                 )),
             Container(
                 decoration:
                     BoxDecoration(color: Theme.of(context).colorScheme.primary),
                 child: Text(
-                  happening.description,
+                  happening!.description,
                   style: Theme.of(context).textTheme.bodyText2,
                 )),
             /*Container(
@@ -46,14 +49,14 @@ class Detailsview extends StatelessWidget {
                 decoration:
                     BoxDecoration(color: Theme.of(context).colorScheme.primary),
                 child: Text(
-                  happening.startdate,
+                  happening!.startdate,
                   style: Theme.of(context).textTheme.bodyText2,
                 )),
             Container(
                 decoration:
                     BoxDecoration(color: Theme.of(context).colorScheme.primary),
                 child: Text(
-                  happening.enddate,
+                  happening!.enddate,
                   style: Theme.of(context).textTheme.bodyText2,
                 )),
           ],

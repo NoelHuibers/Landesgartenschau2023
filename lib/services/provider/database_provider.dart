@@ -49,9 +49,8 @@ class DatabaseProvider {
         ${StandsFields.id} $idx,
         ${StandsFields.name} $text,
         ${StandsFields.description} $text,
-        ${StandsFields.latitude} $text,
-        ${StandsFields.longitude} $text,
-        ${StandsFields.openingHours} $text,
+        ${StandsFields.latitude} $integer,
+        ${StandsFields.longitude} $integer,
         ${StandsFields.standCategory} $text,
         ${StandsFields.standCategoryId} $integer
       )'''); // create a table

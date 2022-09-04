@@ -7,6 +7,6 @@ class StandsVersion {
   factory StandsVersion.fromJson(Map<String, dynamic> json) {
     return StandsVersion(
         version: json['version'] as int,
-        stands: json['category'] as List<dynamic>);
+        stands: json['stands'] as List<dynamic>);
   }
 }

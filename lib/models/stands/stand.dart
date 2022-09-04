@@ -6,7 +6,6 @@ class StandsFields {
   static const String description = 'description';
   static const String latitude = 'latitude';
   static const String longitude = 'longitude';
-  static const String openingHours = 'openingHours';
   static const String standCategory = 'standCategory';
   static const String standCategoryId = 'standCategoryId';
 }
@@ -17,7 +16,6 @@ class Stand {
   final String description;
   final double latitude;
   final double longitude;
-  final Map openingHours;
   final String standCategory;
   final int standCategoryId;
 
@@ -27,7 +25,6 @@ class Stand {
     required this.description,
     required this.latitude,
     required this.longitude,
-    required this.openingHours,
     required this.standCategory,
     required this.standCategoryId,
   });
@@ -38,7 +35,6 @@ class Stand {
       description: json['description'] as String,
       latitude: json['latitude'] as double,
       longitude: json['longitude'] as double,
-      openingHours: json['openings_hours'] as Map,
       standCategory: json['stand_category_name'] as String,
       standCategoryId: json['stand_category_id'] as int,
     );
@@ -51,7 +47,6 @@ class Stand {
       description: json[StandsFields.description] as String,
       latitude: json[StandsFields.latitude] as double,
       longitude: json[StandsFields.longitude] as double,
-      openingHours: json[StandsFields.openingHours] as Map,
       standCategory: json[StandsFields.standCategory] as String,
       standCategoryId: json[StandsFields.standCategoryId] as int,
     );
@@ -63,7 +58,6 @@ class Stand {
         StandsFields.description: description,
         StandsFields.latitude: latitude,
         StandsFields.longitude: longitude,
-        StandsFields.openingHours: openingHours,
         StandsFields.standCategory: standCategory,
         StandsFields.standCategoryId: standCategoryId,
       };
@@ -74,7 +68,6 @@ class Stand {
     String? description,
     double? latitude,
     double? longitude,
-    Map? openingHours,
     String? standCategory,
     int? standCategoryId,
   }) =>
@@ -84,7 +77,6 @@ class Stand {
         description: description ?? this.description,
         latitude: latitude ?? this.latitude,
         longitude: longitude ?? this.longitude,
-        openingHours: openingHours ?? this.openingHours,
         standCategory: standCategory ?? this.standCategory,
         standCategoryId: standCategoryId ?? this.standCategoryId,
       );

@@ -87,12 +87,13 @@ class _EventsListState extends State<EventsList> {
                                   ),
                                   title: Text(favoritesList[index].name),
                                   onTap: () {
-                                    Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                            builder: (context) => Detailsview(
-                                                  happening:
-                                                      favoritesList[index],
-                                                )));
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => Detailsview(
+                                            happening: favoritesList[index],
+                                            stand: null),
+                                      ),
+                                    );
                                   },
                                 );
                               },
@@ -133,12 +134,13 @@ class _EventsListState extends State<EventsList> {
                                   trailing:
                                       Text(happeningslist[index].startdate),
                                   onTap: () {
-                                    Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                            builder: (context) => Detailsview(
-                                                  happening:
-                                                      happeningslist[index],
-                                                )));
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => Detailsview(
+                                            happening: happeningslist[index],
+                                            stand: null),
+                                      ),
+                                    );
                                   },
                                 );
                               }),

@@ -1,83 +1,195 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '/pages/home/widgets/searchbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '/models/stands_model.dart';
+import '/models/stands/stand.dart';
+import '/services/provider/database_provider.dart';
+import '/pages/detailsview.dart';
+import '/pages/home/widgets/default_card.dart';
 
-class Standslist extends StatefulWidget {
-  const Standslist({Key? key}) : super(key: key);
+class StandsList extends StatefulWidget {
+  const StandsList({Key? key}) : super(key: key);
 
   @override
-  State<Standslist> createState() => StandslistState();
+  State<StandsList> createState() => _StandsListState();
 }
 
-class StandslistState extends State<Standslist> {
-  static const savedKey = 'saved_key';
-  late bool save = false;
+class _StandsListState extends State<StandsList> {
+  late List<Stand> standslist;
+  bool loading = true;
+  bool favoritesLoading = true;
+  Map<Stand, bool> favorites = {};
+  List<Stand> favoritesList = [];
+  String query = '';
 
   @override
   void initState() {
     super.initState();
-    _restorePersistedPreference();
+
+    getStandsList().then((value) => loadFavorites());
   }
 
-  void _restorePersistedPreference() async {
-    var preferences = await SharedPreferences.getInstance();
-    var saved = preferences.getBool(savedKey) ?? false;
-    setState(() => save = saved);
+  @override
+  void dispose() {
+    saveFavorites();
+    super.dispose();
   }
 
-  void _persistPreference() async {
-    setState(() => save = !save);
-    var preferences = await SharedPreferences.getInstance();
-    preferences.setBool(savedKey, save);
+  Future<void> getStandsList() async {
+    standslist = await DatabaseProvider.instance.getAllStands();
+    setState(() => loading = false);
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: ListView.builder(
-        itemCount: StandsModel.standsList.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            textColor: Theme.of(context).colorScheme.onBackground,
-            tileColor: Theme.of(context).colorScheme.surfaceTint,
-            leading: IconButton(
-                icon: save
-                    ? const Icon(Icons.star)
-                    : const Icon(Icons.star_border),
-                onPressed: () {
-                  setState(() {
-                    if (standsList[index]['starred'] == "true") {
-                      standsList[index]['starred'] = "false";
-                    } else {
-                      standsList[index]['starred'] = "true";
-                    }
-                  });
-                  _persistPreference();
-                }),
-            title: Text(standsList[index]['title']),
-            subtitle: Text(standsList[index]['subtitle']),
-            onTap: () {},
-          );
-        },
-      ),
-    );
+    return Container(
+        color: Theme.of(context).colorScheme.primary,
+        child: ScrollConfiguration(
+            behavior: const ScrollBehavior().copyWith(overscroll: false),
+            child: ListView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                children: <Widget>[
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  SizedBox(
+                    height: 35.h,
+                    width: 15,
+                    child: buildSearch(),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                    width: 0,
+                  ),
+                  SizedBox(
+                    height: 200.h,
+                    width: 450,
+                    child: DefaultCard(
+                      child: favoritesLoading
+                          ? const CircularProgressIndicator()
+                          : ListView.builder(
+                              itemCount: favoritesList.length,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  textColor: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground,
+                                  tileColor:
+                                      Theme.of(context).colorScheme.surfaceTint,
+                                  leading: IconButton(
+                                    icon: favorites[favoritesList[index]]!
+                                        ? Icon(color: Colors.yellow, Icons.star)
+                                        : const Icon(Icons.star_border),
+                                    onPressed: () =>
+                                        toggleFavorite(favoritesList[index]),
+                                  ),
+                                  title: Text(favoritesList[index].name),
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => Detailsview(
+                                          stand: favoritesList[index],
+                                          happening: null,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                    width: 0,
+                  ),
+                  SizedBox(
+                    height: 350.h,
+                    width: 390,
+                    child: DefaultCard(
+                      child: loading
+                          ? const CircularProgressIndicator()
+                          : ListView.builder(
+                              itemCount: standslist.length,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  leading: IconButton(
+                                    icon: favorites[standslist[index]]!
+                                        ? Icon(color: Colors.yellow, Icons.star)
+                                        : const Icon(Icons.star_border),
+                                    onPressed: () =>
+                                        toggleFavorite(standslist[index]),
+                                  ),
+                                  textColor: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground,
+                                  tileColor:
+                                      Theme.of(context).colorScheme.surfaceTint,
+                                  title: Text(standslist[index].name),
+                                  subtitle: Text(standslist[index].description,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis),
+                                  trailing: Text((standslist[index]
+                                          .latitude
+                                          .toString() +
+                                      standslist[index].longitude.toString())),
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => Detailsview(
+                                            stand: standslist[index],
+                                            happening: null),
+                                      ),
+                                    );
+                                  },
+                                );
+                              }),
+                    ),
+                  ),
+                ])));
   }
 
-  List standsList = [
-    {
-      "title": "Horizontbank",
-      "subtitle": "Info of Horizontbank",
-      "starred": "true"
-    },
-    {
-      "title": "Weserstufen",
-      "subtitle": "Info of Weserstufen",
-      "starred": "true"
-    },
-    {
-      "title": "Galeriegärten",
-      "subtitle": "Info of Galeriegärten",
-      "starred": "true"
+  Widget buildSearch() => SearchWidget(
+        text: query,
+        hintText: 'Suchen sie in Ständen',
+        onChanged: search,
+      );
+
+  void search(String query) {}
+
+  Future<void> loadFavorites() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> favoritesShared = prefs.getStringList('favoritesstands') ?? [];
+    List<int> favoritesInt = favoritesShared.map((i) => int.parse(i)).toList();
+    Map<Stand, bool> favoriteMap = {};
+    for (int i = 0; i < standslist.length; i++) {
+      int id = standslist[i].id!;
+      favoriteMap[standslist[i]] = favoritesInt.contains(id);
     }
-  ];
+    setState(() {
+      favorites = favoriteMap;
+      favoritesList =
+          favorites.entries.where((e) => e.value).map((e) => e.key).toList();
+      favoritesLoading = false;
+    });
+  }
+
+  Future<void> saveFavorites() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> favoritesShared = favorites.entries
+        .where((e) => e.value)
+        .map((e) => e.key.id.toString())
+        .toList();
+    prefs.setStringList('favoritesstands', favoritesShared);
+  }
+
+  void toggleFavorite(Stand stand) {
+    setState(() {
+      favorites[stand] = !favorites[stand]!;
+      favoritesList =
+          favorites.entries.where((e) => e.value).map((e) => e.key).toList();
+    });
+  }
 }
