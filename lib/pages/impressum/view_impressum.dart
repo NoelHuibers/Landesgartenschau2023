@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+/*
+Die Datei bildet den Text für die 
+ImpressumPage
+*/
+
 List inhalt = [
   {
     "Zeile": "Technische Hochschule Ostwestfalen-Lippe",

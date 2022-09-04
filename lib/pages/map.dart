@@ -29,14 +29,19 @@ import 'package:location/location.dart';
 //     )
 //   }
 // }
-class BigMap extends StatefulWidget {
-  const BigMap({Key? key}) : super(key: key);
+
+/*
+Die Datei ist für das Bilden
+der Map auf der HomePage in der App
+*/
+class Map extends StatefulWidget {
+  const Map({Key? key}) : super(key: key);
 
   @override
-  State<BigMap> createState() => _BigMapState();
+  State<Map> createState() => _MapState();
 }
 
-class _BigMapState extends State<BigMap> {
+class _MapState extends State<Map> {
   double currentZoom = 13.0;
   final double currentZoomIn = 13.0;
   MapController mapController = MapController();
@@ -51,19 +56,19 @@ class _BigMapState extends State<BigMap> {
   bool pressd = true;
   PopupController popupLayerController = PopupController();
 
-  //Methode zum Zoom Out
+  ///Methode zum Zoom Out
   _zoomOut() {
     currentZoom = currentZoom - 1;
     mapController.move(mapPosition, currentZoom);
   }
 
-  //Methode zum Zoom In
+  ///Methode zum Zoom In
   _zoomIn() {
     currentZoom = currentZoom + 1;
     mapController.move(mapPosition, currentZoom);
   }
 
-  //Methode an die Aktuelle Position zu führen
+  ///Methode an die Aktuelle Position zu führen
   void concurrentPosition() {
     if (isGetLocation == true) {
       mapController.move(currentCenter, currentZoomIn);
@@ -72,11 +77,12 @@ class _BigMapState extends State<BigMap> {
     }
   }
 
+  ///position festlegen
   void setPosition(LatLng center) {
     mapPosition = center;
   }
 
-  //Beispiel Koordinaten zum testen
+  //Beispiel Koordinaten
   var polylines = <LatLng>[
     LatLng(51.76751715356895, 9.369571555462182),
     LatLng(51.766531165008566, 9.368729341887493),
@@ -187,6 +193,7 @@ class _BigMapState extends State<BigMap> {
     );
   }
 
+  ///Die Buttons auf der Map genereieren
   Widget buildButton(
       String tag, Function() function, String tip, IconData iconData) {
     return FloatingActionButton(
@@ -199,6 +206,7 @@ class _BigMapState extends State<BigMap> {
     );
   }
 
+  ///Routenführung abbruch button
   Widget buildCancelButton() {
     return FloatingActionButton(
       backgroundColor: Colors.red,
@@ -216,6 +224,8 @@ class _BigMapState extends State<BigMap> {
     );
   }
 
+  ///dies bildet die popup für die marker
+  ///auf der Map
   Widget markerPupUp() {
     return SizedBox(
       width: 200,
@@ -268,6 +278,7 @@ class _BigMapState extends State<BigMap> {
     );
   }
 
+  ///Gerät Position ermittlen
   getRealPosition() async {
     _isServiceEnabled = await location.serviceEnabled();
     if (!_isServiceEnabled) {

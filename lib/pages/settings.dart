@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:landesgartenschau2023/pages/settings/widgets/app_info.dart';
-import 'package:landesgartenschau2023/pages/user/user_tools.dart';
+import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import '/pages/home/widgets/default_card.dart';
 import 'settings/widgets/darkmode.dart';
 import 'settings/widgets/impressum_button.dart';
 import 'settings/widgets/language.dart';
 
+/*
+Die Datei ist für das Bilden
+der Setting Page in der App
+*/
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
 

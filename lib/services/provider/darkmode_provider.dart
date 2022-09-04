@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/*
+In der Datei befinden sich die beiden Provider classen 
+die für das Dark und Light mode verwendet werden 
+*/
 class ColorProvider extends ChangeNotifier {
   ThemeMode themeMode = ThemeMode.system;
 
@@ -23,6 +27,7 @@ class ColorProvider extends ChangeNotifier {
 class ThemeProvider extends ChangeNotifier {
   String currentTheme = 'system';
 
+  ///Liefert themeMode
   ThemeMode get themeMode {
     if (currentTheme == 'light') {
       return ThemeMode.light;
@@ -33,20 +38,23 @@ class ThemeProvider extends ChangeNotifier {
     }
   }
 
+  ///dient dazu das ausgewählte Thema aus Einstellungen
+  ///in SharedPreferences zu speichern
+  ///[theme]
   changeTheme(String theme) async {
-    // ignore: no_leading_underscores_for_local_identifiers
-    final SharedPreferences _prefs = await SharedPreferences.getInstance();
-    await _prefs.setString('theme', theme);
-
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('theme', theme);
     currentTheme = theme;
     notifyListeners();
   }
 
+  ///dient dazu das ausgewählte Thema aus Einstellungen
+  ///aus SharedPreferences zu lesen
+  ///als currentTheme festlegen
   initialize() async {
-    // ignore: no_leading_underscores_for_local_identifiers
-    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    currentTheme = _prefs.getString('theme') ?? 'system';
+    currentTheme = prefs.getString('theme') ?? 'system';
     notifyListeners();
   }
 }

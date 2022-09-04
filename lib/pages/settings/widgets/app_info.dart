@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+/*
+Die Datei ist für das Bilden
+des Dialogs in der Einstellungs-Page 
+und dies dient dazu allgemeine Informationen über 
+die App zu zeigen
+*/
 class AppInfoButton extends StatelessWidget {
   const AppInfoButton({Key? key}) : super(key: key);
 

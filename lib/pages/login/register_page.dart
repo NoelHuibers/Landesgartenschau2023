@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:landesgartenschau2023/pages/user/api_client.dart';
-import 'package:landesgartenschau2023/pages/user/user_setting.dart';
-import 'package:landesgartenschau2023/pages/user/user_tools.dart';
-import 'package:landesgartenschau2023/pages/user/validator.dart';
+import 'package:http/http.dart';
+import 'package:landesgartenschau2023/pages/home.dart';
+import 'package:landesgartenschau2023/pages/home/widgets/default_card.dart';
+import '/services/client.dart' as client;
+import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
+import 'package:landesgartenschau2023/pages/login/validator.dart';
+
+/*
+Die Datei ist für das Bilden der Registration-Page
+wo der User sich registrieren kann
+*/
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -15,41 +22,36 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController mailController = TextEditingController();
+  final TextEditingController userController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final TextEditingController returnPassController = TextEditingController();
-  final ApiCall _apiCall = ApiCall();
   bool _showPassword = true;
   String password = '';
   String returnPassword = '';
 
   Future<void> register() async {
     if (_formKey.currentState!.validate()) {
-      dynamic res = await _apiCall.register(
-        mailController.text,
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text('Processing Data'),
+        backgroundColor: Colors.green.shade300,
+      ));
+
+      Response res = await client.register(
+        userController.text,
         passController.text,
       );
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
-      if (res['id'] != null && res['token'] != null) {
-        // ignore: use_build_context_synchronously
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const UserSetting()));
+      if (res.statusCode == 201) {
+        popupRegister(context, userController.text, passController.text);
       }
-
-      if (res['token'] == null || res['id'] == null) {
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: const Text("Die angegebene daten sind Falsch"),
-          backgroundColor: Colors.red.shade300,
-        ));
-      } else {
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error: ${res['Message']}'),
-          backgroundColor: Colors.red.shade300,
-        ));
+      if (res.statusCode == 409) {
+        massage(context, 'User gibt schon');
+      }
+      if (res.statusCode == 413) {
+        massage(context, 'Passwort & name lang');
+      }
+      if (res.statusCode == 422) {
+        massage(context, 'passwprt name kurz');
       }
     }
   }
@@ -57,7 +59,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: buildAppBar(context),
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+          leading:
+              BackButton(color: Theme.of(context).colorScheme.onBackground),
+          centerTitle: true,
+          title: InkWell(
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const Homepage()),
+                (Route<dynamic> route) => false,
+              );
+            },
+            child: Image.asset("assets/images/logo6.png"),
+          ),
+        ),
         body: Form(
             key: _formKey,
             child: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -82,18 +99,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     "assets/images/kontoImage.png", 100, 100),
                                 SizedBox(height: 10.h),
                                 buildText(context, 'Account erstellen!', 20),
+                                SizedBox(height: 30.h),
+                                DefaultCard(
+                                  child: buildUser(context, userController),
+                                ),
                                 SizedBox(height: 15.h),
-                                buildEmail(context, mailController),
+                                DefaultCard(
+                                  child: buildPassword(
+                                      "passwort", password, passController),
+                                ),
                                 SizedBox(height: 15.h),
-                                buildPassword(
-                                    "passwort", password, passController),
-                                SizedBox(height: 15.h),
-                                buildPassword("Passwort wiederholen",
-                                    returnPassword, returnPassController),
+                                DefaultCard(
+                                  child: buildPassword("Passwort wiederholen",
+                                      returnPassword, returnPassController),
+                                ),
                                 SizedBox(height: 25.h),
                                 buildButton("Registrieren", register, 250, 20,
                                     15, context),
-                                SizedBox(height: 120.h),
+                                SizedBox(height: 110.h),
                                 buildText(
                                     context,
                                     '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
@@ -106,25 +129,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ])))));
   }
 
-  /*
-    Die beiden BildPasswort Widget können in einen gebaut werden 
-    und in der User_tools verschieben, ich wusste es nicht wie man das macht wegen 
-    setState()
-    */
-
+  ///Bildet den  Passwort-Eingabebereich
+  ///in der Register Page
   Widget buildPassword(
       String text, String pass, TextEditingController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
         Container(
             alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-                border:
-                    Border.all(color: Theme.of(context).colorScheme.onPrimary),
-                color: Theme.of(context).colorScheme.primary,
-                borderRadius: BorderRadius.circular(10)),
             child: TextFormField(
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onBackground,
@@ -132,7 +146,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               obscureText: _showPassword,
               controller: controller,
               validator: (value) {
-                return Validator.validatePassword(value!, pass);
+                return Validator.validatePassword(
+                  value!,
+                  pass,
+                  '    Für das registrieren 6 bis 8 Stellige Passwörter eingeben',
+                );
               },
               onChanged: (value) => pass = value,
               decoration: InputDecoration(
@@ -147,8 +165,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.only(top: 14),
-                prefixIcon: Icon(Icons.lock_open_outlined,
-                    size: 23, color: Theme.of(context).colorScheme.onPrimary),
+                prefixIcon: Icon(
+                    _showPassword
+                        ? Icons.lock_open_outlined
+                        : Icons.lock_outline,
+                    size: 23,
+                    color: Theme.of(context).colorScheme.onPrimary),
                 hintText: text,
                 hintStyle: TextStyle(
                   color: Theme.of(context).colorScheme.onPrimary,

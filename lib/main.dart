@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:landesgartenschau2023/pages/home.dart';
-import 'package:landesgartenschau2023/services/logic.dart';
+import 'package:landesgartenschau2023/services/datafetcher.dart';
 import 'package:provider/provider.dart';
 import 'models/l10n/l10n.dart';
 import 'services/provider/locale_provider.dart';
@@ -29,8 +29,10 @@ class MyApp extends StatelessWidget {
           )
         ],
         builder: (context, child) {
-          final BloC bloc = BloC();
-          bloc.writeToDatabase();
+          final DataFetcher dataFetcher = DataFetcher();
+          dataFetcher.init();
+          dataFetcher.writeHappeningsToDatabase();
+          dataFetcher.writeStandsToDatabase();
           final languageProvider = Provider.of<LocaleProvider>(context);
           return Consumer<ThemeProvider>(builder: (context, provider, child) {
             return ScreenUtilInit(

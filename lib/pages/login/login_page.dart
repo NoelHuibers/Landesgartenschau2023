@@ -1,10 +1,21 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:landesgartenschau2023/pages/user/api_client.dart';
-import 'package:landesgartenschau2023/pages/user/register_page.dart';
-import 'package:landesgartenschau2023/pages/user/user_setting.dart';
-import 'package:landesgartenschau2023/pages/user/user_tools.dart';
+import 'package:http/http.dart';
+import 'package:landesgartenschau2023/pages/home.dart';
+import 'package:landesgartenschau2023/pages/home/widgets/default_card.dart';
+import 'package:landesgartenschau2023/pages/login/user_setting.dart';
+import 'package:landesgartenschau2023/pages/login/validator.dart';
+import '/services/client.dart' as client;
+import 'package:landesgartenschau2023/pages/login/register_page.dart';
+import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+/*
+Die Datei ist für das Bilden der Login Page,
+wo der User sich anmelden kann
+*/
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -15,42 +26,35 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController mailController = TextEditingController();
+  final TextEditingController userController = TextEditingController();
   final TextEditingController passController = TextEditingController();
-  final ApiCall _apiCall = ApiCall();
   bool _showPassword = true;
 
   Future<void> login() async {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text('Processing Data'),
-        backgroundColor: Colors.green.shade300,
-      ));
-
-      dynamic res = await _apiCall.login(
-        mailController.text,
+      Response res = await client.login(
+        userController.text,
         passController.text,
       );
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
-      if (res['token'] != null) {
-        // ignore: use_build_context_synchronously
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const UserSetting()));
+      if (res.statusCode == 200) {
+        final body = jsonDecode(res.body);
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString("login", body['token']);
+        await prefs.setString("username", userController.text);
+        routeToPage(context, const UserSetting());
       }
-      if (res['token'] == null) {
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: const Text("Die angegebene daten sind Falsch"),
-          backgroundColor: Colors.red.shade300,
-        ));
-      } else {
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error: ${res['Message']}'),
-          backgroundColor: Colors.red.shade300,
-        ));
+      if (res.statusCode == 400) {
+        massage(context, 'Fehler ist aufgetreten');
+        return;
+      }
+      if (res.statusCode == 401) {
+        massage(context, 'Passwort oder username falsch');
+        return;
+      }
+      if (res.statusCode == 404) {
+        massage(context, 'user nicht gefunden');
+        return;
       }
     }
   }
@@ -58,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: buildAppBar(context),
+        appBar: buildAppBar(context, const Homepage()),
         body: Form(
             key: _formKey,
             child: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -78,23 +82,23 @@ class _LoginScreenState extends State<LoginScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              // buildImage("assets/images/lgs.png", double.infinity, 100),
                               SizedBox(height: 10.h),
                               buildImageLogo(context,
                                   "assets/images/kontoImage.png", 100, 100),
                               SizedBox(height: 10.h),
-                              buildText(context, 'Wilkommen zurück!', 20),
-                              SizedBox(height: 15.h),
-                              buildEmail(context, mailController),
+                              buildText(context, 'Anmelden!', 20),
+                              SizedBox(height: 30.h),
+                              DefaultCard(
+                                  child: buildUser(context, userController)),
                               SizedBox(height: 10.h),
-                              buildPassword(),
+                              DefaultCard(
+                                  child: buildPassword(passController.text)),
                               SizedBox(height: 20.h),
                               buildButton(
                                   "Anmelden", login, 250, 20, 15, context),
-                              SizedBox(height: 150.h),
+                              SizedBox(height: 130.h),
                               buildButton("Du hast noch kein Konto",
                                   registerNavigate, 150, 10, 10, context),
-                              //SizedBox(height: 10.h),
                               buildText(
                                   context,
                                   '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
@@ -113,24 +117,25 @@ class _LoginScreenState extends State<LoginScreen> {
         MaterialPageRoute(builder: (context) => const RegisterScreen()));
   }
 
-  Widget buildPassword() {
+  ///Bildet den Passwort-Eingabebereich
+  ///in der Login Page
+  Widget buildPassword(String pass) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
         Container(
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-                border:
-                    Border.all(color: Theme.of(context).colorScheme.onPrimary),
-                color: Theme.of(context).colorScheme.primary, //Background
-                borderRadius: BorderRadius.circular(10)),
-            child: TextField(
+            alignment: Alignment.center,
+            child: TextFormField(
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onBackground,
               ),
               obscureText: _showPassword,
               controller: passController,
+              validator: (value) {
+                return Validator.validatePass(value!);
+              },
+              onChanged: (value) => pass = value,
               decoration: InputDecoration(
                 suffixIcon: GestureDetector(
                   onTap: () {
@@ -144,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.only(top: 14),
                 prefixIcon: Icon(
-                  Icons.lock_open_outlined,
+                  _showPassword ? Icons.lock_open_outlined : Icons.lock_outline,
                   size: 23,
                   color: Theme.of(context).colorScheme.onPrimary,
                 ),

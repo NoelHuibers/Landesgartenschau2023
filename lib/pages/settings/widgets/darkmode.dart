@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/services/provider/darkmode_provider.dart';
 
+/*
+Die Datei ist für das Bilden
+der Dropdownliste der Dark und Light mode 
+in der Einstellungs-Page
+*/
+
 class Darkmode extends StatefulWidget {
   const Darkmode({Key? key}) : super(key: key);
 

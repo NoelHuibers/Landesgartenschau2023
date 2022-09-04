@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import '/pages/impressum.dart';
 
+/*
+Die Datei ist für das Bilden des Impressumbuttons,
+die in der Setting Page zufinden ist
+*/
+
 class Impressumbutton extends StatelessWidget {
   const Impressumbutton({Key? key}) : super(key: key);
 

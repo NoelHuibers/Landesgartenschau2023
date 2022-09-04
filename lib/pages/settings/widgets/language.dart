@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:provider/provider.dart';
-
 import '/models/l10n/l10n.dart';
 import '/services/provider/locale_provider.dart';
+
+/*
+Die Datei ist für das Bildem der Sprachauswahl, 
+die in der Setting Page zufinden ist
+*/
 
 class Language extends StatefulWidget {
   const Language({Key? key}) : super(key: key);

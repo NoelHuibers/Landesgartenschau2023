@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:landesgartenschau2023/pages/user/user_tools.dart';
+import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import 'impressum/view_impressum.dart';
 import '/pages/home/widgets/default_card.dart';
 
+/*
+Die Datei ist für das Bilden
+der Impressum Page
+*/
 class Impressum extends StatelessWidget {
   const Impressum({Key? key}) : super(key: key);
 
