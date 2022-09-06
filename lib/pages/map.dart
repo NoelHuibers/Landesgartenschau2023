@@ -6,30 +6,6 @@ import 'package:latlong2/latlong.dart';
 import 'map/widgets/location_controller.dart';
 import 'package:location/location.dart';
 
-//Dies dient dazu die StändeKoordinaten in die große Map einzufügen
-// diese Wird zunächst kommentiert bis wir die Daten haben
-// List<Marker> markerBilder(){
-//   final markerliste = <Marker>[];
-//   for(int i = 0; i < mapMarkers.length; i++){
-//     final mapItem = mapMarkers[i];
-//     markerliste.add(
-//       Marker(
-//         height: 45,
-//         width: 45,
-//         point: mapItem.koordinaten,
-//         builder: (_){
-//           return GestureDetector(
-//             onTap: (){
-//               print('Selected: ${mapItem.image}');
-//             },
-//             child: Image.asset("Hier kann das LocationLogo ausgewählt werden ")
-//           )
-//         }
-//         )
-//     )
-//   }
-// }
-
 /*
 Die Datei ist für das Bilden
 der Map auf der HomePage in der App
@@ -172,10 +148,6 @@ class _MapState extends State<Map> {
               options: PolylineLayerOptions(polylines: [
             Polyline(points: position, strokeWidth: 5.0, color: Colors.blue)
           ], polylineCulling: true)),
-          // PolygonLayerWidget(
-          //     options: PolygonLayerOptions(polygons: [
-          //   Polygon(points: polylines, color: Colors.red.withOpacity(0.3))
-          // ], polygonCulling: true))
         ],
       ),
       floatingActionButton:

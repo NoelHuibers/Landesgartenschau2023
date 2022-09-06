@@ -12,7 +12,6 @@ import 'package:landesgartenschau2023/pages/map/widgets/sliding_window.dart';
 Die Datei ist für das Bilden
 der HomePage der App
 */
-
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
 

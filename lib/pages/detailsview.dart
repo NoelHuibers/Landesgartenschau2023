@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:landesgartenschau2023/pages/home/widgets/default_card.dart';
-
 import '/models/events/happening.dart';
 import '/models/stands/stand.dart';
 

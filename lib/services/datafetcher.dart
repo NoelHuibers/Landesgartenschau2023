@@ -1,5 +1,4 @@
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '/models/events/happening.dart';
 import '/models/stands/stand.dart';
 import '/services/client.dart' as client;
