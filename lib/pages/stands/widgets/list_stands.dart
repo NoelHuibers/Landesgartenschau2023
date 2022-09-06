@@ -20,12 +20,13 @@ class _StandsListState extends State<StandsList> {
   bool favoritesLoading = true;
   Map<Stand, bool> favorites = {};
   List<Stand> favoritesList = [];
+  late List<Stand> copyStandslist;
+  late List<Stand> copyFavoritesList = [];
   String query = '';
 
   @override
   void initState() {
     super.initState();
-
     getStandsList().then((value) => loadFavorites());
   }
 
@@ -37,6 +38,7 @@ class _StandsListState extends State<StandsList> {
 
   Future<void> getStandsList() async {
     standslist = await DatabaseProvider.instance.getAllStands();
+    copyStandslist = standslist;
     setState(() => loading = false);
   }
 
@@ -70,7 +72,7 @@ class _StandsListState extends State<StandsList> {
                       child: favoritesLoading
                           ? const CircularProgressIndicator()
                           : ListView.builder(
-                              itemCount: favoritesList.length,
+                              itemCount: copyFavoritesList.length,
                               itemBuilder: (context, index) {
                                 return ListTile(
                                   textColor: Theme.of(context)
@@ -79,18 +81,18 @@ class _StandsListState extends State<StandsList> {
                                   tileColor:
                                       Theme.of(context).colorScheme.surfaceTint,
                                   leading: IconButton(
-                                    icon: favorites[favoritesList[index]]!
+                                    icon: favorites[copyFavoritesList[index]]!
                                         ? Icon(color: Colors.yellow, Icons.star)
                                         : const Icon(Icons.star_border),
-                                    onPressed: () =>
-                                        toggleFavorite(favoritesList[index]),
+                                    onPressed: () => toggleFavorite(
+                                        copyFavoritesList[index]),
                                   ),
-                                  title: Text(favoritesList[index].name),
+                                  title: Text(copyFavoritesList[index].name),
                                   onTap: () {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) => Detailsview(
-                                          stand: favoritesList[index],
+                                          stand: copyFavoritesList[index],
                                           happening: null,
                                         ),
                                       ),
@@ -112,34 +114,37 @@ class _StandsListState extends State<StandsList> {
                       child: loading
                           ? const CircularProgressIndicator()
                           : ListView.builder(
-                              itemCount: standslist.length,
+                              itemCount: copyStandslist.length,
                               itemBuilder: (context, index) {
                                 return ListTile(
                                   leading: IconButton(
-                                    icon: favorites[standslist[index]]!
+                                    icon: favorites[copyStandslist[index]]!
                                         ? Icon(color: Colors.yellow, Icons.star)
                                         : const Icon(Icons.star_border),
                                     onPressed: () =>
-                                        toggleFavorite(standslist[index]),
+                                        toggleFavorite(copyStandslist[index]),
                                   ),
                                   textColor: Theme.of(context)
                                       .colorScheme
                                       .onBackground,
                                   tileColor:
                                       Theme.of(context).colorScheme.surfaceTint,
-                                  title: Text(standslist[index].name),
-                                  subtitle: Text(standslist[index].description,
+                                  title: Text(copyStandslist[index].name),
+                                  subtitle: Text(
+                                      copyStandslist[index].description,
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis),
-                                  trailing: Text((standslist[index]
+                                  trailing: Text((copyStandslist[index]
                                           .latitude
                                           .toString() +
-                                      standslist[index].longitude.toString())),
+                                      copyStandslist[index]
+                                          .longitude
+                                          .toString())),
                                   onTap: () {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) => Detailsview(
-                                            stand: standslist[index],
+                                            stand: copyStandslist[index],
                                             happening: null),
                                       ),
                                     );
@@ -157,7 +162,29 @@ class _StandsListState extends State<StandsList> {
         onChanged: search,
       );
 
-  void search(String query) {}
+  void search(String query) {
+    final stand = standslist.where((stand) {
+      final titleLower = stand.name.toLowerCase();
+      final subtitelLower = stand.description.toLowerCase();
+      final searchLower = query.toLowerCase();
+
+      return titleLower.contains(searchLower) ||
+          subtitelLower.contains(searchLower);
+    }).toList();
+
+    final favorites = favoritesList.where((fav) {
+      final titleLower = fav.name.toLowerCase();
+      final searchLower = query.toLowerCase();
+
+      return titleLower.contains(searchLower);
+    }).toList();
+
+    setState(() {
+      this.query = query;
+      copyStandslist = stand;
+      copyFavoritesList = favorites;
+    });
+  }
 
   Future<void> loadFavorites() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -172,6 +199,7 @@ class _StandsListState extends State<StandsList> {
       favorites = favoriteMap;
       favoritesList =
           favorites.entries.where((e) => e.value).map((e) => e.key).toList();
+      copyFavoritesList = favoritesList;
       favoritesLoading = false;
     });
   }
@@ -190,6 +218,7 @@ class _StandsListState extends State<StandsList> {
       favorites[stand] = !favorites[stand]!;
       favoritesList =
           favorites.entries.where((e) => e.value).map((e) => e.key).toList();
+      copyFavoritesList = favoritesList;
     });
   }
 }

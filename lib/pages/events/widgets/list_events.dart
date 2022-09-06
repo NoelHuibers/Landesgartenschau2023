@@ -194,11 +194,11 @@ class _EventsListState extends State<EventsList> {
       favoriteMap[happeningslist[i]] = favoritesInt.contains(id);
     }
     setState(() {
-      copyFavoritesList = favoritesList;
       favorites = favoriteMap;
       favoritesList =
           favorites.entries.where((e) => e.value).map((e) => e.key).toList();
       favoritesLoading = false;
+      copyFavoritesList = favoritesList;
     });
   }
 

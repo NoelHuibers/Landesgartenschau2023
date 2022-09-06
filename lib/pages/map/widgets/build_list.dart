@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:landesgartenschau2023/models/events/happening.dart';
+import 'package:landesgartenschau2023/models/stands/stand.dart';
+import 'package:landesgartenschau2023/pages/detailsview.dart';
+import 'package:landesgartenschau2023/services/provider/database_provider.dart';
 import '../../home/widgets/default_card.dart';
-import 'package:landesgartenschau2023/models/events_stand_model.dart';
-import 'package:landesgartenschau2023/models/events_stand_data.dart';
 import '../../home/widgets/searchbar.dart';
 import '../../events.dart';
 import '../../stands.dart';
+
+/*
+Die Datei ist für das Bilde der Listen, 
+die in der SlidingPage zufinden sind
+*/
 
 class BuildList extends StatefulWidget {
   const BuildList({Key? key}) : super(key: key);
@@ -16,14 +23,30 @@ class BuildList extends StatefulWidget {
 
 class _BuildListState extends State<BuildList> {
   String query = '';
-  late List<StandsList> stands;
-  late List<EventsList> events;
+  late List<Stand> standslist;
+  late List<Happening> eventsList;
+  bool loading = true;
+  bool favoritesLoading = true;
+  late List<Stand> copyStandslist;
+  late List<Happening> copyEventsList = [];
 
   @override
   void initState() {
     super.initState();
-    stands = allstands;
-    events = allevents;
+    getStandsList();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  Future<void> getStandsList() async {
+    standslist = await DatabaseProvider.instance.getAllStands();
+    copyStandslist = standslist;
+    eventsList = await DatabaseProvider.instance.getAllHappenings();
+    copyEventsList = eventsList;
+    setState(() => loading = false);
   }
 
   @override
@@ -46,13 +69,34 @@ class _BuildListState extends State<BuildList> {
               SizedBox(
                 height: 200,
                 child: DefaultCard(
-                  child: ListView.builder(
-                    itemCount: stands.length,
-                    itemBuilder: (context, index) {
-                      final stand = stands[index];
-                      return buildList(stand);
-                    },
-                  ),
+                  child: loading
+                      ? const CircularProgressIndicator()
+                      : ListView.builder(
+                          itemCount: copyStandslist.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              textColor:
+                                  Theme.of(context).colorScheme.onBackground,
+                              tileColor:
+                                  Theme.of(context).colorScheme.surfaceTint,
+                              title: Text(copyStandslist[index].name),
+                              subtitle: Text(copyStandslist[index].description,
+                                  maxLines: 2, overflow: TextOverflow.ellipsis),
+                              trailing: Text((copyStandslist[index]
+                                      .latitude
+                                      .toString() +
+                                  copyStandslist[index].longitude.toString())),
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => Detailsview(
+                                        stand: copyStandslist[index],
+                                        happening: null),
+                                  ),
+                                );
+                              },
+                            );
+                          }),
                 ),
               ),
               SizedBox(
@@ -61,13 +105,31 @@ class _BuildListState extends State<BuildList> {
               SizedBox(
                 height: 200,
                 child: DefaultCard(
-                  child: ListView.builder(
-                    itemCount: events.length,
-                    itemBuilder: (context, index) {
-                      final event = events[index];
-                      return buildList(event);
-                    },
-                  ),
+                  child: loading
+                      ? const CircularProgressIndicator()
+                      : ListView.builder(
+                          itemCount: copyEventsList.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              textColor:
+                                  Theme.of(context).colorScheme.onBackground,
+                              tileColor:
+                                  Theme.of(context).colorScheme.surfaceTint,
+                              title: Text(copyEventsList[index].name),
+                              subtitle: Text(copyEventsList[index].description,
+                                  maxLines: 2, overflow: TextOverflow.ellipsis),
+                              trailing: Text(copyEventsList[index].startdate),
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => Detailsview(
+                                        happening: copyEventsList[index],
+                                        stand: null),
+                                  ),
+                                );
+                              },
+                            );
+                          }),
                 ),
               )
             ],
@@ -125,28 +187,31 @@ class _BuildListState extends State<BuildList> {
       );
 
   void search(String query) {
-    final stands = allstands.where((stand) {
-      final titleLower = stand.titel.toLowerCase();
-      final subtitelLower = stand.subtitle.toLowerCase();
+    final stands = standslist.where((stand) {
+      final titleLower = stand.name.toLowerCase();
+      final subtitelLower = stand.description.toLowerCase();
+      //final date = stand.startdate.toLowerCase();
       final searchLower = query.toLowerCase();
 
       return titleLower.contains(searchLower) ||
           subtitelLower.contains(searchLower);
     }).toList();
 
-    final events = allevents.where((event) {
-      final titleLower = event.titel.toLowerCase();
-      final authorLower = event.subtitle.toLowerCase();
+    final events = eventsList.where((event) {
+      final titleLower = event.name.toLowerCase();
+      final subtitelLower = event.description.toLowerCase();
+      final date = event.startdate.toLowerCase();
       final searchLower = query.toLowerCase();
 
       return titleLower.contains(searchLower) ||
-          authorLower.contains(searchLower);
+          subtitelLower.contains(searchLower) ||
+          date.contains(searchLower);
     }).toList();
 
     setState(() {
       this.query = query;
-      this.stands = stands;
-      this.events = events;
+      copyStandslist = stands;
+      copyEventsList = events;
     });
   }
 }
