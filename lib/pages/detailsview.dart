@@ -40,13 +40,11 @@ class Detailsview extends StatelessWidget {
                             child: SizedBox(
                               width: 500,
                               child: Text(
-                                happening!.name,
-                                //happening!.startdate,
-                                //happening!.enddate,
+                                "${happening!.name}\n${happening!.startdate}",
                                 style: Theme.of(context).textTheme.subtitle1,
                               ),
                             ),
-                          ))), //Titel und darunter Datum
+                          ))),
                   DefaultCard(
                       child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 15.0),
@@ -55,11 +53,11 @@ class Detailsview extends StatelessWidget {
                             child: SizedBox(
                               width: 500,
                               child: Text(
-                                "Hier Standname darunter Adresse",
+                                "AreaId: ${happening!.areaId}",
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                             ),
-                          ))), //Standname und darunter Adresse (happening!.id & happening!.areaId)
+                          ))),
                   DefaultCard(
                       child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 15.0),

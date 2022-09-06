@@ -20,12 +20,13 @@ class _EventsListState extends State<EventsList> {
   bool favoritesLoading = true;
   Map<Happening, bool> favorites = {};
   List<Happening> favoritesList = [];
+  late List<Happening> copyHappeningslist = [];
+  late List<Happening> copyFavoritesList = [];
   String query = '';
 
   @override
   void initState() {
     super.initState();
-
     getHappeningslist().then((value) => loadFavorites());
   }
 
@@ -37,6 +38,7 @@ class _EventsListState extends State<EventsList> {
 
   Future<void> getHappeningslist() async {
     happeningslist = await DatabaseProvider.instance.getAllHappenings();
+    copyHappeningslist = happeningslist;
     setState(() => loading = false);
   }
 
@@ -70,7 +72,7 @@ class _EventsListState extends State<EventsList> {
                       child: favoritesLoading
                           ? const CircularProgressIndicator()
                           : ListView.builder(
-                              itemCount: favoritesList.length,
+                              itemCount: copyFavoritesList.length,
                               itemBuilder: (context, index) {
                                 return ListTile(
                                   textColor: Theme.of(context)
@@ -79,18 +81,18 @@ class _EventsListState extends State<EventsList> {
                                   tileColor:
                                       Theme.of(context).colorScheme.surfaceTint,
                                   leading: IconButton(
-                                    icon: favorites[favoritesList[index]]!
+                                    icon: favorites[copyFavoritesList[index]]!
                                         ? Icon(color: Colors.yellow, Icons.star)
                                         : const Icon(Icons.star_border),
-                                    onPressed: () =>
-                                        toggleFavorite(favoritesList[index]),
+                                    onPressed: () => toggleFavorite(
+                                        copyFavoritesList[index]),
                                   ),
-                                  title: Text(favoritesList[index].name),
+                                  title: Text(copyFavoritesList[index].name),
                                   onTap: () {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) => Detailsview(
-                                            happening: favoritesList[index],
+                                            happening: copyFavoritesList[index],
                                             stand: null),
                                       ),
                                     );
@@ -111,33 +113,34 @@ class _EventsListState extends State<EventsList> {
                       child: loading
                           ? const CircularProgressIndicator()
                           : ListView.builder(
-                              itemCount: happeningslist.length,
+                              itemCount: copyHappeningslist.length,
                               itemBuilder: (context, index) {
                                 return ListTile(
                                   leading: IconButton(
-                                    icon: favorites[happeningslist[index]]!
+                                    icon: favorites[copyHappeningslist[index]]!
                                         ? Icon(color: Colors.yellow, Icons.star)
                                         : const Icon(Icons.star_border),
-                                    onPressed: () =>
-                                        toggleFavorite(happeningslist[index]),
+                                    onPressed: () => toggleFavorite(
+                                        copyHappeningslist[index]),
                                   ),
                                   textColor: Theme.of(context)
                                       .colorScheme
                                       .onBackground,
                                   tileColor:
                                       Theme.of(context).colorScheme.surfaceTint,
-                                  title: Text(happeningslist[index].name),
+                                  title: Text(copyHappeningslist[index].name),
                                   subtitle: Text(
-                                      happeningslist[index].description,
+                                      copyHappeningslist[index].description,
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis),
                                   trailing:
-                                      Text(happeningslist[index].startdate),
+                                      Text(copyHappeningslist[index].startdate),
                                   onTap: () {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) => Detailsview(
-                                            happening: happeningslist[index],
+                                            happening:
+                                                copyHappeningslist[index],
                                             stand: null),
                                       ),
                                     );
@@ -155,7 +158,31 @@ class _EventsListState extends State<EventsList> {
         onChanged: search,
       );
 
-  void search(String query) {}
+  void search(String query) {
+    final events = happeningslist.where((event) {
+      final titleLower = event.name.toLowerCase();
+      final subtitelLower = event.description.toLowerCase();
+      final date = event.startdate.toLowerCase();
+      final searchLower = query.toLowerCase();
+
+      return titleLower.contains(searchLower) ||
+          subtitelLower.contains(searchLower) ||
+          date.contains(searchLower);
+    }).toList();
+
+    final favorites = favoritesList.where((fav) {
+      final titleLower = fav.name.toLowerCase();
+      final searchLower = query.toLowerCase();
+
+      return titleLower.contains(searchLower);
+    }).toList();
+
+    setState(() {
+      this.query = query;
+      copyHappeningslist = events;
+      copyFavoritesList = favorites;
+    });
+  }
 
   Future<void> loadFavorites() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -167,6 +194,7 @@ class _EventsListState extends State<EventsList> {
       favoriteMap[happeningslist[i]] = favoritesInt.contains(id);
     }
     setState(() {
+      copyFavoritesList = favoritesList;
       favorites = favoriteMap;
       favoritesList =
           favorites.entries.where((e) => e.value).map((e) => e.key).toList();
@@ -188,6 +216,7 @@ class _EventsListState extends State<EventsList> {
       favorites[happening] = !favorites[happening]!;
       favoritesList =
           favorites.entries.where((e) => e.value).map((e) => e.key).toList();
+      copyFavoritesList = favoritesList;
     });
   }
 }
