@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:landesgartenschau2023/pages/home/widgets/default_card.dart';
 
 import '/models/events/happening.dart';
 import '/models/stands/stand.dart';
@@ -21,45 +23,58 @@ class Detailsview extends StatelessWidget {
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
-        body: ListView(
-          children: <Widget>[
-            Container(
-                decoration:
-                    BoxDecoration(color: Theme.of(context).colorScheme.primary),
-                child: Text(
-                  happening!.name,
-                  style: Theme.of(context).textTheme.subtitle1,
-                )),
-            Container(
-                decoration:
-                    BoxDecoration(color: Theme.of(context).colorScheme.primary),
-                child: Text(
-                  happening!.description,
-                  style: Theme.of(context).textTheme.bodyText2,
-                )),
-            /*Container(
-                decoration:
-                    BoxDecoration(color: Theme.of(context).colorScheme.primary),
-                child: Text(happening.areaId, style: Theme.of(context).textTheme.bodyText2,)),
-            Container(
-                decoration:
-                    BoxDecoration(color: Theme.of(context).colorScheme.primary),
-                child: (happening.id, style: Theme.of(context).textTheme.bodyText2,)),*/
-            Container(
-                decoration:
-                    BoxDecoration(color: Theme.of(context).colorScheme.primary),
-                child: Text(
-                  happening!.startdate,
-                  style: Theme.of(context).textTheme.bodyText2,
-                )),
-            Container(
-                decoration:
-                    BoxDecoration(color: Theme.of(context).colorScheme.primary),
-                child: Text(
-                  happening!.enddate,
-                  style: Theme.of(context).textTheme.bodyText2,
-                )),
-          ],
+        body: SafeArea(
+          child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  DefaultCard(
+                      child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15.0),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 20.0),
+                            child: SizedBox(
+                              width: 500,
+                              child: Text(
+                                happening!.name,
+                                //happening!.startdate,
+                                //happening!.enddate,
+                                style: Theme.of(context).textTheme.subtitle1,
+                              ),
+                            ),
+                          ))), //Titel und darunter Datum
+                  DefaultCard(
+                      child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15.0),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 20.0),
+                            child: SizedBox(
+                              width: 500,
+                              child: Text(
+                                "Hier Standname darunter Adresse",
+                                style: Theme.of(context).textTheme.bodyText2,
+                              ),
+                            ),
+                          ))), //Standname und darunter Adresse (happening!.id & happening!.areaId)
+                  DefaultCard(
+                      child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15.0),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 10.0),
+                            child: SizedBox(
+                              width: 500,
+                              child: Text(
+                                happening!.description,
+                                style: Theme.of(context).textTheme.bodyText2,
+                              ),
+                            ),
+                          ))), //Beschreibung
+                ],
+              )),
         ));
   }
 }
