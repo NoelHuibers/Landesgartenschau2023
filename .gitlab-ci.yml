@@ -1,0 +1,38 @@
+# This file is a template, and might need editing before it works on your project.
+# To contribute improvements to CI/CD templates, please follow the Development guide at:
+# https://docs.gitlab.com/ee/development/cicd/templates.html
+# This specific template is located at:
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
+
+image: docker:latest
+services:
+- docker:dind
+
+stages:
+- build
+- release
+variables:
+  TEST_IMAGE: registry.pwi-2022.org/frontend/flutter-app/pwi-app:$CI_COMMIT_REF_NAME
+  RELEASE_IMAGE: registry.pwi-2022.org/frontend/flutter-app/pwi-app:latest
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.pwi-2022.org
+
+build:
+  stage: build
+  script:
+    - docker build --pull -t $RELEASE_IMAGE .
+    - docker push $RELEASE_IMAGE
+  only:
+    - master
+
+release:
+  stage: release
+  script:
+    - docker pull $RELEASE_IMAGE
+    - docker rm -f app
+    - docker run -d --name app --network="bridge" -p 8081:80 -e "env=production" $RELEASE_IMAGE 
+    - docker network connect --ip=172.20.0.9 proxy app
+  only:
+    - master
+
