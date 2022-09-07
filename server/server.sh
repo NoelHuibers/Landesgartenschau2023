@@ -1,5 +1,3 @@
-sh
-
 #!/bin/bash
 
 # Set the port
