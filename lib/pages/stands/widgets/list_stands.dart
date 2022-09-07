@@ -82,7 +82,10 @@ class _StandsListState extends State<StandsList> {
                                       Theme.of(context).colorScheme.surfaceTint,
                                   leading: IconButton(
                                     icon: favorites[copyFavoritesList[index]]!
-                                        ? Icon(color: Colors.yellow, Icons.star)
+                                        ? const Icon(
+                                            color: Color.fromARGB(
+                                                255, 255, 235, 59),
+                                            Icons.star)
                                         : const Icon(Icons.star_border),
                                     onPressed: () => toggleFavorite(
                                         copyFavoritesList[index]),
@@ -119,7 +122,10 @@ class _StandsListState extends State<StandsList> {
                                 return ListTile(
                                   leading: IconButton(
                                     icon: favorites[copyStandslist[index]]!
-                                        ? Icon(color: Colors.yellow, Icons.star)
+                                        ? const Icon(
+                                            color: Color.fromARGB(
+                                                255, 255, 235, 59),
+                                            Icons.star)
                                         : const Icon(Icons.star_border),
                                     onPressed: () =>
                                         toggleFavorite(copyStandslist[index]),

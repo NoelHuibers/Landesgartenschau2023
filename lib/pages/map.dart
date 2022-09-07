@@ -214,7 +214,7 @@ class _MapState extends State<Map> {
             const Text("Stand TH-OWL"),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: const Color(0xff22C95C),
+                backgroundColor: const Color(0xff22C95C),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),
