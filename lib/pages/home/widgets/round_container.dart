@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import '/config/insets.dart';
 
 class RoundContainer extends StatelessWidget {
-  const RoundContainer({Key? key, required this.color, required this.flex})
-      : super(key: key);
-  final Color color;
+  const RoundContainer({Key? key, required this.flex}) : super(key: key);
   final int flex;
 
   @override
@@ -13,7 +11,8 @@ class RoundContainer extends StatelessWidget {
         flex: flex,
         child: Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Insets.m), color: color),
+                borderRadius: BorderRadius.circular(Insets.m),
+                color: Theme.of(context).colorScheme.primary),
             margin: const EdgeInsets.all(Insets.s)));
   }
 }
