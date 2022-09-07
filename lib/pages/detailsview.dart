@@ -29,7 +29,8 @@ class Detailsview extends StatelessWidget {
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
-        body: SafeArea(
+        body: Container(
+          color: Theme.of(context).colorScheme.surfaceTint,
           child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 5.w),
               child: Column(
@@ -38,19 +39,30 @@ class Detailsview extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  DefaultCard(
-                      child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  SizedBox(
+                    width: 50,
+                    height: 100,
+                    child: ListTile(
+                      leading: DefaultCard(
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20.0),
-                            child: SizedBox(
-                              width: 500,
-                              child: Text(
-                                "${happening!.name}\n$outputstart\n$outputend",
-                                style: Theme.of(context).textTheme.subtitle1,
-                              ),
-                            ),
-                          ))),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15.0),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 20.0),
+                                child: SizedBox(
+                                  width: 500,
+                                  child: Text(
+                                    "${happening!.name}\n$outputstart\n$outputend",
+                                    style:
+                                        Theme.of(context).textTheme.subtitle1,
+                                  ),
+                                ),
+                              ))),
+                      trailing: const Icon(
+                          color: Color.fromARGB(255, 255, 235, 59), Icons.star),
+                    ),
+                  ),
                   DefaultCard(
                       child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15.0),
