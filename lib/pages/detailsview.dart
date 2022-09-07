@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:landesgartenschau2023/pages/home/widgets/default_card.dart';
 import '/models/events/happening.dart';
 import '/models/stands/stand.dart';
+import 'package:intl/intl.dart';
 
 class Detailsview extends StatelessWidget {
   const Detailsview({Key? key, required this.happening, required this.stand})
@@ -12,6 +13,12 @@ class Detailsview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final inputstart = DateTime.parse(happening!.startdate);
+    final inputend = DateTime.parse(happening!.enddate);
+    var outputFormat = DateFormat('EEEE, d.MMMM HH:mm');
+    var outputstart = outputFormat.format(inputstart);
+    var outputend = outputFormat.format(inputend);
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.surfaceTint,
@@ -39,7 +46,7 @@ class Detailsview extends StatelessWidget {
                             child: SizedBox(
                               width: 500,
                               child: Text(
-                                "${happening!.name}\n${happening!.startdate}",
+                                "${happening!.name}\n$outputstart\n$outputend",
                                 style: Theme.of(context).textTheme.subtitle1,
                               ),
                             ),
