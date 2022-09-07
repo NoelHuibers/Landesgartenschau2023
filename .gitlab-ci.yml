@@ -24,8 +24,7 @@ build:
     - docker build --pull -t $RELEASE_IMAGE .
     - docker push $RELEASE_IMAGE
   only: 
-    -master
-
+    - master
 release:
   stage: release
   script:
@@ -34,6 +33,6 @@ release:
     - docker run -d --name app --network="bridge" -p 8081:5000  $RELEASE_IMAGE 
     - docker network connect --ip=172.20.0.9 proxy app
   only: 
-    -master
+    - master
 
 
