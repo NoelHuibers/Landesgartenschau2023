@@ -40,9 +40,9 @@ class Detailsview extends StatelessWidget {
                   ),
                   DefaultCard(
                       child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
                           child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 20.0),
+                            padding: const EdgeInsets.symmetric(vertical: 20.0),
                             child: SizedBox(
                               width: 500,
                               child: Text(
@@ -53,9 +53,9 @@ class Detailsview extends StatelessWidget {
                           ))),
                   DefaultCard(
                       child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
                           child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 20.0),
+                            padding: const EdgeInsets.symmetric(vertical: 20.0),
                             child: SizedBox(
                               width: 500,
                               child: Text(
@@ -66,9 +66,9 @@ class Detailsview extends StatelessWidget {
                           ))),
                   DefaultCard(
                       child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
                           child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 10.0),
+                            padding: const EdgeInsets.symmetric(vertical: 10.0),
                             child: SizedBox(
                               width: 500,
                               child: Text(
