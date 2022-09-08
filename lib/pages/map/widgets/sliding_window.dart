@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:landesgartenschau2023/pages/map/widgets/build_list.dart';
+import 'package:landesgartenschau2023/pages/map/widgets/build_sliding_window.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 /*
@@ -45,7 +45,7 @@ class _SlidePageState extends State<SlidePage> {
                   SizedBox(height: 80, child: bildButtonBar(context)),
                   const SizedBox(
                     height: 500,
-                    child: BuildList(),
+                    child: BuildlideWindow(),
                   ),
                 ],
               ))

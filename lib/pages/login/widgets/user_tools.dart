@@ -100,16 +100,6 @@ Widget buildUser(BuildContext context, TextEditingController userController) {
       ]);
 }
 
-/// Bildet die Image die in der User Pages verwendet wurden
-Widget buildImage(String imageLink, double width, double height) {
-  return Image.asset(
-    imageLink,
-    fit: BoxFit.contain,
-    width: width,
-    height: height,
-  );
-}
-
 /// Bildet die Logo die in der User Pages verwendet wurden
 Widget buildImageLogo(
     BuildContext context, String imageLink, double width, double height) {
