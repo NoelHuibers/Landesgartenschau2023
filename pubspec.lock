@@ -136,14 +136,14 @@ packages:
       name: flutter_map
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "2.2.0"
   flutter_map_marker_popup:
     dependency: "direct main"
     description:
       name: flutter_map_marker_popup
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "3.2.0"
   flutter_screenutil:
     dependency: "direct main"
     description:
@@ -203,15 +203,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.6.0"
-  latlng:
-    dependency: "direct main"
-    description:
-      name: latlng
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.0"
   latlong2:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: latlong2
       url: "https://pub.dartlang.org"
@@ -658,4 +651,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=2.18.0 <3.0.0"
-  flutter: ">=3.3.0"
+  flutter: ">=3.0.0"
