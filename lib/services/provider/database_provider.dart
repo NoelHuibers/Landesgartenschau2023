@@ -97,7 +97,7 @@ class DatabaseProvider {
     } // If table is empty, throw exception
   } // Get all happenings from database
 
-  Future<int> delete(int id) async {
+  Future<int> deleteHappening(int id) async {
     final db = await instance.database;
 
     return await db.delete(
