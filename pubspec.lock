@@ -211,7 +211,7 @@ packages:
     source: hosted
     version: "0.2.0"
   latlong2:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: latlong2
       url: "https://pub.dartlang.org"
