@@ -6,7 +6,7 @@ import 'package:landesgartenschau2023/pages/settings.dart';
 import 'package:landesgartenschau2023/pages/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:landesgartenschau2023/pages/map/widgets/sliding_window.dart';
+import 'package:landesgartenschau2023/pages/map/widgets/slidingwindow_buttons.dart';
 
 /*
 Die Datei ist für das Bilden
