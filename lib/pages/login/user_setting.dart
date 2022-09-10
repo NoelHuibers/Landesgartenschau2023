@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
 import 'package:landesgartenschau2023/pages/home.dart';
 import 'package:landesgartenschau2023/pages/home/widgets/default_card.dart';
-import 'package:landesgartenschau2023/pages/login/login_page.dart';
+import 'package:landesgartenschau2023/pages/login.dart';
 import '/services/client.dart' as client;
 import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import 'package:landesgartenschau2023/pages/login/validator.dart';

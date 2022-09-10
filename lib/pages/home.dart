@@ -3,7 +3,7 @@ import 'package:landesgartenschau2023/pages/login/user_setting.dart';
 import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import 'package:landesgartenschau2023/pages/map.dart';
 import 'package:landesgartenschau2023/pages/settings.dart';
-import 'package:landesgartenschau2023/pages/login/login_page.dart';
+import 'package:landesgartenschau2023/pages/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:landesgartenschau2023/pages/map/widgets/sliding_window.dart';
