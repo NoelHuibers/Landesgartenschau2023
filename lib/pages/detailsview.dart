@@ -13,8 +13,13 @@ class Detailsview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final inputstart = DateTime.parse(happening!.startdate);
-    final inputend = DateTime.parse(happening!.enddate);
+    String? name = happening?.name ?? stand?.name;
+    int? areaId = happening?.areaId ?? stand?.id;
+    String? description = happening?.description ?? stand?.description;
+    String startdate = happening?.startdate ?? "2023-05-02 15:30:00";
+    String enddate = happening?.enddate ?? "2023-05-02 15:30:00";
+    final inputstart = DateTime.parse(startdate);
+    final inputend = DateTime.parse(enddate);
     var outputFormat = DateFormat('EEEE, d.MMMM HH:mm');
     var outputstart = outputFormat.format(inputstart);
     var outputend = outputFormat.format(inputend);
@@ -29,8 +34,7 @@ class Detailsview extends StatelessWidget {
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
-        body: Container(
-          color: Theme.of(context).colorScheme.surfaceTint,
+        body: SafeArea(
           child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 5.w),
               child: Column(
@@ -38,30 +42,6 @@ class Detailsview extends StatelessWidget {
                 children: <Widget>[
                   SizedBox(
                     height: 10.h,
-                  ),
-                  SizedBox(
-                    width: 50,
-                    height: 100,
-                    child: ListTile(
-                      leading: DefaultCard(
-                          child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 15.0),
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 20.0),
-                                child: SizedBox(
-                                  width: 500,
-                                  child: Text(
-                                    "${happening!.name}\n$outputstart\n$outputend",
-                                    style:
-                                        Theme.of(context).textTheme.subtitle1,
-                                  ),
-                                ),
-                              ))),
-                      trailing: const Icon(
-                          color: Color.fromARGB(255, 255, 235, 59), Icons.star),
-                    ),
                   ),
                   DefaultCard(
                       child: Padding(
@@ -71,7 +51,20 @@ class Detailsview extends StatelessWidget {
                             child: SizedBox(
                               width: 500,
                               child: Text(
-                                "AreaId: ${happening!.areaId}",
+                                "$name\n$outputstart\n$outputend",
+                                style: Theme.of(context).textTheme.subtitle1,
+                              ),
+                            ),
+                          ))),
+                  DefaultCard(
+                      child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20.0),
+                            child: SizedBox(
+                              width: 500,
+                              child: Text(
+                                "AreaId: $areaId",
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                             ),
@@ -84,7 +77,7 @@ class Detailsview extends StatelessWidget {
                             child: SizedBox(
                               width: 500,
                               child: Text(
-                                happening!.description,
+                                description!,
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                             ),
