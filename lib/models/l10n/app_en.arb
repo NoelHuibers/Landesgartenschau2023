@@ -85,8 +85,6 @@
   "@searchInLists": {},
   "automaticallyLoggedOut": "You have been automatically logged out.",
   "@automaticallyLoggedOut": {},
-  "PasswordNotMatch": "The passwords do not match.",
-  "@PasswordNotMatch": {},
   "zoomIn": "Zoom In",
   "@zoomIn": {},
   "zoomOut": "Zoom Out",
