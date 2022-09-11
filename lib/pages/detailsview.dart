@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:landesgartenschau2023/pages/home/widgets/default_card.dart';
+import 'package:landesgartenschau2023/services/provider/darkmode_provider.dart';
+import 'package:provider/provider.dart';
 import '/models/events/happening.dart';
 import '/models/stands/stand.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class Detailsview extends StatelessWidget {
   const Detailsview({Key? key, required this.happening, required this.stand})
@@ -30,7 +33,7 @@ class Detailsview extends StatelessWidget {
           leading:
               BackButton(color: Theme.of(context).colorScheme.onBackground),
           title: Text(
-            'Events',
+            AppLocalizations.of(context)!.events,
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
@@ -44,31 +47,41 @@ class Detailsview extends StatelessWidget {
                     height: 10.h,
                   ),
                   DefaultCard(
-                      child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20.0),
-                            child: SizedBox(
-                              width: 500,
-                              child: Text(
-                                "$name\n$outputstart\n$outputend",
-                                style: Theme.of(context).textTheme.subtitle1,
-                              ),
-                            ),
-                          ))),
+                      child: ListTile(
+                    title: Text(
+                      "$name\n$outputstart\n$outputend",
+                      style: Theme.of(context).textTheme.subtitle1,
+                    ),
+                    trailing: Consumer<ThemeProvider>(
+                        builder: (context, provider, child) {
+                      return SizedBox(
+                        width: 75,
+                        child: Icon(
+                          Icons.star,
+                          size: 30,
+                          color: Theme.of(context).colorScheme.onBackground,
+                        ),
+                      );
+                    }),
+                  )),
                   DefaultCard(
-                      child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20.0),
-                            child: SizedBox(
-                              width: 500,
-                              child: Text(
-                                "AreaId: $areaId",
-                                style: Theme.of(context).textTheme.bodyText2,
-                              ),
-                            ),
-                          ))),
+                      child: ListTile(
+                    title: Text(
+                      "AreaId: $areaId",
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
+                    trailing: Consumer<ThemeProvider>(
+                        builder: (context, provider, child) {
+                      return SizedBox(
+                        width: 75,
+                        child: Icon(
+                          Icons.ios_share,
+                          size: 30,
+                          color: Theme.of(context).colorScheme.onBackground,
+                        ),
+                      );
+                    }),
+                  )),
                   DefaultCard(
                       child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15.0),

@@ -17,7 +17,7 @@ class Validator {
   }
 
   static String? validatePassword(String pass, String returnPass, String text) {
-    Pattern pattern = r'^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$';
+    Pattern pattern = r'^(?=.*?[A-Za-z]).{6,200}$';
     RegExp regex = RegExp(pattern as String);
 
     ///Überprüft,ob die Passswörter übereinstimmen
