@@ -60,5 +60,9 @@
   "title": "Titel",
   "@title": {},
   "toilets": "Toiletten",
-  "@toilets": {}
+  "@toilets": {},
+  "newaccount": "Du hast kein Konto?",
+  "@newaccount": {},
+  "searchInLists": "Suche in Listen",
+  "@searchInLists": {}
 }
