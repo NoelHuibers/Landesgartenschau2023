@@ -100,5 +100,7 @@
   "endRoute": "End route",
   "@endRoute": {},
   "searchInStands": "Search in Stands...",
-  "@searchInStands": {}
+  "@searchInStands": {},
+  "registrationWasSuccessful": "Registration was successful.",
+  "@registrationWasSuccessful": {}
 }
