@@ -81,7 +81,7 @@
   "@searchInEvents": {},
   "enterPassword": "Please enter password.",
   "@enterPassword": {},
-  "searchInLists": "Search in lists",
+  "searchInLists": "Search in Lists...",
   "@searchInLists": {},
   "RegistrationSuccessful": "Registration was successful.",
   "@RegistrationSuccessful": {},
