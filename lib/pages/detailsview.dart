@@ -7,6 +7,7 @@ import '/models/events/happening.dart';
 import '/models/stands/stand.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:share_plus/share_plus.dart';
 
 class Detailsview extends StatelessWidget {
   const Detailsview({Key? key, required this.happening, required this.stand})
@@ -74,10 +75,16 @@ class Detailsview extends StatelessWidget {
                         builder: (context, provider, child) {
                       return SizedBox(
                         width: 75,
-                        child: Icon(
-                          Icons.ios_share,
-                          size: 30,
-                          color: Theme.of(context).colorScheme.onBackground,
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.ios_share,
+                            size: 30,
+                            color: Theme.of(context).colorScheme.onBackground,
+                          ),
+                          onPressed: () async {
+                            await Share.share(
+                                "$name\n$outputstart\n$outputend\n$areaId\n$description");
+                          },
                         ),
                       );
                     }),
