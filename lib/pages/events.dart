@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'events/widgets/list_events.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 

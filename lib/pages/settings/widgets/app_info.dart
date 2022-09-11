@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 /*
 Die Datei ist für das Bilden
@@ -17,7 +18,7 @@ class AppInfoButton extends StatelessWidget {
           color: Theme.of(context).colorScheme.onBackground,
         ),
         title: Text(
-          'Informationen zur Applikation',
+          AppLocalizations.of(context)!.informationabouttheapplication,
           style: Theme.of(context).textTheme.bodyText2,
         ),
         onTap: () {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/pages/impressum.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 /*
 Die Datei ist für das Bilden des Impressumbuttons,
@@ -29,12 +30,12 @@ class Impressumbutton extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const Impressum()),
               );
             },
-            child: const FittedBox(
+            child: FittedBox(
               fit: BoxFit.fitWidth,
               child: Text(
-                "Impressum",
-                style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                AppLocalizations.of(context)!.imprent,
+                style: const TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold),
               ),
             )));
   }

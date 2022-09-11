@@ -45,7 +45,7 @@ class Settings extends StatelessWidget {
                   const Impressumbutton(),
                   buildText(
                       context,
-                      '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
+                      '© Landesgartenschau Höxter 2023 GmbH \n                   ${AppLocalizations.of(context)!.allrightsreserved}',
                       10),
                 ],
               )),

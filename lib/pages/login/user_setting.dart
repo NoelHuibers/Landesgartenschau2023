@@ -9,6 +9,7 @@ import '/services/client.dart' as client;
 import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import 'package:landesgartenschau2023/pages/login/validator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 /*
 Die Datei ist für das Bilden der User Page
@@ -103,7 +104,7 @@ class _UserSettingState extends State<UserSetting> {
                                 children: <Widget>[
                                   SizedBox(height: 20.h),
                                   Text(
-                                    'Persönliche Daten!',
+                                    AppLocalizations.of(context)!.personaldata,
                                     style: TextStyle(
                                         color: Theme.of(context)
                                             .colorScheme
@@ -128,19 +129,31 @@ class _UserSettingState extends State<UserSetting> {
                                   SizedBox(height: 5.h),
                                   DefaultCard(
                                     child: buildPassword(
-                                        "neues Passwort wiederholen",
+                                        AppLocalizations.of(context)!
+                                            .repeatpassword,
                                         returnPassword,
                                         returnPassController),
                                   ),
                                   SizedBox(height: 100.h),
-                                  buildButton("Passwort ändern", setPass, 200,
-                                      15, 15, context),
+                                  buildButton(
+                                      AppLocalizations.of(context)!
+                                          .changepassword,
+                                      setPass,
+                                      200,
+                                      15,
+                                      15,
+                                      context),
                                   SizedBox(height: 5.h),
                                   buildButton(
-                                      "Abmelden", logout, 150, 10, 15, context),
+                                      AppLocalizations.of(context)!.logout,
+                                      logout,
+                                      150,
+                                      10,
+                                      15,
+                                      context),
                                   SizedBox(height: 30.h),
                                   Text(
-                                    '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
+                                    '© Landesgartenschau Höxter 2023 GmbH \n                   ${AppLocalizations.of(context)!.allrightsreserved}',
                                     style: TextStyle(
                                         color: Theme.of(context)
                                             .colorScheme
@@ -181,7 +194,7 @@ class _UserSettingState extends State<UserSetting> {
                 ),
                 SizedBox(
                   child: Text(
-                    "username: ",
+                    AppLocalizations.of(context)!.username,
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Theme.of(context).colorScheme.onPrimary,

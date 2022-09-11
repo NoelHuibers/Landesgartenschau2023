@@ -7,6 +7,7 @@ import 'package:landesgartenschau2023/pages/home/widgets/default_card.dart';
 import '/services/client.dart' as client;
 import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import 'package:landesgartenschau2023/pages/login/validator.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 /*
 Die Datei ist für das Bilden der Registration-Page
@@ -98,7 +99,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 buildImageLogo(context,
                                     "assets/images/kontoImage.png", 100, 100),
                                 SizedBox(height: 10.h),
-                                buildText(context, 'Account erstellen!', 20),
+                                buildText(
+                                    context,
+                                    AppLocalizations.of(context)!.createaccount,
+                                    20),
                                 SizedBox(height: 30.h),
                                 DefaultCard(
                                   child: buildUser(context, userController),
@@ -106,20 +110,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 SizedBox(height: 15.h),
                                 DefaultCard(
                                   child: buildPassword(
-                                      "passwort", password, passController),
+                                      AppLocalizations.of(context)!.password,
+                                      password,
+                                      passController),
                                 ),
                                 SizedBox(height: 15.h),
                                 DefaultCard(
-                                  child: buildPassword("Passwort wiederholen",
-                                      returnPassword, returnPassController),
+                                  child: buildPassword(
+                                      AppLocalizations.of(context)!
+                                          .repeatpassword,
+                                      returnPassword,
+                                      returnPassController),
                                 ),
                                 SizedBox(height: 25.h),
-                                buildButton("Registrieren", register, 250, 20,
-                                    15, context),
+                                buildButton(
+                                    AppLocalizations.of(context)!.createaccount,
+                                    register,
+                                    250,
+                                    20,
+                                    15,
+                                    context),
                                 SizedBox(height: 110.h),
                                 buildText(
                                     context,
-                                    '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
+                                    '© Landesgartenschau Höxter 2023 GmbH \n                   ${AppLocalizations.of(context)!.allrightsreserved}',
                                     10),
                               ],
                             ),

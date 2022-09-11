@@ -6,6 +6,7 @@ import 'package:landesgartenschau2023/pages/login/validator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '/services/client.dart' as client;
 import 'package:http/http.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 /*
 Die Datei besteht aus allen Widgets, die 
@@ -92,7 +93,7 @@ Widget buildUser(BuildContext context, TextEditingController userController) {
                 Icons.account_box_outlined,
                 color: Theme.of(context).colorScheme.onPrimary,
               ),
-              hintText: 'Benutzername',
+              hintText: AppLocalizations.of(context)!.username,
               hintStyle: TextStyle(
                 color: Theme.of(context).colorScheme.onPrimary,
               )),

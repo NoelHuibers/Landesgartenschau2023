@@ -8,7 +8,7 @@ import '../../home/widgets/default_card.dart';
 import '../../home/widgets/searchbar.dart';
 import '../../events.dart';
 import '../../stands.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 /*
 Die Datei ist für das Bilde der Listen, 
 die in der SlidingPage zufinden sind
@@ -64,7 +64,8 @@ class _BuildListState extends State<BuildlideWindow> {
                 child: buildSearch(),
               ),
               SizedBox(
-                child: buildTextButton("Stands", const Stands()),
+                child: buildTextButton(
+                    AppLocalizations.of(context)!.stands, const Stands()),
               ),
               SizedBox(
                 height: 200,
@@ -100,7 +101,8 @@ class _BuildListState extends State<BuildlideWindow> {
                 ),
               ),
               SizedBox(
-                child: buildTextButton("Events", const Events()),
+                child: buildTextButton(
+                    AppLocalizations.of(context)!.events, const Events()),
               ),
               SizedBox(
                 height: 200,
@@ -190,7 +192,6 @@ class _BuildListState extends State<BuildlideWindow> {
     final stands = standslist.where((stand) {
       final titleLower = stand.name.toLowerCase();
       final subtitelLower = stand.description.toLowerCase();
-      //final date = stand.startdate.toLowerCase();
       final searchLower = query.toLowerCase();
 
       return titleLower.contains(searchLower) ||

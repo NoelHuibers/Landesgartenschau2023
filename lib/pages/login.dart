@@ -11,6 +11,7 @@ import '/services/client.dart' as client;
 import 'package:landesgartenschau2023/pages/register.dart';
 import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 /*
 Die Datei ist für das Bilden der Login Page,
@@ -86,7 +87,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               buildImageLogo(context,
                                   "assets/images/kontoImage.png", 100, 100),
                               SizedBox(height: 10.h),
-                              buildText(context, 'Anmelden!', 20),
+                              buildText(context,
+                                  AppLocalizations.of(context)!.login, 20),
                               SizedBox(height: 30.h),
                               DefaultCard(
                                   child: buildUser(context, userController)),
@@ -94,14 +96,14 @@ class _LoginScreenState extends State<LoginScreen> {
                               DefaultCard(
                                   child: buildPassword(passController.text)),
                               SizedBox(height: 20.h),
-                              buildButton(
-                                  "Anmelden", login, 250, 20, 15, context),
+                              buildButton(AppLocalizations.of(context)!.login,
+                                  login, 250, 20, 15, context),
                               SizedBox(height: 130.h),
                               buildButton("Du hast noch kein Konto",
                                   registerNavigate, 150, 10, 10, context),
                               buildText(
                                   context,
-                                  '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
+                                  '© Landesgartenschau Höxter 2023 GmbH \n                   ${AppLocalizations.of(context)!.allrightsreserved}',
                                   10),
                             ],
                           ),
@@ -153,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   size: 23,
                   color: Theme.of(context).colorScheme.onPrimary,
                 ),
-                hintText: "Passwort",
+                hintText: AppLocalizations.of(context)!.password,
                 hintStyle: TextStyle(
                   color: Theme.of(context).colorScheme.onPrimary,
                 ),

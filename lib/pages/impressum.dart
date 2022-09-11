@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import 'impressum/view_impressum.dart';
 import '/pages/home/widgets/default_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 /*
 Die Datei ist für das Bilden
@@ -20,7 +21,7 @@ class Impressum extends StatelessWidget {
           leading:
               BackButton(color: Theme.of(context).colorScheme.onBackground),
           title: Text(
-            'Impressum',
+            AppLocalizations.of(context)!.imprent,
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
@@ -43,7 +44,7 @@ class Impressum extends StatelessWidget {
                 ),
                 buildText(
                     context,
-                    '© Landesgartenschau Höxter 2023 GmbH \n                   Alle Rechte vorbehalten.',
+                    '© Landesgartenschau Höxter 2023 GmbH \n                   ${AppLocalizations.of(context)!.allrightsreserved}',
                     10),
               ],
             ))));

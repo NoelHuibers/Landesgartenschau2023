@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'stands/widgets/list_stands.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class Stands extends StatelessWidget {
   const Stands({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class Stands extends StatelessWidget {
           leading:
               BackButton(color: Theme.of(context).colorScheme.onBackground),
           title: Text(
-            'Stands',
+            AppLocalizations.of(context)!.stands,
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
