@@ -100,5 +100,7 @@
   "imprintTMG": "Imprint according to § 5 TMG / § 55 RStV",
   "@imprintTMG": {},
   "endRoute": "End route",
-  "@endRoute": {}
+  "@endRoute": {},
+  "searchInStands": "Search in Stands...",
+  "@searchInStands": {}
 }
