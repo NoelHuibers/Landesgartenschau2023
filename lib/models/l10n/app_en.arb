@@ -92,5 +92,15 @@
   "PasswordNotMatch": "The passwords do not match.",
   "@PasswordNotMatch": {},
   "SearchInStands": "Search in Stands...",
-  "@SearchInStands": {}
+  "@SearchInStands": {},
+  "zoomIn": "Zoom In",
+  "@zoomIn": {},
+  "zoomOut": "Zoom Out",
+  "@zoomOut": {},
+  "position": "Position",
+  "@position": {},
+  "imprintTMG": "Imprint according to § 5 TMG / § 55 RStV",
+  "@imprintTMG": {},
+  "endRoute": "End route",
+  "@endRoute": {}
 }
