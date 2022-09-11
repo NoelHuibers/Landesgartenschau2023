@@ -83,8 +83,6 @@
   "@enterPassword": {},
   "searchInLists": "Search in Lists...",
   "@searchInLists": {},
-  "RegistrationSuccessful": "Registration was successful.",
-  "@RegistrationSuccessful": {},
   "MinimumLengthUsername": "The minimum length of the username is 6 characters.",
   "@MinimumLengthUsername": {},
   "automaticallyLoggedOut": "You have been automatically logged out.",
