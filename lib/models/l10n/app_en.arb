@@ -103,4 +103,18 @@
   "@minimumLengthUsername": {},
   "passwordNotMatch": "The passwords do not match.",
   "@passwordNotMatch": {}
+  "pleasepasswordtwice": "Please put the passwords in both fields.",
+  "@pleasepasswordtwice": {}
+  "oldpassword": "old password",
+  "@oldpassword": {}
+  "newpassword": "new password",
+  "@newpassword": {}
+  "loginfirst": "Please login first",
+  "@loginfirst": {}
+  "errortoken": "Error with the Token",
+  "@errortoken": {}
+  "wrongpassword": "Password was wrong",
+  "@wrongpassword": {}
+  "passwordchanged": "The password was sucessfully changed",
+  "@passwordchanged": {}
 }

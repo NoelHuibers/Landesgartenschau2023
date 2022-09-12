@@ -97,4 +97,18 @@
   "@registrationWasSuccessful": {},
   "automaticallyLoggedOut": "Ha sido desconectado automáticamente.",
   "@automaticallyLoggedOut": {}
+  "pleasepasswordtwice": "Bitte das Passwort in beide Felder eintragen.",
+  "@pleasepasswordtwice": {}
+  "oldpassword": "altes Passwort",
+  "@oldpassword": {}
+  "newpassword": "neues Passwort",
+  "@newpassword": {}
+  "loginfirst": "Bitte melde dich erst ein",
+  "@loginfirst": {}
+  "errortoken": "Error mit dem Token",
+  "@errortoken": {}
+  "wrongpassword": "Passwort ist falsch",
+  "@wrongpassword": {}
+  "passwordchanged": "Das Passwort wurde erfolgreich geändert",
+  "@passwordchanged": {}
 }
