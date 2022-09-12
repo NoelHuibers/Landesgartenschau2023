@@ -96,19 +96,19 @@
   "registrationWasSuccessful": "El registro fue exitoso.",
   "@registrationWasSuccessful": {},
   "automaticallyLoggedOut": "Ha sido desconectado automáticamente.",
-  "@automaticallyLoggedOut": {}
+  "@automaticallyLoggedOut": {},
   "pleasepasswordtwice": "Bitte das Passwort in beide Felder eintragen.",
-  "@pleasepasswordtwice": {}
+  "@pleasepasswordtwice": {},
   "oldpassword": "altes Passwort",
-  "@oldpassword": {}
+  "@oldpassword": {},
   "newpassword": "neues Passwort",
-  "@newpassword": {}
+  "@newpassword": {},
   "loginfirst": "Bitte melde dich erst ein",
-  "@loginfirst": {}
+  "@loginfirst": {},
   "errortoken": "Error mit dem Token",
-  "@errortoken": {}
+  "@errortoken": {},
   "wrongpassword": "Passwort ist falsch",
-  "@wrongpassword": {}
+  "@wrongpassword": {},
   "passwordchanged": "Das Passwort wurde erfolgreich geändert",
   "@passwordchanged": {}
 }

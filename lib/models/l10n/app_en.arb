@@ -102,19 +102,19 @@
   "minimumLengthUsername": "The minimum length of the username is 6 characters.",
   "@minimumLengthUsername": {},
   "passwordNotMatch": "The passwords do not match.",
-  "@passwordNotMatch": {}
+  "@passwordNotMatch": {},
   "pleasepasswordtwice": "Please put the passwords in both fields.",
-  "@pleasepasswordtwice": {}
+  "@pleasepasswordtwice": {},
   "oldpassword": "old password",
-  "@oldpassword": {}
+  "@oldpassword": {},
   "newpassword": "new password",
-  "@newpassword": {}
+  "@newpassword": {},
   "loginfirst": "Please login first",
-  "@loginfirst": {}
+  "@loginfirst": {},
   "errortoken": "Error with the Token",
-  "@errortoken": {}
+  "@errortoken": {},
   "wrongpassword": "Password was wrong",
-  "@wrongpassword": {}
+  "@wrongpassword": {},
   "passwordchanged": "The password was sucessfully changed",
   "@passwordchanged": {}
 }
