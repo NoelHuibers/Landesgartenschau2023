@@ -123,10 +123,10 @@
   "@usernotfound": {},
   "processingdata": "Daten werden verarbeitet",
   "@processingdata": {},
-  "Useralreadyexist": "Der Benutzer existiert bereits",
-  "@Useralreadyexist": {},
-  "Passwordtolong": "Passwort und Name zu lang",
-  "@Passwordtolong": {},
-  "Passwordtoshort": "Passwort und Name zu kurz",
-  "@Passwordtolong": {}
+  "useralreadyexist": "Der Benutzer existiert bereits",
+  "@useralreadyexist": {},
+  "passwordtolong": "Passwort und Name zu lang",
+  "@passwordtolong": {},
+  "passwordtoshort": "Passwort und Name zu kurz",
+  "@passwordtolong": {}
 }
