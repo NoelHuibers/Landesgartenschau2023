@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:latlong2/latlong.dart';
 import 'map/widgets/location_controller.dart';
 import 'package:location/location.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 /*
 Die Datei ist für das Bilden
@@ -152,12 +153,14 @@ class _MapState extends State<Map> {
       ),
       floatingActionButton:
           Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-        buildButton("btn1", _zoomIn, 'Zoom IN', Icons.zoom_in_sharp),
+        buildButton("btn1", _zoomIn, AppLocalizations.of(context)!.zoomIn,
+            Icons.zoom_in_sharp),
         SizedBox(height: 10.h),
-        buildButton("btn2", _zoomOut, 'Zoom OUT', Icons.zoom_out_outlined),
+        buildButton("btn2", _zoomOut, AppLocalizations.of(context)!.zoomOut,
+            Icons.zoom_out_outlined),
         SizedBox(height: 10.h),
-        buildButton(
-            "btn3", concurrentPosition, 'Position', Icons.my_location_rounded),
+        buildButton("btn3", concurrentPosition,
+            AppLocalizations.of(context)!.position, Icons.my_location_rounded),
         SizedBox(height: 10.h),
         if (pressd == false) buildCancelButton(),
         SizedBox(height: 100.h),
@@ -184,7 +187,7 @@ class _MapState extends State<Map> {
       backgroundColor: Colors.red,
       foregroundColor: Theme.of(context).colorScheme.onBackground,
       heroTag: "btn0", //Exception Vermeiden
-      tooltip: "Route beenden",
+      tooltip: AppLocalizations.of(context)!.endRoute,
       onPressed: () {
         if (pressd == false) {
           pressd = true;
@@ -240,7 +243,7 @@ class _MapState extends State<Map> {
                 }
               },
               child: Text(
-                'Route',
+                AppLocalizations.of(context)!.route,
                 style: Theme.of(context).textTheme.bodyText2,
               ),
             ),

@@ -6,6 +6,7 @@ import '/models/stands/stand.dart';
 import '/services/provider/database_provider.dart';
 import '/pages/detailsview.dart';
 import '/pages/home/widgets/default_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class StandsList extends StatefulWidget {
   const StandsList({Key? key}) : super(key: key);
@@ -164,7 +165,7 @@ class _StandsListState extends State<StandsList> {
 
   Widget buildSearch() => SearchWidget(
         text: query,
-        hintText: 'Suchen sie in Ständen',
+        hintText: AppLocalizations.of(context)!.searchInStands,
         onChanged: search,
       );
 

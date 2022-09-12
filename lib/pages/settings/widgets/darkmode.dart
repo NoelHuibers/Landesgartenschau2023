@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/services/provider/darkmode_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 /*
 Die Datei ist für das Bilden
@@ -24,7 +25,7 @@ class DarkmodeState extends State<Darkmode> {
         color: Theme.of(context).colorScheme.onBackground,
       ),
       title: Text(
-        'Theme-Mode',
+        AppLocalizations.of(context)!.thememode,
         style: Theme.of(context).textTheme.bodyText2,
       ),
       trailing: Consumer<ThemeProvider>(builder: (context, provider, child) {

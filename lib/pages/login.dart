@@ -46,15 +46,15 @@ class _LoginScreenState extends State<LoginScreen> {
         routeToPage(context, const UserSetting());
       }
       if (res.statusCode == 400) {
-        massage(context, 'Fehler ist aufgetreten');
+        massage(context, AppLocalizations.of(context)!.erroraccured);
         return;
       }
       if (res.statusCode == 401) {
-        massage(context, 'Passwort oder username falsch');
+        massage(context, AppLocalizations.of(context)!.passwordorusernamewrong);
         return;
       }
       if (res.statusCode == 404) {
-        massage(context, 'user nicht gefunden');
+        massage(context, AppLocalizations.of(context)!.usernotfound);
         return;
       }
     }
@@ -99,8 +99,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               buildButton(AppLocalizations.of(context)!.login,
                                   login, 250, 20, 15, context),
                               SizedBox(height: 130.h),
-                              buildButton("Du hast noch kein Konto",
-                                  registerNavigate, 150, 10, 10, context),
+                              buildButton(
+                                  AppLocalizations.of(context)!.noAccount,
+                                  registerNavigate,
+                                  150,
+                                  10,
+                                  10,
+                                  context),
                               buildText(
                                   context,
                                   '© Landesgartenschau Höxter 2023 GmbH \n                   ${AppLocalizations.of(context)!.allrightsreserved}',
@@ -135,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
               obscureText: _showPassword,
               controller: passController,
               validator: (value) {
-                return Validator.validatePass(value!);
+                return Validator.validatePass(value!, context);
               },
               onChanged: (value) => pass = value,
               decoration: InputDecoration(

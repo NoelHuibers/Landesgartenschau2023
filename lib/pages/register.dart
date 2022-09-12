@@ -33,7 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Future<void> register() async {
     if (_formKey.currentState!.validate()) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text('Processing Data'),
+        content: Text(AppLocalizations.of(context)!.processingdata),
         backgroundColor: Colors.green.shade300,
       ));
 
@@ -41,18 +41,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
         userController.text,
         passController.text,
       );
-
+      // ignore_for_file: use_build_context_synchronously
       if (res.statusCode == 201) {
         popupRegister(context, userController.text, passController.text);
       }
       if (res.statusCode == 409) {
-        massage(context, 'User gibt schon');
+        massage(context, AppLocalizations.of(context)!.useralreadyexist);
       }
       if (res.statusCode == 413) {
-        massage(context, 'Passwort & name lang');
+        massage(context, AppLocalizations.of(context)!.passwordtolong);
       }
       if (res.statusCode == 422) {
-        massage(context, 'passwprt name kurz');
+        massage(context, AppLocalizations.of(context)!.passwordtoshort);
       }
     }
   }
@@ -161,10 +161,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               controller: controller,
               validator: (value) {
                 return Validator.validatePassword(
-                  value!,
-                  pass,
-                  '    Für das registrieren 6 bis 8 Stellige Passwörter eingeben',
-                );
+                    value!,
+                    pass,
+                    '    ${AppLocalizations.of(context)!.minimumLengthPassword}',
+                    context);
               },
               onChanged: (value) => pass = value,
               decoration: InputDecoration(

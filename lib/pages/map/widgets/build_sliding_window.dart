@@ -184,7 +184,7 @@ class _BuildListState extends State<BuildlideWindow> {
 
   Widget buildSearch() => SearchWidget(
         text: query,
-        hintText: 'Suchen sie in Listen',
+        hintText: AppLocalizations.of(context)!.searchInLists,
         onChanged: search,
       );
 

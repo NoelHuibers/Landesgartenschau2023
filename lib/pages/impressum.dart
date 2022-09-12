@@ -34,7 +34,8 @@ class Impressum extends StatelessWidget {
                 SizedBox(
                   height: 10.h,
                 ),
-                buildText(context, 'Impressum gemäß § 5 TMG / § 55 RStV', 15),
+                buildText(
+                    context, AppLocalizations.of(context)!.imprintTMG, 15),
                 SizedBox(
                   height: 10.h,
                 ),

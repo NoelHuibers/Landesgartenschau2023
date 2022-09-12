@@ -6,6 +6,7 @@ import '/models/events/happening.dart';
 import '/services/provider/database_provider.dart';
 import '/pages/detailsview.dart';
 import '/pages/home/widgets/default_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class EventsList extends StatefulWidget {
   const EventsList({Key? key}) : super(key: key);
@@ -160,7 +161,7 @@ class _EventsListState extends State<EventsList> {
 
   Widget buildSearch() => SearchWidget(
         text: query,
-        hintText: 'Suchen sie in Events',
+        hintText: AppLocalizations.of(context)!.searchInEvents,
         onChanged: search,
       );
 

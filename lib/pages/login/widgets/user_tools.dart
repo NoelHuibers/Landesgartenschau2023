@@ -81,7 +81,7 @@ Widget buildUser(BuildContext context, TextEditingController userController) {
         TextFormField(
           controller: userController,
           validator: (value) {
-            return Validator.validateUser(value ?? "");
+            return Validator.validateUser(value ?? "", context);
           },
           style: TextStyle(
             color: Theme.of(context).colorScheme.onBackground,
@@ -131,7 +131,7 @@ popupRegister(BuildContext context, String userName, String passwort) {
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text(
-          "Registration erfolgreich",
+          AppLocalizations.of(context)!.registrationWasSuccessful,
           style: TextStyle(
               color: Theme.of(context).colorScheme.onSurface,
               fontSize: 20,
@@ -141,7 +141,7 @@ popupRegister(BuildContext context, String userName, String passwort) {
           child: ListBody(
             children: <Widget>[
               Text(
-                "Sie werden Automatisch angemeldet",
+                AppLocalizations.of(context)!.automaticallyLoggedIn,
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface,
                     fontSize: 18,
@@ -153,7 +153,7 @@ popupRegister(BuildContext context, String userName, String passwort) {
         actions: <Widget>[
           TextButton(
             child: Text(
-              "Ok",
+              AppLocalizations.of(context)!.okay,
               style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
                   fontSize: 18,

@@ -101,7 +101,7 @@ class Detailsview extends StatelessWidget {
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                             ),
-                          ))), //Beschreibung
+                          ))),
                 ],
               )),
         ));

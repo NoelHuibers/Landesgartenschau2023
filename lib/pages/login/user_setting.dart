@@ -10,6 +10,7 @@ import 'package:landesgartenschau2023/pages/login/widgets/user_tools.dart';
 import 'package:landesgartenschau2023/pages/login/validator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+// ignore_for_file: use_build_context_synchronously
 
 /*
 Die Datei ist für das Bilden der User Page
@@ -43,8 +44,8 @@ class _UserSettingState extends State<UserSetting> {
           oldPassController.text);
 
       if (res.statusCode == 200) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Passwort wurde geändert'),
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(AppLocalizations.of(context)!.passwordchanged),
           backgroundColor: Colors.green,
         ));
         passController.clear();
@@ -52,7 +53,7 @@ class _UserSettingState extends State<UserSetting> {
         returnPassController.clear();
       }
       if (res.statusCode == 401) {
-        massage(context, 'falsche angegebene Passwort');
+        massage(context, AppLocalizations.of(context)!.wrongpassword);
       }
     }
   }
@@ -69,10 +70,10 @@ class _UserSettingState extends State<UserSetting> {
       routeToPage(context, const LoginScreen());
     }
     if (res.statusCode == 400) {
-      massage(context, 'Fehler mit Token');
+      massage(context, AppLocalizations.of(context)!.errortoken);
     }
     if (res.statusCode == 401) {
-      massage(context, 'melde dich zuerst an');
+      massage(context, AppLocalizations.of(context)!.loginfirst);
     }
   }
 
@@ -118,13 +119,19 @@ class _UserSettingState extends State<UserSetting> {
                                   ),
                                   SizedBox(height: 5.h),
                                   DefaultCard(
-                                    child: buildOldPassword("altes Passwort",
-                                        oldPassword, oldPassController),
+                                    child: buildOldPassword(
+                                        AppLocalizations.of(context)!
+                                            .oldpassword,
+                                        oldPassword,
+                                        oldPassController),
                                   ),
                                   SizedBox(height: 5.h),
                                   DefaultCard(
-                                    child: buildPassword("neues Passwort",
-                                        newPassword, passController),
+                                    child: buildPassword(
+                                        AppLocalizations.of(context)!
+                                            .newpassword,
+                                        newPassword,
+                                        passController),
                                   ),
                                   SizedBox(height: 5.h),
                                   DefaultCard(
@@ -225,8 +232,11 @@ class _UserSettingState extends State<UserSetting> {
               obscureText: _showPassword,
               controller: controller,
               validator: (value) {
-                return Validator.validatePassword(value!, pass,
-                    '    Bitte passwort in beiden feldern eigeben ');
+                return Validator.validatePassword(
+                    value!,
+                    pass,
+                    '    ${AppLocalizations.of(context)!.pleasepasswordtwice}',
+                    context);
               },
               onChanged: (value) => pass = value,
               decoration: InputDecoration(
@@ -274,7 +284,7 @@ class _UserSettingState extends State<UserSetting> {
               obscureText: _showPassword,
               controller: controller,
               validator: (value) {
-                return Validator.validatePass(value!);
+                return Validator.validatePass(value!, context);
               },
               onChanged: (value) => pass = value,
               decoration: InputDecoration(
