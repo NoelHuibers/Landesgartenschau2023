@@ -128,5 +128,7 @@
   "passwordtolong": "Passwort und Name zu lang",
   "@passwordtolong": {},
   "passwordtoshort": "Passwort und Name zu kurz",
-  "@passwordtolong": {}
+  "@passwordtolong": {},
+  "thememode": "Themenmodus",
+  "@thememode": {}
 }
